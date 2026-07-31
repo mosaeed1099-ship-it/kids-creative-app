@@ -1,0 +1,172 @@
+{
+  "id": "food",
+  "title": {
+    "ar": "الطعام",
+    "en": "Food"
+  },
+  "description": {
+    "ar": "صفحات تلوين الطعام",
+    "en": "Food coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🍎"
+  },
+  "ageGroup": "toddler",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": false,
+  "categories": [
+    {
+      "id": "food-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "food",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "food-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "التفاحة",
+        "en": "Apple"
+      },
+      "tags": [
+        "food",
+        "apple"
+      ],
+      "categoryId": "food-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍎",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "food-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الكب كيك",
+        "en": "Cupcake"
+      },
+      "tags": [
+        "food",
+        "cupcake"
+      ],
+      "categoryId": "food-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🧁",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "food-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الآيس كريم",
+        "en": "Ice cream"
+      },
+      "tags": [
+        "food",
+        "ice cream"
+      ],
+      "categoryId": "food-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍦",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "food-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الموزة",
+        "en": "Banana"
+      },
+      "tags": [
+        "food",
+        "banana"
+      ],
+      "categoryId": "food-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍌",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    }
+  ]
+}

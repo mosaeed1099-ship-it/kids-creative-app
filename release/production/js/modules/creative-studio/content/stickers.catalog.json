@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "packs": [
+    {
+      "id": "studio-stickers",
+      "title": {
+        "ar": "ملصقات",
+        "en": "Stickers"
+      },
+      "url": "stickers.pack.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⭐"
+      },
+      "languages": [
+        "ar",
+        "en"
+      ]
+    }
+  ]
+}

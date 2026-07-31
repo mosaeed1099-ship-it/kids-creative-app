@@ -1,0 +1,172 @@
+{
+  "id": "alphabet",
+  "title": {
+    "ar": "الحروف",
+    "en": "Alphabet"
+  },
+  "description": {
+    "ar": "صفحات تلوين الحروف",
+    "en": "Alphabet coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🔤"
+  },
+  "ageGroup": "kids",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": false,
+  "categories": [
+    {
+      "id": "alphabet-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "alphabet",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "alphabet-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "حرف أ",
+        "en": "Letter A"
+      },
+      "tags": [
+        "alphabet",
+        "letter a"
+      ],
+      "categoryId": "alphabet-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🅰️",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "alphabet-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "حرف ب",
+        "en": "Letter B"
+      },
+      "tags": [
+        "alphabet",
+        "letter b"
+      ],
+      "categoryId": "alphabet-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🅱️",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "alphabet-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الأرقام",
+        "en": "Numbers"
+      },
+      "tags": [
+        "alphabet",
+        "numbers"
+      ],
+      "categoryId": "alphabet-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔢",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "alphabet-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "حرف ت",
+        "en": "Letter T"
+      },
+      "tags": [
+        "alphabet",
+        "letter t"
+      ],
+      "categoryId": "alphabet-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/rocket.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🇹",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    }
+  ]
+}

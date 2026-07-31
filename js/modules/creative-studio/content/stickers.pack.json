@@ -1,0 +1,296 @@
+{
+  "id": "studio-stickers",
+  "title": {
+    "ar": "ملصقات",
+    "en": "Stickers"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "⭐"
+  },
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original"
+  },
+  "version": 1,
+  "categories": [
+    {
+      "id": "studio-stickers-cat",
+      "title": {
+        "ar": "ملصقات",
+        "en": "Stickers"
+      },
+      "icon": "⭐",
+      "packId": "studio-stickers"
+    }
+  ],
+  "items": [
+    {
+      "id": "sticker-star",
+      "assetType": "sticker",
+      "title": {
+        "ar": "star",
+        "en": "star"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "⭐"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⭐"
+      },
+      "order": 1
+    },
+    {
+      "id": "sticker-crown",
+      "assetType": "sticker",
+      "title": {
+        "ar": "crown",
+        "en": "crown"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "👑"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "👑"
+      },
+      "order": 2
+    },
+    {
+      "id": "sticker-bow",
+      "assetType": "sticker",
+      "title": {
+        "ar": "bow",
+        "en": "bow"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🎀"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🎀"
+      },
+      "order": 3
+    },
+    {
+      "id": "sticker-heart",
+      "assetType": "sticker",
+      "title": {
+        "ar": "heart",
+        "en": "heart"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "❤️"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "❤️"
+      },
+      "order": 4
+    },
+    {
+      "id": "sticker-rainbow",
+      "assetType": "sticker",
+      "title": {
+        "ar": "rainbow",
+        "en": "rainbow"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🌈"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌈"
+      },
+      "order": 5
+    },
+    {
+      "id": "sticker-glasses",
+      "assetType": "sticker",
+      "title": {
+        "ar": "glasses",
+        "en": "glasses"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🕶️"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🕶️"
+      },
+      "order": 6
+    },
+    {
+      "id": "sticker-hat",
+      "assetType": "sticker",
+      "title": {
+        "ar": "hat",
+        "en": "hat"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🎩"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🎩"
+      },
+      "order": 7
+    },
+    {
+      "id": "sticker-flower",
+      "assetType": "sticker",
+      "title": {
+        "ar": "flower",
+        "en": "flower"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🌸"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌸"
+      },
+      "order": 8
+    },
+    {
+      "id": "sticker-balloon",
+      "assetType": "sticker",
+      "title": {
+        "ar": "balloon",
+        "en": "balloon"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🎈"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🎈"
+      },
+      "order": 9
+    },
+    {
+      "id": "sticker-lolly",
+      "assetType": "sticker",
+      "title": {
+        "ar": "lolly",
+        "en": "lolly"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🍭"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍭"
+      },
+      "order": 10
+    },
+    {
+      "id": "sticker-butterfly",
+      "assetType": "sticker",
+      "title": {
+        "ar": "butterfly",
+        "en": "butterfly"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "🦋"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦋"
+      },
+      "order": 11
+    },
+    {
+      "id": "sticker-sparkle",
+      "assetType": "sticker",
+      "title": {
+        "ar": "sparkle",
+        "en": "sparkle"
+      },
+      "categoryId": "studio-stickers-cat",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "asset": {
+        "type": "emoji",
+        "value": "✨"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "✨"
+      },
+      "order": 12
+    }
+  ]
+}

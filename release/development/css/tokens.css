@@ -1,0 +1,53 @@
+/* ============================================================
+   tokens.css — DESIGN TOKEN SYSTEM (Phase 2, additive).
+   Loaded BEFORE app.css. Adds a full scale of spacing, radii,
+   typography, elevation, motion and z-index tokens. Color tokens
+   continue to come from ThemeManager (theme.config.js). Nothing
+   here overrides the architecture — it only enriches the variables
+   available to components.
+   ============================================================ */
+
+:root {
+  /* --- spacing scale (4px base) --- */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
+
+  /* --- radii --- */
+  --r-sm: 12px;  --r-md: 18px;  --r-lg: 24px;  --r-xl: 30px;  --r-pill: 999px;
+
+  /* --- typography scale --- */
+  --fs-xs: 12px; --fs-sm: 14px; --fs-md: 16px; --fs-lg: 20px;
+  --fs-xl: 26px; --fs-2xl: 34px; --fs-3xl: 44px;
+  --lh-tight: 1.2; --lh: 1.55;
+  --fw-regular: 400; --fw-bold: 700;
+  --letter-tight: -0.01em;
+
+  /* --- elevation (soft, kid-friendly) --- */
+  --sh-1: 0 4px 12px var(--c-shadow);
+  --sh-2: 0 10px 26px var(--c-shadow);
+  --sh-3: 0 20px 50px var(--c-shadow);
+  --sh-inset: inset 0 -3px 0 rgba(0,0,0,.08);
+
+  /* --- motion --- */
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --ease-in-out: cubic-bezier(.4, 0, .2, 1);
+  --ease-bounce: cubic-bezier(.34, 1.56, .64, 1);
+  --dur-fast: 140ms; --dur: 240ms; --dur-slow: 380ms;
+
+  /* --- z-index scale --- */
+  --z-nav: 20; --z-bottomnav: 30; --z-modal: 100; --z-toast: 200; --z-splash: 999;
+
+  /* --- layout --- */
+  --container: 1040px;
+
+  /* --- playful gradients (used by splash, cards, headers) --- */
+  --grad-brand: linear-gradient(135deg, #ff9ec4 0%, #8ea2ff 100%);
+  --grad-soft: linear-gradient(160deg, #fff3f8 0%, #eef6ff 100%);
+  --grad-mint: linear-gradient(135deg, #a0e8c4, #6bc3ff);
+  --grad-sun: linear-gradient(135deg, #ffd782, #ff9ec4);
+}
+
+[data-theme="dark"] {
+  --grad-soft: linear-gradient(160deg, #1c1d31 0%, #21233c 100%);
+}

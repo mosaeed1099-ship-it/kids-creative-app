@@ -1,0 +1,17 @@
+{
+  "name": "kids-creative-studio",
+  "version": "1.0.0",
+  "description": "Kids Creative Studio — a fully offline, static, no-build children's creative & educational web app (native ES modules, zero dependencies).",
+  "type": "module",
+  "private": true,
+  "license": "SEE LICENSE — original content; see docs/",
+  "homepage": "./index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "build": "node tools/build.mjs"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "engines": { "node": ">=18" },
+  "keywords": ["kids", "coloring", "offline", "static", "es-modules", "arabic", "rtl", "education"]
+}

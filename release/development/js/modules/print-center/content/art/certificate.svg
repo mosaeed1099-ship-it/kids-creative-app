@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="#ffffff"/>
+ <rect x="26" y="26" width="748" height="548" fill="none" stroke="#ffcf6b" stroke-width="8" rx="20"/>
+ <text x="400" y="140" text-anchor="middle" font-family="sans-serif" font-size="46" font-weight="700" fill="#ff6b9d">شهادة تفوّق 🏅</text>
+ <text x="400" y="230" text-anchor="middle" font-family="sans-serif" font-size="26" fill="#5b6b8a">تُمنح هذه الشهادة إلى</text>
+ <line x1="240" y1="330" x2="560" y2="330" stroke="#5b6bff" stroke-width="3"/>
+ <text x="400" y="420" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#5b6b8a">لإتمامه الأنشطة بنجاح</text>
+ <text x="400" y="500" text-anchor="middle" font-size="40" fill="#ffcf6b">★ ★ ★ ★ ★</text></svg>

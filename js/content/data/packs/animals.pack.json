@@ -1,0 +1,76 @@
+{
+  "id": "animals",
+  "title": { "ar": "باقة الحيوانات", "en": "Animals Pack" },
+  "description": { "ar": "كل ما يخص الحيوانات في مكان واحد.", "en": "Everything about animals in one place." },
+  "thumbnail": { "type": "emoji", "value": "🦁" },
+  "ageGroup": "preschool",
+  "languages": ["ar", "en"],
+  "tags": ["animals", "nature"],
+  "license": { "type": "original", "author": "Studio" },
+  "version": 1,
+  "premium": false,
+  "categories": [
+    { "id": "animals-coloring", "title": { "ar": "تلوين", "en": "Coloring" }, "icon": "🎨", "packId": "animals", "order": 1 },
+    { "id": "animals-trace", "title": { "ar": "تتبّع", "en": "Trace" }, "icon": "✏️", "packId": "animals", "order": 2 },
+    { "id": "animals-pdf", "title": { "ar": "ملفات PDF", "en": "PDF" }, "icon": "📄", "packId": "animals", "order": 3 },
+    { "id": "animals-stickers", "title": { "ar": "ملصقات", "en": "Stickers" }, "icon": "⭐", "packId": "animals", "order": 4 },
+    { "id": "animals-activities", "title": { "ar": "أنشطة", "en": "Activities" }, "icon": "🧩", "packId": "animals", "order": 5 }
+  ],
+  "items": [
+    {
+      "id": "animals-coloring-lion", "assetType": "coloring",
+      "title": { "ar": "الأسد", "en": "Lion" },
+      "description": { "ar": "لوّن الأسد ملك الغابة.", "en": "Color the lion, king of the jungle." },
+      "tags": ["animals", "wild", "lion"], "categoryId": "animals-coloring",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "assets/animals/coloring/lion.svg" },
+      "thumbnail": { "type": "emoji", "value": "🦁" },
+      "license": { "type": "original", "author": "Studio" }, "order": 1
+    },
+    {
+      "id": "animals-coloring-cat", "assetType": "coloring",
+      "title": { "ar": "القطة", "en": "Cat" },
+      "description": { "ar": "لوّن القطة اللطيفة.", "en": "Color the cute cat." },
+      "tags": ["animals", "pets", "cat"], "categoryId": "animals-coloring",
+      "languages": ["ar", "en"], "ageGroup": "toddler", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "assets/animals/coloring/cat.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐱" }, "order": 2
+    },
+    {
+      "id": "animals-trace-fish", "assetType": "trace",
+      "title": { "ar": "تتبّع السمكة", "en": "Trace the Fish" },
+      "description": { "ar": "مرّر القلم على خطوط السمكة.", "en": "Trace the fish outline." },
+      "tags": ["animals", "sea", "fish"], "categoryId": "animals-trace",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "medium",
+      "asset": { "type": "svg", "src": "assets/animals/trace/fish.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐟" }, "order": 1
+    },
+    {
+      "id": "animals-pdf-worksheet", "assetType": "pdf",
+      "title": { "ar": "ورقة عمل الحيوانات", "en": "Animals Worksheet" },
+      "description": { "ar": "ورقة عمل قابلة للطباعة.", "en": "A printable worksheet." },
+      "tags": ["animals", "worksheet", "print"], "categoryId": "animals-pdf",
+      "languages": ["ar"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "pdf", "src": "assets/animals/pdf/worksheet.pdf" },
+      "thumbnail": { "type": "emoji", "value": "📄" }, "order": 1
+    },
+    {
+      "id": "animals-sticker-jungle", "assetType": "sticker",
+      "title": { "ar": "ملصقات الغابة", "en": "Jungle Stickers" },
+      "description": { "ar": "مجموعة ملصقات حيوانات الغابة.", "en": "A set of jungle animal stickers." },
+      "tags": ["animals", "stickers", "jungle"], "categoryId": "animals-stickers",
+      "languages": ["ar", "en"], "ageGroup": "toddler", "difficulty": "easy",
+      "asset": { "type": "spritesheet", "src": "assets/animals/stickers/jungle.json" },
+      "thumbnail": { "type": "emoji", "value": "🐘" }, "order": 1
+    },
+    {
+      "id": "animals-activity-match", "assetType": "activity",
+      "title": { "ar": "وصّل الحيوان بصوته", "en": "Match the Sound" },
+      "description": { "ar": "نشاط توصيل تفاعلي.", "en": "An interactive matching activity." },
+      "tags": ["animals", "matching", "sounds"], "categoryId": "animals-activities",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "medium",
+      "asset": { "type": "activity", "src": "assets/animals/activities/match.json" },
+      "thumbnail": { "type": "emoji", "value": "🔊" }, "order": 1
+    }
+  ]
+}

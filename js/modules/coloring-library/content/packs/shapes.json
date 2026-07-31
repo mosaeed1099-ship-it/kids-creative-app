@@ -1,0 +1,172 @@
+{
+  "id": "shapes",
+  "title": {
+    "ar": "الأشكال",
+    "en": "Shapes"
+  },
+  "description": {
+    "ar": "صفحات تلوين الأشكال",
+    "en": "Shapes coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🔷"
+  },
+  "ageGroup": "toddler",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": false,
+  "categories": [
+    {
+      "id": "shapes-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "shapes",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "shapes-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الدائرة",
+        "en": "Circle"
+      },
+      "tags": [
+        "shapes",
+        "circle"
+      ],
+      "categoryId": "shapes-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⭕",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "shapes-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "المربع",
+        "en": "Square"
+      },
+      "tags": [
+        "shapes",
+        "square"
+      ],
+      "categoryId": "shapes-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/rocket.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🟦",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "shapes-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "النجمة",
+        "en": "Star"
+      },
+      "tags": [
+        "shapes",
+        "star"
+      ],
+      "categoryId": "shapes-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⭐",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "shapes-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "القلب",
+        "en": "Heart"
+      },
+      "tags": [
+        "shapes",
+        "heart"
+      ],
+      "categoryId": "shapes-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "❤️",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+/* ============================================================
+   coloring.module.css — styles for the Coloring FEATURE (Phase 5).
+   A NEW file (the Phase-1 css/coloring.css scaffold is untouched).
+   Self-contained so the example page works without the app shell,
+   but also inherits the app's theme tokens when present.
+   ============================================================ */
+
+.coloring {
+  --c-surface: var(--c-surface, #ffffff);
+  --c-border: var(--c-border, #e6e6ef);
+  --c-primary: var(--c-primary, #5b6bff);
+  --c-accent: var(--c-accent, #ff6b9d);
+  --c-muted: var(--c-muted, #8a8aa3);
+  --c-danger: var(--c-danger, #ff5a5a);
+  display: flex; flex-direction: column; height: 100%; min-height: 0;
+  font-family: "Noto Kufi Arabic", system-ui, sans-serif; color: #2b2b3a;
+  background: #eef1ff;
+}
+
+/* ---- toolbar ---- */
+.clr-toolbar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 8px 12px; background: var(--c-surface); border-bottom: 1px solid var(--c-border);
+}
+.clr-tools { display: flex; gap: 6px; }
+.clr-tool {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  border: 2px solid transparent; background: #f2f4ff; border-radius: 14px;
+  padding: 6px 10px; cursor: pointer; min-width: 54px; font-family: inherit;
+  transition: transform .08s ease;
+}
+.clr-tool:active { transform: scale(.95); }
+.clr-tool.is-active { background: var(--c-primary); color: #fff; }
+.clr-tool__icon { font-size: 20px; }
+.clr-tool__label { font-size: 11px; font-weight: 700; }
+
+.clr-title { flex: 1; text-align: center; font-weight: 700; color: var(--c-accent); min-width: 80px; }
+
+.clr-actions { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.clr-act {
+  width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--c-border);
+  background: var(--c-surface); cursor: pointer; font-size: 17px;
+}
+.clr-act:hover { background: #f2f4ff; }
+.clr-act:disabled { opacity: .4; cursor: default; }
+.clr-act--danger { color: var(--c-danger); }
+.clr-sep { width: 1px; height: 26px; background: var(--c-border); margin: 0 2px; }
+
+/* ---- main area ---- */
+.clr-main { flex: 1; display: flex; min-height: 0; }
+.clr-stage {
+  flex: 1; position: relative; min-width: 0; overflow: hidden;
+  background: linear-gradient(160deg, #f6f4ff, #eef6ff); touch-action: none;
+}
+
+/* ---- palette panel ---- */
+.clr-panel {
+  width: 226px; flex: none; background: var(--c-surface);
+  border-inline-start: 1px solid var(--c-border); padding: 12px; overflow-y: auto;
+}
+.clr-panel__label { font-size: 12px; font-weight: 700; color: var(--c-muted); margin: 12px 0 6px; }
+
+.clr-brush { display: flex; align-items: center; gap: 8px; }
+.clr-brush__icon { font-size: 18px; }
+.clr-brush__range { flex: 1; accent-color: var(--c-primary); }
+.clr-brush__val { font-weight: 700; color: var(--c-primary); min-width: 26px; text-align: center; }
+
+.clr-currentrow { display: flex; align-items: center; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.clr-currentrow__label { font-size: 13px; font-weight: 700; color: var(--c-muted); }
+.clr-current { width: 34px; height: 34px; border-radius: 10px; border: 2px solid rgba(0,0,0,.15); box-shadow: inset 0 -2px 0 rgba(0,0,0,.08); }
+.clr-favbtn { font-size: 18px; border: none; background: transparent; cursor: pointer; }
+.clr-pickwrap { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 10px; border: 2px dashed #cfd4e2; cursor: pointer; overflow: hidden; font-weight: 700; color: var(--c-primary); }
+.clr-picker { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+.clr-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.clr-swatches--sm { grid-template-columns: repeat(7, 1fr); }
+.clr-sw {
+  aspect-ratio: 1; border-radius: 10px; border: 2px solid rgba(0,0,0,.12); cursor: pointer;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.08); padding: 0;
+}
+.clr-sw:active { transform: scale(.92); }
+.clr-sw.is-active { outline: 3px solid #2b2b3a; transform: scale(1.06); }
+.clr-sw--sm { border-radius: 8px; }
+.clr-empty { font-size: 11px; color: #b3b3c6; }
+
+/* ---- responsive: palette moves to the bottom on small screens ---- */
+@media (max-width: 760px) {
+  .clr-main { flex-direction: column; }
+  .clr-panel {
+    width: auto; border-inline-start: none; border-top: 1px solid var(--c-border);
+    max-height: 40vh;
+  }
+  .clr-tool__label { display: none; }
+  .clr-tool { min-width: 46px; padding: 8px; }
+  .clr-swatches, .clr-swatches--sm { grid-template-columns: repeat(9, 1fr); }
+}
+
+/* ---- dark theme (when the app shell provides it) ---- */
+[data-theme="dark"] .coloring { background: #161726; color: #f2f3ff; }
+[data-theme="dark"] .clr-tool { background: #282a48; color: #f2f3ff; }
+[data-theme="dark"] .clr-stage { background: linear-gradient(160deg, #1c1d31, #21233c); }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Canvas Engine — Basic Example</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #eef1ff; color: #2b2b3a; }
+  header { padding: 12px 16px; background: #fff; border-bottom: 1px solid #e6e6ef; }
+  h1 { font-size: 16px; margin: 0; }
+  .hint { font-size: 12px; color: #8a8aa3; margin-top: 4px; }
+  .bar { display: flex; gap: 8px; padding: 10px 16px; flex-wrap: wrap; align-items: center; }
+  button { font: inherit; font-weight: 700; cursor: pointer; border: none; border-radius: 22px;
+           padding: 8px 14px; background: #5b6bff; color: #fff; }
+  button.ghost { background: #fff; color: #5b6bff; border: 2px solid #cfd4e2; }
+  #stage { position: relative; height: 70vh; margin: 0 16px 16px; background: #fff;
+           border-radius: 16px; box-shadow: 0 10px 30px rgba(91,107,255,.15); overflow: hidden; }
+  #stats { font-size: 12px; color: #8a8aa3; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🧩 Canvas Engine — Basic Example</h1>
+    <div class="hint">Drag to pan · wheel/pinch to zoom · this page uses ONLY the reusable engine (no feature logic).</div>
+  </header>
+
+  <div class="bar">
+    <button id="reset" class="ghost">Reset View</button>
+    <button id="zin" class="ghost">Zoom +</button>
+    <button id="zout" class="ghost">Zoom −</button>
+    <button id="add">Add object</button>
+    <button id="export">Export PNG</button>
+    <span id="stats">—</span>
+  </div>
+
+  <div id="stage"></div>
+
+  <script type="module">
+    import { CanvasEngine, SceneObject, GridPlugin } from '../js/engine/index.js';
+
+    // --- A custom object, defined by the "module" (here: the example) ---
+    class Blob extends SceneObject {
+      constructor(props) { super({ type: 'blob', width: 120, height: 120, ...props }); this.color = props.color || '#ff6b9d'; }
+      draw(ctx) {
+        ctx.fillStyle = this.color;
+        ctx.strokeStyle = '#2b2b3a';
+        ctx.lineWidth = 4;
+        const r = 26;
+        const w = this.width, h = this.height;
+        ctx.beginPath();
+        ctx.moveTo(r, 0); ctx.arcTo(w, 0, w, h, r); ctx.arcTo(w, h, 0, h, r);
+        ctx.arcTo(0, h, 0, 0, r); ctx.arcTo(0, 0, w, 0, r); ctx.closePath();
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 20px system-ui'; ctx.textAlign = 'center';
+        ctx.fillText('★', w / 2, h / 2 + 7);
+      }
+    }
+
+    const engine = new CanvasEngine('#stage', { background: '#ffffff' }).mount();
+    engine.plugins.install(new GridPlugin());
+    engine.camera.setHome(0, 0, 1);
+
+    const COLORS = ['#ff6b9d', '#5b6bff', '#57c98a', '#ffb02e', '#b06bff', '#35b0ff'];
+    let n = 0;
+    function addObject(x = (n % 5) * 150 - 300, y = Math.floor(n / 5) * 150 - 150) {
+      engine.objects.add(new Blob({ x, y, color: COLORS[n % COLORS.length] }));
+      n++; engine.invalidate();
+    }
+    for (let i = 0; i < 6; i++) addObject();
+
+    // Click to select the top-most object (coordinate conversion + hit test).
+    engine.events.on('pointerdown', (p) => { engine.selection.selectAt(p.world); });
+    engine.events.on('selection:change', (items) =>
+      console.log('selected:', items.map((o) => o.id)));
+
+    // Toolbar
+    document.getElementById('reset').onclick = () => engine.resetView();
+    document.getElementById('zin').onclick = () => { engine.camera.setZoom(engine.camera.zoom * 1.2); engine.invalidate(); };
+    document.getElementById('zout').onclick = () => { engine.camera.setZoom(engine.camera.zoom / 1.2); engine.invalidate(); };
+    document.getElementById('add').onclick = () => addObject((Math.random() * 600 - 300), (Math.random() * 300 - 150));
+    document.getElementById('export').onclick = () => {
+      const url = engine.exporter.toDataURL({ background: '#fff' });
+      engine.exporter.download(url, 'engine-export.png');
+    };
+
+    // Live stats
+    const stats = document.getElementById('stats');
+    engine.events.on('frame', () => {
+      const s = engine.perf.stats();
+      stats.textContent = `fps ${s.fps} · objects ${s.objects} · zoom ${engine.camera.zoom.toFixed(2)} · dpr ${s.dpr}`;
+    });
+
+    window.__engine = engine; // for manual testing
+  </script>
+</body>
+</html>

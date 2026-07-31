@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "title": {
+    "ar": "أنشطة تعليمية",
+    "en": "أنشطة تعليمية"
+  },
+  "packs": [
+    {
+      "id": "activities",
+      "title": {
+        "ar": "أنشطة تعليمية",
+        "en": "أنشطة تعليمية"
+      },
+      "url": "activities.pack.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🎯"
+      },
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "order": 1
+    }
+  ]
+}

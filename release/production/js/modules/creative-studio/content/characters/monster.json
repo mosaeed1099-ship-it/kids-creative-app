@@ -1,0 +1,102 @@
+{
+  "id": "monster",
+  "name": {
+    "ar": "الوحش",
+    "en": "Monster"
+  },
+  "thumbnail": {
+    "value": "👾"
+  },
+  "canvas": {
+    "w": 600,
+    "h": 600
+  },
+  "parts": [
+    {
+      "id": "arm-l",
+      "kind": "arm",
+      "src": "../parts/monster/arm.svg",
+      "x": 180,
+      "y": 380,
+      "z": 1
+    },
+    {
+      "id": "arm-r",
+      "kind": "arm",
+      "src": "../parts/monster/arm.svg",
+      "x": 420,
+      "y": 380,
+      "z": 1,
+      "flipH": true
+    },
+    {
+      "id": "horn-l",
+      "kind": "horn",
+      "src": "../parts/monster/horn.svg",
+      "x": 240,
+      "y": 150,
+      "z": 1
+    },
+    {
+      "id": "horn-r",
+      "kind": "horn",
+      "src": "../parts/monster/horn.svg",
+      "x": 360,
+      "y": 150,
+      "z": 1,
+      "flipH": true
+    },
+    {
+      "id": "body",
+      "kind": "body",
+      "src": "../parts/monster/body.svg",
+      "x": 300,
+      "y": 320,
+      "z": 2
+    },
+    {
+      "id": "eyes",
+      "kind": "eyes",
+      "slot": "eyes",
+      "src": "../parts/monster/eyes-happy.svg",
+      "x": 300,
+      "y": 270,
+      "z": 5
+    },
+    {
+      "id": "mouth",
+      "kind": "mouth",
+      "slot": "mouth",
+      "src": "../parts/monster/mouth-happy.svg",
+      "x": 300,
+      "y": 350,
+      "z": 5
+    }
+  ],
+  "expressions": {
+    "happy": {
+      "eyes": "../parts/monster/eyes-happy.svg",
+      "mouth": "../parts/monster/mouth-happy.svg"
+    },
+    "sad": {
+      "eyes": "../parts/monster/eyes-sad.svg",
+      "mouth": "../parts/monster/mouth-sad.svg"
+    },
+    "angry": {
+      "eyes": "../parts/monster/eyes-angry.svg",
+      "mouth": "../parts/monster/mouth-angry.svg"
+    },
+    "surprised": {
+      "eyes": "../parts/monster/eyes-surprised.svg",
+      "mouth": "../parts/monster/mouth-surprised.svg"
+    },
+    "sleepy": {
+      "eyes": "../parts/monster/eyes-sleepy.svg",
+      "mouth": "../parts/monster/mouth-small.svg"
+    },
+    "laughing": {
+      "eyes": "../parts/monster/eyes-laughing.svg",
+      "mouth": "../parts/monster/mouth-open.svg"
+    }
+  }
+}

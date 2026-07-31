@@ -1,0 +1,73 @@
+/* ============================================================
+   animations.css — ANIMATION SYSTEM (Phase 2, additive).
+   Reusable keyframes + utility classes, page-transition on route
+   change, and the premium splash/loading animation. Respects
+   prefers-reduced-motion (see responsive.css).
+   ============================================================ */
+
+/* ---------- keyframes ---------- */
+@keyframes kcs-fade-up   { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes kcs-fade-in   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kcs-pop-in    { 0% { opacity: 0; transform: scale(.8); } 60% { transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes kcs-float     { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes kcs-bob       { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+@keyframes kcs-wiggle    { 0%,100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg); } }
+@keyframes kcs-pulse     { 0%,100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes kcs-spin      { to { transform: rotate(360deg); } }
+@keyframes kcs-shimmer   { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@keyframes kcs-bar       { 0% { transform: translateX(-100%); } 50% { transform: translateX(20%); } 100% { transform: translateX(100%); } }
+
+/* ---------- utility animation classes ---------- */
+.anim-fade-up { animation: kcs-fade-up var(--dur) var(--ease-out) both; }
+.anim-fade-in { animation: kcs-fade-in var(--dur) var(--ease-out) both; }
+.anim-pop     { animation: kcs-pop-in var(--dur) var(--ease-bounce) both; }
+.anim-float   { animation: kcs-float 3s var(--ease-in-out) infinite; }
+.anim-bob     { animation: kcs-bob 2.6s var(--ease-in-out) infinite; }
+.anim-wiggle  { animation: kcs-wiggle .5s var(--ease-in-out) infinite; }
+.anim-pulse   { animation: kcs-pulse 1.4s var(--ease-in-out) infinite; }
+
+/* stagger helpers for grids/lists */
+.stagger > * { animation: kcs-pop-in var(--dur) var(--ease-bounce) both; }
+.stagger > *:nth-child(1) { animation-delay: .02s; }
+.stagger > *:nth-child(2) { animation-delay: .08s; }
+.stagger > *:nth-child(3) { animation-delay: .14s; }
+.stagger > *:nth-child(4) { animation-delay: .20s; }
+.stagger > *:nth-child(5) { animation-delay: .26s; }
+.stagger > *:nth-child(6) { animation-delay: .32s; }
+.stagger > *:nth-child(7) { animation-delay: .38s; }
+.stagger > *:nth-child(8) { animation-delay: .44s; }
+
+/* ---------- page transition (enter animation on every route view) ---------- */
+.app-outlet > * { animation: kcs-fade-up var(--dur-slow) var(--ease-out) both; }
+
+/* ---------- premium splash / loading screen ---------- */
+.boot-splash {
+  background: var(--grad-brand);
+  gap: var(--sp-5);
+}
+.boot-splash__logo {
+  font-size: 68px;
+  animation: kcs-bob 2.2s var(--ease-in-out) infinite;
+  filter: drop-shadow(0 8px 16px rgba(0,0,0,.2));
+}
+.boot-splash__name {
+  font-size: var(--fs-lg); font-weight: var(--fw-bold); letter-spacing: .5px;
+  animation: kcs-fade-in .6s var(--ease-out) both;
+}
+.boot-splash__bar {
+  width: 180px; height: 8px; border-radius: var(--r-pill);
+  background: rgba(255,255,255,.35); overflow: hidden; position: relative;
+}
+.boot-splash__bar::after {
+  content: ""; position: absolute; inset: 0; width: 60%;
+  background: #fff; border-radius: var(--r-pill);
+  animation: kcs-bar 1.15s var(--ease-in-out) infinite;
+}
+.app-loaded .boot-splash { opacity: 0; pointer-events: none; }
+
+/* small inline spinner (reusable) */
+.spinner {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 3px solid var(--c-border); border-top-color: var(--c-primary);
+  animation: kcs-spin .8s linear infinite;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Coloring Library — Example</title>
+<link rel="stylesheet" href="../css/coloring-library.css" />
+<link rel="stylesheet" href="../css/coloring.module.css" />
+<style>
+  html, body { height: 100%; margin: 0; background: #f6f4ff; }
+  #app { min-height: 100%; }
+</style>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <meta name="theme-color" content="#5b6bff" />
+  <link rel="stylesheet" href="../css/a11y.css" />
+  <script type="module">import("../js/app/boot.js").then(m=>m.installGlobalHandlers&&m.installGlobalHandlers()).catch(()=>{});</script>
+</head>
+<body>
+  <a class="skip-link" href="#app">تخطَّ إلى المحتوى</a>
+  <div id="app"></div>
+
+  <script type="module">
+    import ColoringLibrary, { ColoringLauncher } from '../js/modules/coloring-library/index.js';
+    import { ContentManager } from '../js/content/index.js';
+
+    const base = new URL('../js/modules/coloring-library/content/', location.href).href;
+    const content = new ContentManager({ base });
+
+    const resolveAsset = (item) => new URL(item.asset.src, base).href;
+    const launcher = new ColoringLauncher({ content, resolveAsset });
+
+    const library = new ColoringLibrary({
+      mount: '#app',
+      content,
+      onOpen: (item) => launcher.open(item),
+      options: { resolveThumb: resolveAsset, title: 'مكتبة التلوين' },
+    });
+    await library.mount();
+
+    // When the child returns from coloring, refresh recent/continue shelves.
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.clrlib-launcher__back')) setTimeout(() => library.refresh(), 50);
+    });
+
+    window.__library = library;
+    window.__launcher = launcher;
+  </script>
+</body>
+</html>

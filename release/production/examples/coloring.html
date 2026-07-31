@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Coloring Module — Example</title>
+<link rel="stylesheet" href="../css/coloring.module.css" />
+<style>
+  html, body { height: 100%; margin: 0; font-family: "Noto Kufi Arabic", system-ui, sans-serif; background: #eef1ff; }
+  .wrap { display: flex; flex-direction: column; height: 100%; }
+  .pages { display: flex; gap: 8px; padding: 8px 12px; background: #fff; border-bottom: 1px solid #e6e6ef; overflow-x: auto; align-items: center; }
+  .pages b { color: #ff6b9d; font-size: 14px; margin-inline-end: 6px; white-space: nowrap; }
+  .page { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 2px solid transparent; background: #f2f4ff; border-radius: 14px; padding: 6px 12px; cursor: pointer; font: inherit; }
+  .page.is-active { border-color: #ffcf6b; }
+  .page .emoji { font-size: 26px; }
+  .page .t { font-size: 11px; font-weight: 700; color: #5b6bff; }
+  #app { flex: 1; min-height: 0; }
+</style>
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <meta name="theme-color" content="#5b6bff" />
+  <link rel="stylesheet" href="../css/a11y.css" />
+  <script type="module">import("../js/app/boot.js").then(m=>m.installGlobalHandlers&&m.installGlobalHandlers()).catch(()=>{});</script>
+</head>
+<body>
+  <a class="skip-link" href="#app">تخطَّ إلى المحتوى</a>
+  <div class="wrap">
+    <div class="pages" id="pages"><b>🎨 اختر صفحة:</b></div>
+    <div id="app"></div>
+  </div>
+
+  <script type="module">
+    import ColoringApp from '../js/modules/coloring/index.js';
+    import { ContentManager } from '../js/content/index.js';
+
+    const base = new URL('../js/modules/coloring/content/', location.href).href;
+    const content = new ContentManager({ base });
+    await content.init({ catalog: 'catalog.json' });
+    await content.loadPack('coloring-samples');
+
+    const app = new ColoringApp({
+      mount: '#app',
+      content,
+      options: { resolveAsset: (item) => new URL(item.asset.src, base).href },
+    });
+    app.mount();
+
+    const items = content.filter({ assetType: 'coloring' }).sortBy('order').toArray();
+    const pagesEl = document.getElementById('pages');
+    let activeBtn = null;
+
+    items.forEach((it, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'page';
+      btn.innerHTML = `<span class="emoji">${it.thumbnail.value}</span><span class="t">${it.getTitle('ar')}</span>`;
+      btn.onclick = async () => {
+        await app.openItem(it);
+        if (activeBtn) activeBtn.classList.remove('is-active');
+        activeBtn = btn; btn.classList.add('is-active');
+      };
+      pagesEl.appendChild(btn);
+      if (i === 0) { activeBtn = btn; btn.classList.add('is-active'); }
+    });
+
+    // open the first page by default
+    await app.openItem(items[0]);
+
+    window.__coloring = app; // for testing
+  </script>
+</body>
+</html>

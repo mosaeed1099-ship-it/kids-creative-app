@@ -1,0 +1,65 @@
+{
+  "id": "space",
+  "title": { "ar": "باقة الفضاء", "en": "Space Pack" },
+  "description": { "ar": "مغامرة بين النجوم.", "en": "An adventure among the stars." },
+  "thumbnail": { "type": "emoji", "value": "🚀" },
+  "ageGroup": "kids",
+  "languages": ["ar", "en"],
+  "tags": ["space", "stars", "planets"],
+  "license": { "type": "original", "author": "Studio" },
+  "version": 1,
+  "premium": true,
+  "categories": [
+    { "id": "space-coloring", "title": { "ar": "تلوين", "en": "Coloring" }, "icon": "🎨", "packId": "space", "order": 1 },
+    { "id": "space-story", "title": { "ar": "قصة", "en": "Story" }, "icon": "📖", "packId": "space", "order": 2 },
+    { "id": "space-puzzle", "title": { "ar": "ألغاز", "en": "Puzzle" }, "icon": "🧩", "packId": "space", "order": 3 },
+    { "id": "space-stickers", "title": { "ar": "ملصقات", "en": "Stickers" }, "icon": "⭐", "packId": "space", "order": 4 }
+  ],
+  "items": [
+    {
+      "id": "space-coloring-rocket", "assetType": "coloring",
+      "title": { "ar": "الصاروخ", "en": "Rocket" },
+      "description": { "ar": "لوّن الصاروخ المنطلق.", "en": "Color the launching rocket." },
+      "tags": ["space", "rocket", "vehicles"], "categoryId": "space-coloring",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "svg", "src": "assets/space/coloring/rocket.svg" },
+      "thumbnail": { "type": "emoji", "value": "🚀" }, "order": 1
+    },
+    {
+      "id": "space-coloring-planet", "assetType": "coloring",
+      "title": { "ar": "الكوكب", "en": "Planet" },
+      "description": { "ar": "لوّن الكوكب وحلقاته.", "en": "Color the ringed planet." },
+      "tags": ["space", "planet", "saturn"], "categoryId": "space-coloring",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "assets/space/coloring/planet.svg" },
+      "thumbnail": { "type": "emoji", "value": "🪐" }, "order": 2
+    },
+    {
+      "id": "space-story-journey", "assetType": "story",
+      "title": { "ar": "رحلة إلى القمر", "en": "Journey to the Moon" },
+      "description": { "ar": "قصة مصوّرة قصيرة.", "en": "A short illustrated story." },
+      "tags": ["space", "story", "moon"], "categoryId": "space-story",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "easy",
+      "asset": { "type": "story", "src": "assets/space/story/journey.json" },
+      "thumbnail": { "type": "emoji", "value": "🌙" }, "order": 1
+    },
+    {
+      "id": "space-puzzle-constellations", "assetType": "puzzle",
+      "title": { "ar": "لغز الأبراج", "en": "Constellations Puzzle" },
+      "description": { "ar": "ركّب صورة النجوم.", "en": "Assemble the star picture." },
+      "tags": ["space", "puzzle", "stars"], "categoryId": "space-puzzle",
+      "languages": ["ar", "en"], "ageGroup": "tweens", "difficulty": "hard",
+      "asset": { "type": "puzzle", "src": "assets/space/puzzle/constellations.json" },
+      "thumbnail": { "type": "emoji", "value": "✨" }, "order": 1
+    },
+    {
+      "id": "space-sticker-galaxy", "assetType": "sticker",
+      "title": { "ar": "ملصقات المجرّة", "en": "Galaxy Stickers" },
+      "description": { "ar": "ملصقات نجوم وكواكب.", "en": "Stars and planets stickers." },
+      "tags": ["space", "stickers", "galaxy"], "categoryId": "space-stickers",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "easy",
+      "asset": { "type": "spritesheet", "src": "assets/space/stickers/galaxy.json" },
+      "thumbnail": { "type": "emoji", "value": "🌌" }, "order": 1
+    }
+  ]
+}

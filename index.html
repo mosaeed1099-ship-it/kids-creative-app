@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#5b6bff" />
+  <title>Kids Creative Studio</title>
+  <meta name="description" content="استوديو إبداع الأطفال — تلوين ورسم وأنشطة تفاعلية." />
+
+  <!-- Fonts (optional; app works without them). Safe to self-host later. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles (order: tokens → base → dashboard → features → components → animations → responsive) -->
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/coloring.css" />
+  <link rel="stylesheet" href="css/draw.css" />
+  <link rel="stylesheet" href="css/trace.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <!-- Boot splash / loading screen: hidden once .app-loaded is set on body -->
+  <div class="boot-splash" aria-hidden="true">
+    <div class="boot-splash__logo">🎨</div>
+    <div class="boot-splash__name">Kids Creative Studio</div>
+    <div class="boot-splash__bar"></div>
+  </div>
+
+  <!-- App mounts here -->
+  <div id="app"></div>
+
+  <!-- Core app entry (architecture). No bundler required. -->
+  <script type="module" src="js/main.js"></script>
+  <!-- UI foundation layer (Phase 2, additive — does not touch the core). -->
+  <script type="module" src="js/ui/foundation.js"></script>
+</body>
+</html>

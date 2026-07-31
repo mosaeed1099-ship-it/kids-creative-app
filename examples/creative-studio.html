@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Creative Studio — Example</title>
+<link rel="stylesheet" href="../css/creative-studio.css" />
+<style>
+  html, body { height: 100%; margin: 0; font-family: "Noto Kufi Arabic", system-ui, sans-serif; background: #eef1ff; }
+  #app { height: 100%; }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import CreativeStudio from '../js/modules/creative-studio/index.js';
+    import { ContentManager } from '../js/content/index.js';
+
+    const base = new URL('../js/modules/creative-studio/content/', location.href).href;
+
+    // stickers via the Content Engine
+    const content = new ContentManager({ base });
+    await content.init({ catalog: 'stickers.catalog.json' });
+    await content.loadPack('studio-stickers');
+
+    const studio = new CreativeStudio({ mount: '#app', content });
+    studio.mount();
+
+    // characters (studio's own catalog)
+    const catalog = await (await fetch(new URL('catalog.json', base))).json();
+    studio.setCharacters(catalog.characters, (c) => studio.loadCharacter(new URL(c.url, base).href));
+    studio.loadStickers(content.filter({ assetType: 'sticker' }).toArray());
+
+    await studio.loadCharacter(new URL(catalog.characters[0].url, base).href);
+
+    window.__studio = studio;
+  </script>
+</body>
+</html>

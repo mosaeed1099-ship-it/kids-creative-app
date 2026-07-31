@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "title": {
+    "ar": "مكتبة التلوين",
+    "en": "Coloring Library"
+  },
+  "packs": [
+    {
+      "id": "animals",
+      "title": {
+        "ar": "الحيوانات",
+        "en": "Animals"
+      },
+      "description": {
+        "ar": "صفحات تلوين الحيوانات",
+        "en": "Animals coloring pages"
+      },
+      "url": "packs/animals.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦁"
+      },
+      "ageGroup": "preschool",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": true,
+      "order": 1
+    },
+    {
+      "id": "vehicles",
+      "title": {
+        "ar": "المركبات",
+        "en": "Vehicles"
+      },
+      "description": {
+        "ar": "صفحات تلوين المركبات",
+        "en": "Vehicles coloring pages"
+      },
+      "url": "packs/vehicles.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🚗"
+      },
+      "ageGroup": "kids",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": true,
+      "order": 2
+    },
+    {
+      "id": "space",
+      "title": {
+        "ar": "الفضاء",
+        "en": "Space"
+      },
+      "description": {
+        "ar": "صفحات تلوين الفضاء",
+        "en": "Space coloring pages"
+      },
+      "url": "packs/space.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🚀"
+      },
+      "ageGroup": "kids",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": true,
+      "order": 3
+    },
+    {
+      "id": "alphabet",
+      "title": {
+        "ar": "الحروف",
+        "en": "Alphabet"
+      },
+      "description": {
+        "ar": "صفحات تلوين الحروف",
+        "en": "Alphabet coloring pages"
+      },
+      "url": "packs/alphabet.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔤"
+      },
+      "ageGroup": "kids",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 4
+    },
+    {
+      "id": "princess",
+      "title": {
+        "ar": "الأميرات",
+        "en": "Princess"
+      },
+      "description": {
+        "ar": "صفحات تلوين الأميرات",
+        "en": "Princess coloring pages"
+      },
+      "url": "packs/princess.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "👑"
+      },
+      "ageGroup": "preschool",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": true,
+      "order": 5
+    },
+    {
+      "id": "dinosaurs",
+      "title": {
+        "ar": "الديناصورات",
+        "en": "Dinosaurs"
+      },
+      "description": {
+        "ar": "صفحات تلوين الديناصورات",
+        "en": "Dinosaurs coloring pages"
+      },
+      "url": "packs/dinosaurs.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦕"
+      },
+      "ageGroup": "kids",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 6
+    },
+    {
+      "id": "nature",
+      "title": {
+        "ar": "الطبيعة",
+        "en": "Nature"
+      },
+      "description": {
+        "ar": "صفحات تلوين الطبيعة",
+        "en": "Nature coloring pages"
+      },
+      "url": "packs/nature.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌳"
+      },
+      "ageGroup": "preschool",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 7
+    },
+    {
+      "id": "food",
+      "title": {
+        "ar": "الطعام",
+        "en": "Food"
+      },
+      "description": {
+        "ar": "صفحات تلوين الطعام",
+        "en": "Food coloring pages"
+      },
+      "url": "packs/food.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍎"
+      },
+      "ageGroup": "toddler",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 8
+    },
+    {
+      "id": "jobs",
+      "title": {
+        "ar": "المهن",
+        "en": "Jobs"
+      },
+      "description": {
+        "ar": "صفحات تلوين المهن",
+        "en": "Jobs coloring pages"
+      },
+      "url": "packs/jobs.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "👩‍⚕️"
+      },
+      "ageGroup": "kids",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 9
+    },
+    {
+      "id": "shapes",
+      "title": {
+        "ar": "الأشكال",
+        "en": "Shapes"
+      },
+      "description": {
+        "ar": "صفحات تلوين الأشكال",
+        "en": "Shapes coloring pages"
+      },
+      "url": "packs/shapes.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔷"
+      },
+      "ageGroup": "toddler",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "featured": false,
+      "order": 10
+    }
+  ]
+}

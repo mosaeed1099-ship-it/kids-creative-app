@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Trace Studio — Example</title>
+<link rel="stylesheet" href="../css/trace-studio.css" />
+<style>
+  html, body { height: 100%; margin: 0; font-family: "Noto Kufi Arabic", system-ui, sans-serif; background: #eef1ff; }
+  #app { height: 100%; }
+</style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="module">
+    import TraceStudio from '../js/modules/trace-studio/index.js';
+    import { ContentManager } from '../js/content/index.js';
+
+    const base = new URL('../js/modules/trace-studio/content/', location.href).href;
+    const content = new ContentManager({ base });
+    await content.init({ catalog: 'catalog.json' });
+    await content.loadPack('trace-samples');
+
+    const resolveAsset = (item) => new URL(item.asset.src, base).href;
+    const trace = new TraceStudio({
+      mount: '#app',
+      content,
+      options: { resolveAsset },
+    });
+    trace.mount();
+
+    // populate the "sources" panel with trace templates from the Content Engine
+    const items = content.filter({ assetType: 'trace' }).sortBy('order').toArray();
+    trace.ui.setSources(items, (it) => trace.openItem(it));
+
+    // open the first template by default
+    await trace.openItem(items[0]);
+
+    window.__trace = trace;
+  </script>
+</body>
+</html>

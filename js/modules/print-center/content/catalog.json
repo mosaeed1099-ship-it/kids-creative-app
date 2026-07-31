@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "title": {
+    "ar": "أنشطة للطباعة",
+    "en": "Printables"
+  },
+  "packs": [
+    {
+      "id": "printables",
+      "title": {
+        "ar": "أنشطة للطباعة",
+        "en": "Printables"
+      },
+      "url": "printables.pack.json",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🖨️"
+      },
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "order": 1
+    }
+  ]
+}

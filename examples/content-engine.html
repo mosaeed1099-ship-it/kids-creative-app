@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content Engine — Example</title>
+<style>
+  body { margin: 0; font-family: system-ui, "Noto Kufi Arabic", sans-serif; background: #eef1ff; color: #2b2b3a; }
+  header { padding: 12px 16px; background: #fff; border-bottom: 1px solid #e6e6ef; }
+  h1 { font-size: 16px; margin: 0; }
+  .hint { font-size: 12px; color: #8a8aa3; margin-top: 4px; }
+  .bar { display: flex; gap: 8px; padding: 10px 16px; flex-wrap: wrap; align-items: center; }
+  input, select, button { font: inherit; }
+  input, select { padding: 8px 12px; border-radius: 12px; border: 2px solid #cfd4e2; }
+  button { font-weight: 700; cursor: pointer; border: none; border-radius: 22px; padding: 8px 14px; background: #5b6bff; color: #fff; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; padding: 0 16px 24px; }
+  .card { background: #fff; border-radius: 16px; padding: 14px; box-shadow: 0 8px 20px rgba(91,107,255,.12); position: relative; }
+  .emoji { font-size: 40px; }
+  .title { font-weight: 700; margin-top: 6px; }
+  .meta { font-size: 12px; color: #8a8aa3; margin-top: 4px; }
+  .fav { position: absolute; top: 10px; inset-inline-start: 10px; cursor: pointer; font-size: 18px; }
+  .count { font-size: 12px; color: #8a8aa3; padding: 0 16px; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>📚 Content Engine — Example</h1>
+    <div class="hint">Loads sample JSON packs, then search / filter / favorite / recent — engine only, no feature UI.</div>
+  </header>
+
+  <div class="bar">
+    <input id="q" placeholder="🔎 ابحث… (مثال: أسد / rocket)" />
+    <select id="type">
+      <option value="">كل الأنواع</option>
+    </select>
+    <select id="age">
+      <option value="">كل الأعمار</option>
+    </select>
+    <button id="favBtn">⭐ المفضلة فقط</button>
+    <button id="recentBtn">🕘 المفتوحة مؤخرًا</button>
+    <button id="clearBtn" style="background:#ff6b9d">مسح الفلاتر</button>
+  </div>
+  <div class="count" id="count">…</div>
+  <div class="grid" id="grid"></div>
+
+  <script type="module">
+    import { ContentManager, AssetType, AgeGroup } from '../js/content/index.js';
+
+    const cm = new ContentManager({ base: new URL('../js/content/data/', location.href).href });
+    let onlyFav = false, onlyRecent = false;
+
+    // populate filter dropdowns from enums
+    const typeSel = document.getElementById('type');
+    AssetType.values().forEach((t) => typeSel.insertAdjacentHTML('beforeend', `<option value="${t}">${AssetType.icon(t)} ${AssetType.label(t)}</option>`));
+    const ageSel = document.getElementById('age');
+    AgeGroup.values().forEach((a) => ageSel.insertAdjacentHTML('beforeend', `<option value="${a}">${AgeGroup.label(a)}</option>`));
+
+    await cm.init({ catalog: 'catalog.json' });
+    // Lazy-load all sample packs for the demo (normally load on demand).
+    await cm.loadAll();
+
+    function currentItems() {
+      const q = document.getElementById('q').value.trim();
+      const type = typeSel.value;
+      const age = ageSel.value;
+      if (q) {
+        return cm.search(q, { assetType: type || undefined, ageGroup: age || undefined }).map((r) => r.item);
+      }
+      return cm.filter({
+        assetType: type || null, ageGroup: age || null,
+        favorites: onlyFav, recent: onlyRecent,
+      }).toArray();
+    }
+
+    function render() {
+      const items = currentItems();
+      document.getElementById('count').textContent = `عدد النتائج: ${items.length} · إجمالي المحتوى المحمّل: ${cm.registry.items.size}`;
+      const grid = document.getElementById('grid');
+      grid.innerHTML = '';
+      for (const it of items) {
+        const fav = cm.isFavorite(it.id) ? '⭐' : '☆';
+        const el = document.createElement('div');
+        el.className = 'card';
+        el.innerHTML = `
+          <span class="fav" data-id="${it.id}">${fav}</span>
+          <div class="emoji">${it.thumbnail.value || '📦'}</div>
+          <div class="title">${it.getTitle('ar')}</div>
+          <div class="meta">${AssetType.label(it.assetType)} · ${it.ageGroup || '—'} · ${it.difficulty || '—'}</div>
+        `;
+        el.addEventListener('click', (e) => {
+          if (e.target.classList.contains('fav')) { cm.toggleFavorite(it.id); render(); return; }
+          cm.open(it.id); render();
+        });
+        grid.appendChild(el);
+      }
+    }
+
+    document.getElementById('q').addEventListener('input', render);
+    typeSel.addEventListener('change', render);
+    ageSel.addEventListener('change', render);
+    document.getElementById('favBtn').onclick = () => { onlyFav = !onlyFav; onlyRecent = false; render(); };
+    document.getElementById('recentBtn').onclick = () => { onlyRecent = !onlyRecent; onlyFav = false; render(); };
+    document.getElementById('clearBtn').onclick = () => {
+      onlyFav = onlyRecent = false; document.getElementById('q').value = ''; typeSel.value = ''; ageSel.value = ''; render();
+    };
+
+    window.__cm = cm; // for testing
+    render();
+  </script>
+</body>
+</html>

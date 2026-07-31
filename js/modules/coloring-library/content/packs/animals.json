@@ -1,0 +1,238 @@
+{
+  "id": "animals",
+  "title": {
+    "ar": "الحيوانات",
+    "en": "Animals"
+  },
+  "description": {
+    "ar": "صفحات تلوين الحيوانات",
+    "en": "Animals coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🦁"
+  },
+  "ageGroup": "preschool",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": true,
+  "categories": [
+    {
+      "id": "animals-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "animals",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "animals-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الأسد",
+        "en": "Lion"
+      },
+      "tags": [
+        "animals",
+        "lion"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦁",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "animals-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "القطة",
+        "en": "Cat"
+      },
+      "tags": [
+        "animals",
+        "cat"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐱",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "animals-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "السمكة",
+        "en": "Fish"
+      },
+      "tags": [
+        "animals",
+        "fish"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐟",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "animals-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الفيل",
+        "en": "Elephant"
+      },
+      "tags": [
+        "animals",
+        "elephant"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐘",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    },
+    {
+      "id": "animals-clr-5",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الأرنب",
+        "en": "Rabbit"
+      },
+      "tags": [
+        "animals",
+        "rabbit"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐰",
+        "color": "#f0e6ff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 5
+    },
+    {
+      "id": "animals-clr-6",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الدب",
+        "en": "Bear"
+      },
+      "tags": [
+        "animals",
+        "bear"
+      ],
+      "categoryId": "animals-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐻",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 6
+    }
+  ]
+}

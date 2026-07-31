@@ -1,0 +1,48 @@
+{
+  "id": "coloring-samples",
+  "title": { "ar": "صفحات تلوين", "en": "Coloring Pages" },
+  "description": { "ar": "رسمات خطية جاهزة للتلوين.", "en": "Line-art ready to color." },
+  "thumbnail": { "type": "emoji", "value": "🎨" },
+  "ageGroup": "preschool",
+  "languages": ["ar", "en"],
+  "license": { "type": "original", "author": "Studio" },
+  "version": 1,
+  "categories": [
+    { "id": "samples", "title": { "ar": "عيّنات", "en": "Samples" }, "icon": "🎨", "packId": "coloring-samples", "order": 1 }
+  ],
+  "items": [
+    {
+      "id": "clr-lion", "assetType": "coloring",
+      "title": { "ar": "الأسد", "en": "Lion" },
+      "tags": ["animals", "wild", "lion"], "categoryId": "samples",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "art/lion.svg" },
+      "thumbnail": { "type": "emoji", "value": "🦁" },
+      "license": { "type": "original", "author": "Studio" }, "order": 1
+    },
+    {
+      "id": "clr-cat", "assetType": "coloring",
+      "title": { "ar": "القطة", "en": "Cat" },
+      "tags": ["animals", "pets", "cat"], "categoryId": "samples",
+      "languages": ["ar", "en"], "ageGroup": "toddler", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "art/cat.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐱" }, "order": 2
+    },
+    {
+      "id": "clr-fish", "assetType": "coloring",
+      "title": { "ar": "السمكة", "en": "Fish" },
+      "tags": ["animals", "sea", "fish"], "categoryId": "samples",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "art/fish.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐟" }, "order": 3
+    },
+    {
+      "id": "clr-rocket", "assetType": "coloring",
+      "title": { "ar": "الصاروخ", "en": "Rocket" },
+      "tags": ["space", "rocket", "vehicles"], "categoryId": "samples",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "svg", "src": "art/rocket.svg" },
+      "thumbnail": { "type": "emoji", "value": "🚀" }, "order": 4
+    }
+  ]
+}

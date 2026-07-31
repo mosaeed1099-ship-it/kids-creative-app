@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "title": { "ar": "صفحات التلوين", "en": "Coloring Pages" },
+  "packs": [
+    {
+      "id": "coloring-samples",
+      "title": { "ar": "صفحات تلوين", "en": "Coloring Pages" },
+      "description": { "ar": "عيّنات رسمات للتلوين.", "en": "Sample coloring artwork." },
+      "url": "coloring.pack.json",
+      "thumbnail": { "type": "emoji", "value": "🎨" },
+      "ageGroup": "preschool",
+      "languages": ["ar", "en"],
+      "order": 1
+    }
+  ]
+}

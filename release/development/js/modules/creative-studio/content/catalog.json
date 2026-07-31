@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "title": {
+    "ar": "الشخصيات",
+    "en": "Characters"
+  },
+  "characters": [
+    {
+      "id": "cat",
+      "name": {
+        "ar": "القطة",
+        "en": "Cat"
+      },
+      "url": "characters/cat.json",
+      "thumbnail": {
+        "value": "🐱"
+      }
+    },
+    {
+      "id": "monster",
+      "name": {
+        "ar": "الوحش",
+        "en": "Monster"
+      },
+      "url": "characters/monster.json",
+      "thumbnail": {
+        "value": "👾"
+      }
+    }
+  ]
+}

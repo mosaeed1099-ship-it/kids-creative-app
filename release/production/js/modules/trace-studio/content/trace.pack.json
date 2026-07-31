@@ -1,0 +1,49 @@
+{
+  "id": "trace-samples",
+  "title": { "ar": "قوالب التتبّع", "en": "Trace Templates" },
+  "description": { "ar": "صور خطية للتتبّع فوقها.", "en": "Line images to trace over." },
+  "thumbnail": { "type": "emoji", "value": "✏️" },
+  "ageGroup": "preschool",
+  "languages": ["ar", "en"],
+  "license": { "type": "original", "author": "Studio" },
+  "version": 1,
+  "categories": [
+    { "id": "trace-samples-cat", "title": { "ar": "قوالب", "en": "Templates" }, "icon": "✏️", "packId": "trace-samples", "order": 1 }
+  ],
+  "items": [
+    {
+      "id": "trace-lion", "assetType": "trace",
+      "title": { "ar": "الأسد", "en": "Lion" },
+      "tags": ["animals", "lion"], "categoryId": "trace-samples-cat",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "../../coloring/content/art/lion.svg" },
+      "thumbnail": { "type": "emoji", "value": "🦁" },
+      "license": { "type": "original", "author": "Studio" }, "order": 1
+    },
+    {
+      "id": "trace-cat", "assetType": "trace",
+      "title": { "ar": "القطة", "en": "Cat" },
+      "tags": ["animals", "cat"], "categoryId": "trace-samples-cat",
+      "languages": ["ar", "en"], "ageGroup": "toddler", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "../../coloring/content/art/cat.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐱" }, "order": 2
+    },
+    {
+      "id": "trace-fish", "assetType": "trace",
+      "title": { "ar": "السمكة", "en": "Fish" },
+      "tags": ["animals", "sea", "fish"], "categoryId": "trace-samples-cat",
+      "languages": ["ar", "en"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "../../coloring/content/art/fish.svg" },
+      "thumbnail": { "type": "emoji", "value": "🐟" }, "order": 3
+    },
+    {
+      "id": "trace-rocket", "assetType": "trace",
+      "title": { "ar": "الصاروخ", "en": "Rocket" },
+      "tags": ["space", "rocket"], "categoryId": "trace-samples-cat",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "svg", "src": "../../coloring/content/art/rocket.svg" },
+      "thumbnail": { "type": "emoji", "value": "🚀" },
+      "license": { "type": "public-domain", "author": "" }, "order": 4
+    }
+  ]
+}

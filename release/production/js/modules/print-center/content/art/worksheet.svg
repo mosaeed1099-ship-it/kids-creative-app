@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800"><rect width="600" height="800" fill="#ffffff"/>
+ <text x="300" y="70" text-anchor="middle" font-family="sans-serif" font-size="34" font-weight="700" fill="#5b6bff">ورقة عمل — الأرقام</text>
+ <g stroke="#cfd4e2" stroke-width="2"><line x1="60" y1="140" x2="540" y2="140"/><line x1="60" y1="220" x2="540" y2="220"/><line x1="60" y1="300" x2="540" y2="300"/><line x1="60" y1="380" x2="540" y2="380"/><line x1="60" y1="460" x2="540" y2="460"/><line x1="60" y1="540" x2="540" y2="540"/><line x1="60" y1="620" x2="540" y2="620"/><line x1="60" y1="700" x2="540" y2="700"/></g>
+ <g font-family="sans-serif" font-size="60" fill="#e3e6ee" font-weight="700"><text x="90" y="140">1</text><text x="185" y="140">2</text><text x="280" y="140">3</text><text x="375" y="140">4</text><text x="470" y="140">5</text></g></svg>

@@ -1,0 +1,38 @@
+/* ============================================================
+   dashboard.css — home screen: header + activity card grid.
+   ============================================================ */
+
+.dashboard__header { text-align: center; margin: 8px 0 22px; }
+.dashboard__title { color: var(--c-accent); font-size: 28px; margin: 0 0 4px; }
+.dashboard__subtitle { color: var(--c-muted); margin: 0; font-size: 14px; }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--gap);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  --card-color: var(--c-primary);
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 8px 20px var(--c-shadow);
+  border-top: 5px solid var(--card-color);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px var(--c-shadow); }
+
+.feature-card__icon {
+  font-size: 46px;
+  width: 84px; height: 84px; margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--card-color) 14%, transparent);
+  border-radius: 50%;
+}
+.feature-card__title { font-weight: 700; font-size: 18px; color: var(--card-color); margin-bottom: 6px; }
+.feature-card__desc { font-size: 13px; color: var(--c-muted); line-height: 1.5; }

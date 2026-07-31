@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Canvas Engine — Plugins, Tools & History</title>
+<style>
+  body { margin: 0; font-family: system-ui, sans-serif; background: #eef1ff; color: #2b2b3a; }
+  header { padding: 12px 16px; background: #fff; border-bottom: 1px solid #e6e6ef; }
+  h1 { font-size: 16px; margin: 0; }
+  .hint { font-size: 12px; color: #8a8aa3; margin-top: 4px; }
+  .bar { display: flex; gap: 8px; padding: 10px 16px; flex-wrap: wrap; }
+  button { font: inherit; font-weight: 700; cursor: pointer; border: none; border-radius: 22px;
+           padding: 8px 14px; background: #5b6bff; color: #fff; }
+  button.ghost { background: #fff; color: #5b6bff; border: 2px solid #cfd4e2; }
+  #stage { position: relative; height: 68vh; margin: 0 16px 16px; background: #fff;
+           border-radius: 16px; box-shadow: 0 10px 30px rgba(91,107,255,.15); overflow: hidden; }
+</style>
+</head>
+<body>
+  <header>
+    <h1>🔌 Canvas Engine — Plugins · Tools · History</h1>
+    <div class="hint">Activate "Spawn" then click to drop objects (undoable). Toggle the grid plugin and a crosshair plugin. Engine only — no feature logic.</div>
+  </header>
+
+  <div class="bar">
+    <button id="spawn" class="ghost">Tool: Spawn</button>
+    <button id="pan" class="ghost">Tool: Pan (none)</button>
+    <button id="grid" class="ghost">Toggle Grid plugin</button>
+    <button id="cross" class="ghost">Toggle Crosshair plugin</button>
+    <button id="undo">Undo</button>
+    <button id="redo">Redo</button>
+  </div>
+
+  <div id="stage"></div>
+
+  <script type="module">
+    import { CanvasEngine, SceneObject, GridPlugin, IPlugin, ITool, ICommand } from '../js/engine/index.js';
+
+    class Dot extends SceneObject {
+      constructor(props) { super({ type: 'dot', width: 60, height: 60, ...props }); this.color = props.color || '#5b6bff'; }
+      draw(ctx) {
+        ctx.fillStyle = this.color; ctx.strokeStyle = '#2b2b3a'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.arc(this.width / 2, this.height / 2, this.width / 2 - 2, 0, Math.PI * 2);
+        ctx.fill(); ctx.stroke();
+      }
+    }
+
+    // --- a custom plugin: crosshair overlay following nothing, just origin marker ---
+    class CrosshairPlugin extends IPlugin {
+      constructor() { super('crosshair'); }
+      render(ctx) {
+        ctx.save(); ctx.strokeStyle = '#ff6b9d'; ctx.lineWidth = 2 / this.engine.camera.zoom;
+        ctx.beginPath(); ctx.moveTo(-20, 0); ctx.lineTo(20, 0); ctx.moveTo(0, -20); ctx.lineTo(0, 20); ctx.stroke();
+        ctx.restore();
+      }
+    }
+
+    // --- a custom command: add/remove an object (undoable) ---
+    class AddObjectCommand extends ICommand {
+      constructor(engine, obj) { super('Add object'); this.engine = engine; this.obj = obj; }
+      execute() { this.engine.objects.add(this.obj); this.engine.invalidate(); }
+      undo() { this.engine.objects.remove(this.obj); this.engine.invalidate(); }
+    }
+
+    // --- a custom tool: spawn a Dot at the clicked world point ---
+    class SpawnTool extends ITool {
+      constructor() { super('spawn'); this.i = 0; }
+      onPointerDown(p, engine) {
+        const colors = ['#ff6b9d', '#57c98a', '#ffb02e', '#b06bff'];
+        const dot = new Dot({ x: p.world.x, y: p.world.y, color: colors[this.i++ % 4] });
+        engine.history.push(new AddObjectCommand(engine, dot));
+        return true; // consume (don't pan)
+      }
+    }
+
+    const engine = new CanvasEngine('#stage', { background: '#ffffff' }).mount();
+    const grid = new GridPlugin();
+    engine.plugins.install(grid);
+    engine.tools.register(new SpawnTool());
+
+    document.getElementById('spawn').onclick = () => engine.tools.activate('spawn');
+    document.getElementById('pan').onclick = () => engine.tools.deactivate();
+    document.getElementById('grid').onclick = () => (engine.plugins.has('grid') ? engine.plugins.uninstall('grid') : engine.plugins.install(grid), engine.invalidate());
+    document.getElementById('cross').onclick = () => (engine.plugins.has('crosshair') ? engine.plugins.uninstall('crosshair') : engine.plugins.install(new CrosshairPlugin()), engine.invalidate());
+    document.getElementById('undo').onclick = () => engine.history.undo();
+    document.getElementById('redo').onclick = () => engine.history.redo();
+
+    engine.events.on('history:change', (h) => console.log('history:', h));
+    window.__engine = engine;
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* ============================================================
+   trace-studio.css — Trace Studio feature (Phase 8). NEW file.
+   Self-contained; inherits app theme tokens when present.
+   ============================================================ */
+.trace {
+  --s: var(--c-surface, #fff); --bd: var(--c-border, #e6e6ef);
+  --pri: var(--c-primary, #5b6bff); --acc: var(--c-accent, #ff6b9d);
+  --mut: var(--c-muted, #8a8aa3); --danger: var(--c-danger, #ff5a5a);
+  display: flex; flex-direction: column; height: 100%; min-height: 0;
+  font-family: "Noto Kufi Arabic", system-ui, sans-serif; color: #2b2b3a; background: #eef1ff;
+}
+.trace * { box-sizing: border-box; }
+
+/* toolbar */
+.ts-toolbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 8px 12px; background: var(--s); border-bottom: 1px solid var(--bd); }
+.ts-tools { display: flex; gap: 6px; }
+.ts-tool { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 2px solid transparent; background: #f2f4ff; border-radius: 14px; padding: 6px 9px; cursor: pointer; min-width: 54px; font: inherit; }
+.ts-tool.is-active { background: var(--pri); color: #fff; }
+.ts-tool__i { font-size: 19px; } .ts-tool__l { font-size: 10px; font-weight: 700; }
+.ts-title { flex: 1; text-align: center; font-weight: 700; color: var(--acc); min-width: 60px; }
+.ts-actions { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+.ts-act { width: 38px; height: 38px; border-radius: 11px; border: 1px solid var(--bd); background: var(--s); cursor: pointer; font-size: 16px; }
+.ts-act:disabled { opacity: .4; } .ts-act--danger { color: var(--danger); }
+.ts-sep { width: 1px; height: 24px; background: var(--bd); margin: 0 2px; }
+
+/* main */
+.ts-main { flex: 1; display: flex; min-height: 0; }
+.ts-stage { flex: 1; position: relative; min-width: 0; overflow: hidden; background: linear-gradient(160deg, #f6f4ff, #eef6ff); touch-action: none; }
+.ts-panel { width: 246px; flex: none; background: var(--s); border-inline-start: 1px solid var(--bd); padding: 12px; overflow-y: auto; }
+.ts-lbl { font-size: 12px; font-weight: 700; color: var(--mut); margin: 14px 0 6px; }
+
+/* sources */
+.ts-sources { display: flex; gap: 6px; flex-wrap: wrap; }
+.ts-source { width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--bd); background: #f2f4ff; font-size: 22px; cursor: pointer; }
+.ts-uploadbtn { display: block; margin-top: 8px; text-align: center; font-weight: 700; font-size: 13px; color: var(--pri); border: 2px dashed #cfd4e2; border-radius: 12px; padding: 10px; cursor: pointer; }
+.ts-upload { display: none; }
+
+/* reference controls */
+.ts-opacityrow { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--mut); font-weight: 700; }
+.ts-range { flex: 1; accent-color: var(--pri); }
+.ts-ctl { border: 1px solid var(--bd); background: var(--s); border-radius: 10px; padding: 7px 8px; cursor: pointer; font-size: 13px; font-weight: 700; }
+.ts-ctl.is-on { background: var(--pri); color: #fff; } .ts-ctl.is-off { opacity: .5; }
+.ts-ctlrow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 8px; }
+
+/* comparison */
+.ts-compare { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
+.ts-cmp { border: 2px solid var(--bd); background: var(--s); border-radius: 12px; padding: 8px 4px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+.ts-cmp.is-active { background: var(--pri); color: #fff; border-color: var(--pri); }
+
+/* brush + palette */
+.ts-brushrow { display: flex; align-items: center; gap: 8px; }
+.ts-val { font-weight: 700; color: var(--pri); min-width: 24px; text-align: center; }
+.ts-currentrow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ts-current { width: 32px; height: 32px; border-radius: 9px; border: 2px solid rgba(0,0,0,.15); }
+.ts-favbtn { font-size: 17px; border: none; background: transparent; cursor: pointer; }
+.ts-pickwrap { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9px; border: 2px dashed #cfd4e2; cursor: pointer; overflow: hidden; font-weight: 700; color: var(--pri); }
+.ts-picker { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.ts-swatches { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 6px; }
+.ts-swatches--sm { grid-template-columns: repeat(7, 1fr); }
+.ts-sw { aspect-ratio: 1; border-radius: 9px; border: 2px solid rgba(0,0,0,.12); cursor: pointer; box-shadow: inset 0 -2px 0 rgba(0,0,0,.08); padding: 0; }
+.ts-sw.is-active { outline: 3px solid #2b2b3a; transform: scale(1.06); }
+.ts-sw--sm { border-radius: 7px; }
+.ts-empty { font-size: 11px; color: #b3b3c6; }
+
+@media (max-width: 760px) {
+  .ts-main { flex-direction: column; }
+  .ts-panel { width: auto; border-inline-start: none; border-top: 1px solid var(--bd); max-height: 42vh; }
+  .ts-tool__l { display: none; } .ts-tool { min-width: 44px; }
+}
+[data-theme="dark"] .trace { background: #161726; color: #f2f3ff; }
+[data-theme="dark"] .ts-tool { background: #282a48; color: #f2f3ff; }
+[data-theme="dark"] .ts-stage { background: linear-gradient(160deg, #1c1d31, #21233c); }

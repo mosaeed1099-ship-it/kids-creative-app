@@ -1,0 +1,58 @@
+/* ============================================================
+   creative-studio.css — Creative Studio (movable characters, Phase 9).
+   NEW file. Self-contained; inherits app theme tokens when present.
+   ============================================================ */
+.creative {
+  --s: var(--c-surface, #fff); --bd: var(--c-border, #e6e6ef);
+  --pri: var(--c-primary, #5b6bff); --acc: var(--c-accent, #ff6b9d);
+  --mut: var(--c-muted, #8a8aa3); --danger: var(--c-danger, #ff5a5a); --warn: #ff9a3d;
+  display: flex; flex-direction: column; height: 100%; min-height: 0;
+  font-family: "Noto Kufi Arabic", system-ui, sans-serif; color: #2b2b3a; background: #eef1ff;
+}
+.creative * { box-sizing: border-box; }
+
+/* toolbar */
+.cs-toolbar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 8px 12px; background: var(--s); border-bottom: 1px solid var(--bd); }
+.cs-tools { display: flex; gap: 6px; }
+.cs-tool { display: flex; flex-direction: column; align-items: center; gap: 1px; border: 2px solid transparent; background: #f2f4ff; border-radius: 13px; padding: 5px 9px; cursor: pointer; min-width: 52px; font: inherit; }
+.cs-tool.is-active { background: var(--pri); color: #fff; }
+.cs-tool__i { font-size: 18px; } .cs-tool__l { font-size: 10px; font-weight: 700; }
+.cs-partacts { display: flex; gap: 3px; flex-wrap: wrap; padding: 4px 8px; border-radius: 14px; background: #f6f7ff; border: 1px solid var(--bd); }
+.cs-partacts.is-disabled { opacity: .4; pointer-events: none; }
+.cs-btn { width: 36px; height: 36px; border-radius: 10px; border: 1px solid var(--bd); background: var(--s); cursor: pointer; font-size: 15px; }
+.cs-btn:disabled { opacity: .4; } .cs-btn--danger { color: var(--danger); } .cs-btn--warn { color: var(--warn); }
+.cs-title { flex: 1; text-align: center; font-weight: 700; color: var(--acc); min-width: 60px; }
+.cs-right { display: flex; gap: 3px; align-items: center; flex-wrap: wrap; }
+.cs-sep { width: 1px; height: 24px; background: var(--bd); margin: 0 2px; }
+
+/* main */
+.cs-main { flex: 1; display: flex; min-height: 0; }
+.cs-stage { flex: 1; position: relative; min-width: 0; overflow: hidden; background: linear-gradient(160deg, #f6f4ff, #eef6ff); touch-action: none; }
+.cs-panel { width: 240px; flex: none; background: var(--s); border-inline-start: 1px solid var(--bd); padding: 12px; overflow-y: auto; }
+.cs-lbl { font-size: 12px; font-weight: 700; color: var(--mut); margin: 14px 0 6px; }
+
+/* characters */
+.cs-chars { display: flex; gap: 8px; flex-wrap: wrap; }
+.cs-char { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 2px solid var(--bd); background: #f2f4ff; border-radius: 14px; padding: 8px 12px; cursor: pointer; font: inherit; }
+.cs-char__e { font-size: 30px; } .cs-char__n { font-size: 11px; font-weight: 700; }
+
+/* expressions */
+.cs-exprs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.cs-expr { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 2px solid var(--bd); background: var(--s); border-radius: 14px; padding: 8px 4px; cursor: pointer; font: inherit; font-size: 20px; }
+.cs-expr.is-active { background: var(--pri); color: #fff; border-color: var(--pri); }
+.cs-expr__l { font-size: 10px; font-weight: 700; }
+
+/* stickers */
+.cs-stickers { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.cs-sticker { aspect-ratio: 1; border: 2px solid var(--bd); background: var(--s); border-radius: 12px; cursor: pointer; font-size: 22px; padding: 0; }
+.cs-sticker:active { transform: scale(.9); }
+.cs-hint { margin-top: 14px; font-size: 12px; color: var(--mut); background: #f6f7ff; border-radius: 12px; padding: 10px; line-height: 1.6; }
+
+@media (max-width: 760px) {
+  .cs-main { flex-direction: column; }
+  .cs-panel { width: auto; border-inline-start: none; border-top: 1px solid var(--bd); max-height: 42vh; }
+  .cs-tool__l { display: none; } .cs-tool { min-width: 44px; }
+}
+[data-theme="dark"] .creative { background: #161726; color: #f2f3ff; }
+[data-theme="dark"] .cs-tool, [data-theme="dark"] .cs-char { background: #282a48; color: #f2f3ff; }
+[data-theme="dark"] .cs-stage { background: linear-gradient(160deg, #1c1d31, #21233c); }

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "title": { "ar": "مكتبة المحتوى", "en": "Content Library" },
+  "packs": [
+    {
+      "id": "animals",
+      "title": { "ar": "باقة الحيوانات", "en": "Animals Pack" },
+      "description": { "ar": "تلوين وتتبّع وملصقات وأنشطة عن الحيوانات.", "en": "Coloring, tracing, stickers and activities about animals." },
+      "url": "packs/animals.pack.json",
+      "thumbnail": { "type": "emoji", "value": "🦁" },
+      "ageGroup": "preschool",
+      "languages": ["ar", "en"],
+      "order": 1,
+      "premium": false
+    },
+    {
+      "id": "alphabet",
+      "title": { "ar": "باقة الحروف", "en": "Alphabet Pack" },
+      "description": { "ar": "تعلّم الحروف: تلوين وكتابة وتتبّع وبطاقات.", "en": "Learn letters: coloring, writing, tracing and flashcards." },
+      "url": "packs/alphabet.pack.json",
+      "thumbnail": { "type": "emoji", "value": "🔤" },
+      "ageGroup": "kids",
+      "languages": ["ar", "en"],
+      "order": 2,
+      "premium": false
+    },
+    {
+      "id": "space",
+      "title": { "ar": "باقة الفضاء", "en": "Space Pack" },
+      "description": { "ar": "مغامرة في الفضاء: تلوين وقصة وألغاز وملصقات.", "en": "A space adventure: coloring, story, puzzles and stickers." },
+      "url": "packs/space.pack.json",
+      "thumbnail": { "type": "emoji", "value": "🚀" },
+      "ageGroup": "kids",
+      "languages": ["ar", "en"],
+      "order": 3,
+      "premium": true
+    }
+  ]
+}

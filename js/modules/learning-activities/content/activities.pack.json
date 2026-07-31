@@ -1,0 +1,958 @@
+{
+  "id": "activities",
+  "title": {
+    "ar": "أنشطة تعليمية",
+    "en": "أنشطة تعليمية"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🎯"
+  },
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original"
+  },
+  "version": 1,
+  "categories": [
+    {
+      "id": "cat-logic",
+      "title": {
+        "ar": "منطق وتفكير",
+        "en": "منطق وتفكير"
+      },
+      "icon": "🧩",
+      "order": 1,
+      "packId": "activities"
+    },
+    {
+      "id": "cat-numbers",
+      "title": {
+        "ar": "أرقام",
+        "en": "أرقام"
+      },
+      "icon": "🔢",
+      "order": 2,
+      "packId": "activities"
+    },
+    {
+      "id": "cat-letters",
+      "title": {
+        "ar": "حروف",
+        "en": "حروف"
+      },
+      "icon": "🔤",
+      "order": 3,
+      "packId": "activities"
+    },
+    {
+      "id": "cat-focus",
+      "title": {
+        "ar": "تركيز",
+        "en": "تركيز"
+      },
+      "icon": "🔍",
+      "order": 4,
+      "packId": "activities"
+    }
+  ],
+  "items": [
+    {
+      "id": "act-dots-star",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "وصّل النقاط — نجمة",
+        "en": "وصّل النقاط — نجمة"
+      },
+      "tags": [
+        "dots",
+        "shapes"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⭐"
+      },
+      "data": {
+        "type": "connect-dots",
+        "params": {
+          "reveal": "⭐",
+          "points": [
+            {
+              "x": 50,
+              "y": 8
+            },
+            {
+              "x": 61,
+              "y": 38
+            },
+            {
+              "x": 92,
+              "y": 38
+            },
+            {
+              "x": 67,
+              "y": 58
+            },
+            {
+              "x": 76,
+              "y": 90
+            },
+            {
+              "x": 50,
+              "y": 70
+            },
+            {
+              "x": 24,
+              "y": 90
+            },
+            {
+              "x": 33,
+              "y": 58
+            },
+            {
+              "x": 8,
+              "y": 38
+            },
+            {
+              "x": 39,
+              "y": 38
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 1
+    },
+    {
+      "id": "act-dots-house",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "وصّل النقاط — منزل",
+        "en": "وصّل النقاط — منزل"
+      },
+      "tags": [
+        "dots",
+        "shapes"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🏠"
+      },
+      "data": {
+        "type": "connect-dots",
+        "params": {
+          "reveal": "🏠",
+          "points": [
+            {
+              "x": 20,
+              "y": 50
+            },
+            {
+              "x": 20,
+              "y": 88
+            },
+            {
+              "x": 80,
+              "y": 88
+            },
+            {
+              "x": 80,
+              "y": 50
+            },
+            {
+              "x": 88,
+              "y": 50
+            },
+            {
+              "x": 50,
+              "y": 14
+            },
+            {
+              "x": 12,
+              "y": 50
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 2
+    },
+    {
+      "id": "act-maze-1",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "المتاهة — ساعد الأرنب",
+        "en": "المتاهة — ساعد الأرنب"
+      },
+      "tags": [
+        "maze"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐰"
+      },
+      "data": {
+        "type": "maze",
+        "params": {
+          "cols": 6,
+          "rows": 6,
+          "start": [
+            0,
+            0
+          ],
+          "end": [
+            5,
+            5
+          ],
+          "hero": "🐰",
+          "goal": "🥕",
+          "walls": [
+            [
+              5,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              2
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              5,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              0
+            ]
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 3
+    },
+    {
+      "id": "act-maze-2",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "المتاهة — النحلة والزهرة",
+        "en": "المتاهة — النحلة والزهرة"
+      },
+      "tags": [
+        "maze"
+      ],
+      "ageGroup": "child",
+      "difficulty": "hard",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐝"
+      },
+      "data": {
+        "type": "maze",
+        "params": {
+          "cols": 7,
+          "rows": 7,
+          "start": [
+            0,
+            0
+          ],
+          "end": [
+            6,
+            6
+          ],
+          "hero": "🐝",
+          "goal": "🌸",
+          "walls": [
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              6
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              0,
+              5
+            ],
+            [
+              5,
+              3
+            ]
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 4
+    },
+    {
+      "id": "act-shadow-animals",
+      "assetType": "activity",
+      "categoryId": "cat-focus",
+      "title": {
+        "ar": "طابق الظل — حيوانات",
+        "en": "طابق الظل — حيوانات"
+      },
+      "tags": [
+        "match",
+        "shadow"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦁"
+      },
+      "data": {
+        "type": "match-shadow",
+        "params": {
+          "pairs": [
+            {
+              "id": "lion",
+              "emoji": "🦁"
+            },
+            {
+              "id": "elephant",
+              "emoji": "🐘"
+            },
+            {
+              "id": "giraffe",
+              "emoji": "🦒"
+            },
+            {
+              "id": "turtle",
+              "emoji": "🐢"
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 5
+    },
+    {
+      "id": "act-shadow-fruit",
+      "assetType": "activity",
+      "categoryId": "cat-focus",
+      "title": {
+        "ar": "طابق الظل — فواكه",
+        "en": "طابق الظل — فواكه"
+      },
+      "tags": [
+        "match",
+        "shadow"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍎"
+      },
+      "data": {
+        "type": "match-shadow",
+        "params": {
+          "pairs": [
+            {
+              "id": "apple",
+              "emoji": "🍎"
+            },
+            {
+              "id": "banana",
+              "emoji": "🍌"
+            },
+            {
+              "id": "grapes",
+              "emoji": "🍇"
+            },
+            {
+              "id": "straw",
+              "emoji": "🍓"
+            },
+            {
+              "id": "water",
+              "emoji": "🍉"
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 6
+    },
+    {
+      "id": "act-shape-1",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "طابق الشكل",
+        "en": "طابق الشكل"
+      },
+      "tags": [
+        "match",
+        "shapes"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔷"
+      },
+      "data": {
+        "type": "match-shape",
+        "params": {
+          "shapes": [
+            {
+              "id": "circle",
+              "shape": "circle",
+              "color": "#ff6b9d"
+            },
+            {
+              "id": "square",
+              "shape": "square",
+              "color": "#5b6bff"
+            },
+            {
+              "id": "triangle",
+              "shape": "triangle",
+              "color": "#3ec98a"
+            },
+            {
+              "id": "star",
+              "shape": "star",
+              "color": "#ffb020"
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 7
+    },
+    {
+      "id": "act-diff-park",
+      "assetType": "activity",
+      "categoryId": "cat-focus",
+      "title": {
+        "ar": "اكتشف الفرق — الحديقة",
+        "en": "اكتشف الفرق — الحديقة"
+      },
+      "tags": [
+        "difference"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔍"
+      },
+      "data": {
+        "type": "find-difference",
+        "params": {
+          "cols": 4,
+          "rows": 3,
+          "scene": [
+            "🌳",
+            "🌸",
+            "🦋",
+            "☁️",
+            "🐦",
+            "🌷",
+            "🍄",
+            "🌞",
+            "🐞",
+            "🌿",
+            "🐝",
+            "🏵️"
+          ],
+          "differences": [
+            {
+              "i": 2,
+              "to": "🐛"
+            },
+            {
+              "i": 5,
+              "to": "🌼"
+            },
+            {
+              "i": 8,
+              "to": "🐜"
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 8
+    },
+    {
+      "id": "act-pattern-shapes",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "أكمل النمط — أشكال",
+        "en": "أكمل النمط — أشكال"
+      },
+      "tags": [
+        "pattern"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔺"
+      },
+      "data": {
+        "type": "pattern-completion",
+        "params": {
+          "sequence": [
+            "🔴",
+            "🔵",
+            "🔴",
+            "🔵",
+            "🔴"
+          ],
+          "options": [
+            "🔵",
+            "🟡",
+            "🔴"
+          ],
+          "answer": "🔵"
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 9
+    },
+    {
+      "id": "act-pattern-fruit",
+      "assetType": "activity",
+      "categoryId": "cat-logic",
+      "title": {
+        "ar": "أكمل النمط — فواكه",
+        "en": "أكمل النمط — فواكه"
+      },
+      "tags": [
+        "pattern"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍎"
+      },
+      "data": {
+        "type": "pattern-completion",
+        "params": {
+          "sequence": [
+            "🍎",
+            "🍎",
+            "🍌",
+            "🍎",
+            "🍎"
+          ],
+          "options": [
+            "🍇",
+            "🍌",
+            "🍎"
+          ],
+          "answer": "🍌"
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 10
+    },
+    {
+      "id": "act-num-count",
+      "assetType": "activity",
+      "categoryId": "cat-numbers",
+      "title": {
+        "ar": "عُدّ الأشياء",
+        "en": "عُدّ الأشياء"
+      },
+      "tags": [
+        "numbers",
+        "count"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🍏"
+      },
+      "data": {
+        "type": "numbers",
+        "params": {
+          "mode": "count",
+          "emoji": "🍏",
+          "count": 4,
+          "options": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "answer": 4
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 11
+    },
+    {
+      "id": "act-num-order",
+      "assetType": "activity",
+      "categoryId": "cat-numbers",
+      "title": {
+        "ar": "رتّب الأرقام",
+        "en": "رتّب الأرقام"
+      },
+      "tags": [
+        "numbers",
+        "order"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔢"
+      },
+      "data": {
+        "type": "numbers",
+        "params": {
+          "mode": "order",
+          "numbers": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 12
+    },
+    {
+      "id": "act-alpha-order",
+      "assetType": "activity",
+      "categoryId": "cat-letters",
+      "title": {
+        "ar": "رتّب الحروف",
+        "en": "رتّب الحروف"
+      },
+      "tags": [
+        "letters",
+        "order"
+      ],
+      "ageGroup": "child",
+      "difficulty": "medium",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🔤"
+      },
+      "data": {
+        "type": "alphabet",
+        "params": {
+          "mode": "order",
+          "letters": [
+            "أ",
+            "ب",
+            "ت",
+            "ث",
+            "ج"
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 13
+    },
+    {
+      "id": "act-alpha-match",
+      "assetType": "activity",
+      "categoryId": "cat-letters",
+      "title": {
+        "ar": "الحرف والصورة",
+        "en": "الحرف والصورة"
+      },
+      "tags": [
+        "letters",
+        "match"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🅰️"
+      },
+      "data": {
+        "type": "alphabet",
+        "params": {
+          "mode": "match",
+          "pairs": [
+            {
+              "letter": "أ",
+              "emoji": "🦁",
+              "word": "أسد"
+            },
+            {
+              "letter": "ب",
+              "emoji": "🦆",
+              "word": "بطة"
+            },
+            {
+              "letter": "ت",
+              "emoji": "🍎",
+              "word": "تفاحة"
+            }
+          ]
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 14
+    },
+    {
+      "id": "act-puzzle-cat",
+      "assetType": "activity",
+      "categoryId": "cat-focus",
+      "title": {
+        "ar": "لغز الصورة — قطة",
+        "en": "لغز الصورة — قطة"
+      },
+      "tags": [
+        "puzzle"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🐱"
+      },
+      "data": {
+        "type": "puzzle",
+        "params": {
+          "emoji": "🐱",
+          "cols": 2,
+          "rows": 2
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 15
+    },
+    {
+      "id": "act-puzzle-rocket",
+      "assetType": "activity",
+      "categoryId": "cat-focus",
+      "title": {
+        "ar": "لغز الصورة — صاروخ",
+        "en": "لغز الصورة — صاروخ"
+      },
+      "tags": [
+        "puzzle"
+      ],
+      "ageGroup": "child",
+      "difficulty": "hard",
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🚀"
+      },
+      "data": {
+        "type": "puzzle",
+        "params": {
+          "emoji": "🚀",
+          "cols": 3,
+          "rows": 3
+        }
+      },
+      "packId": "activities",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "license": {
+        "type": "original"
+      },
+      "order": 16
+    }
+  ]
+}

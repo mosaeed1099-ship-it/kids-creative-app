@@ -1,0 +1,172 @@
+{
+  "id": "dinosaurs",
+  "title": {
+    "ar": "الديناصورات",
+    "en": "Dinosaurs"
+  },
+  "description": {
+    "ar": "صفحات تلوين الديناصورات",
+    "en": "Dinosaurs coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🦕"
+  },
+  "ageGroup": "kids",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": false,
+  "categories": [
+    {
+      "id": "dinosaurs-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "dinosaurs",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "dinosaurs-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "ديناصور",
+        "en": "Dino"
+      },
+      "tags": [
+        "dinosaurs",
+        "dino"
+      ],
+      "categoryId": "dinosaurs-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦕",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "dinosaurs-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "تي‑ركس",
+        "en": "T-Rex"
+      },
+      "tags": [
+        "dinosaurs",
+        "t-rex"
+      ],
+      "categoryId": "dinosaurs-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "hard",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🦖",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "dinosaurs-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "البيضة",
+        "en": "Egg"
+      },
+      "tags": [
+        "dinosaurs",
+        "egg"
+      ],
+      "categoryId": "dinosaurs-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🥚",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "dinosaurs-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "البركان",
+        "en": "Volcano"
+      },
+      "tags": [
+        "dinosaurs",
+        "volcano"
+      ],
+      "categoryId": "dinosaurs-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/rocket.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌋",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    }
+  ]
+}

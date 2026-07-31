@@ -1,0 +1,347 @@
+{
+  "id": "printables",
+  "title": {
+    "ar": "أنشطة للطباعة",
+    "en": "Printables"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🖨️"
+  },
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original"
+  },
+  "version": 1,
+  "categories": [
+    {
+      "id": "cat-animals",
+      "title": {
+        "ar": "حيوانات"
+      },
+      "icon": "📄",
+      "packId": "printables",
+      "order": 1
+    },
+    {
+      "id": "cat-space",
+      "title": {
+        "ar": "الفضاء"
+      },
+      "icon": "📄",
+      "packId": "printables",
+      "order": 2
+    },
+    {
+      "id": "cat-school",
+      "title": {
+        "ar": "المدرسة"
+      },
+      "icon": "📄",
+      "packId": "printables",
+      "order": 3
+    },
+    {
+      "id": "cat-home",
+      "title": {
+        "ar": "المنزل"
+      },
+      "icon": "📄",
+      "packId": "printables",
+      "order": 4
+    },
+    {
+      "id": "cat-reward",
+      "title": {
+        "ar": "مكافآت"
+      },
+      "icon": "📄",
+      "packId": "printables",
+      "order": 5
+    }
+  ],
+  "items": [
+    {
+      "id": "pc-color-lion",
+      "assetType": "coloring",
+      "title": {
+        "ar": "صفحة تلوين — الأسد",
+        "en": "صفحة تلوين — الأسد"
+      },
+      "tags": [
+        "animals"
+      ],
+      "categoryId": "cat-animals",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "../../coloring/content/art/lion.svg",
+        "value": "🦁"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 1
+    },
+    {
+      "id": "pc-color-cat",
+      "assetType": "coloring",
+      "title": {
+        "ar": "صفحة تلوين — القطة",
+        "en": "صفحة تلوين — القطة"
+      },
+      "tags": [
+        "animals"
+      ],
+      "categoryId": "cat-animals",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "../../coloring/content/art/cat.svg",
+        "value": "🐱"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 2
+    },
+    {
+      "id": "pc-color-fish",
+      "assetType": "coloring",
+      "title": {
+        "ar": "صفحة تلوين — السمكة",
+        "en": "صفحة تلوين — السمكة"
+      },
+      "tags": [
+        "animals"
+      ],
+      "categoryId": "cat-animals",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "hard",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "../../coloring/content/art/fish.svg",
+        "value": "🐟"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 3
+    },
+    {
+      "id": "pc-trace-rocket",
+      "assetType": "trace",
+      "title": {
+        "ar": "تتبّع — الصاروخ",
+        "en": "تتبّع — الصاروخ"
+      },
+      "tags": [
+        "space"
+      ],
+      "categoryId": "cat-space",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/rocket.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "../../coloring/content/art/rocket.svg",
+        "value": "🚀"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 4
+    },
+    {
+      "id": "pc-worksheet-numbers",
+      "assetType": "worksheet",
+      "title": {
+        "ar": "ورقة عمل — الأرقام",
+        "en": "ورقة عمل — الأرقام"
+      },
+      "tags": [
+        "school"
+      ],
+      "categoryId": "cat-school",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "art/worksheet.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "art/worksheet.svg",
+        "value": "🔢"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 5
+    },
+    {
+      "id": "pc-flashcard-lion",
+      "assetType": "flashcard",
+      "title": {
+        "ar": "بطاقة — الأسد",
+        "en": "بطاقة — الأسد"
+      },
+      "tags": [
+        "school"
+      ],
+      "categoryId": "cat-school",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "hard",
+      "asset": {
+        "type": "svg",
+        "src": "art/flashcard.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "art/flashcard.svg",
+        "value": "🃏"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 6
+    },
+    {
+      "id": "pc-activity-cat",
+      "assetType": "activity",
+      "title": {
+        "ar": "نشاط — القطة",
+        "en": "نشاط — القطة"
+      },
+      "tags": [
+        "home"
+      ],
+      "categoryId": "cat-home",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "toddler",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "../../coloring/content/art/cat.svg",
+        "value": "🧩"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 7
+    },
+    {
+      "id": "pc-cert-star",
+      "assetType": "certificate",
+      "title": {
+        "ar": "شهادة تفوّق",
+        "en": "شهادة تفوّق"
+      },
+      "tags": [
+        "reward"
+      ],
+      "categoryId": "cat-reward",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "art/certificate.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "art/certificate.svg",
+        "value": "🏅"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 8
+    },
+    {
+      "id": "pc-poster-star",
+      "assetType": "poster",
+      "title": {
+        "ar": "بوستر — أحسنت",
+        "en": "بوستر — أحسنت"
+      },
+      "tags": [
+        "reward"
+      ],
+      "categoryId": "cat-reward",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "kids",
+      "difficulty": "hard",
+      "asset": {
+        "type": "svg",
+        "src": "art/poster.svg"
+      },
+      "thumbnail": {
+        "type": "image",
+        "src": "art/poster.svg",
+        "value": "⭐"
+      },
+      "license": {
+        "type": "original"
+      },
+      "order": 9
+    }
+  ]
+}

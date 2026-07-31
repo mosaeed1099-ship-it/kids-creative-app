@@ -1,0 +1,16 @@
+# Cloudflare Pages configuration — Kids Creative Studio 1.0.0
+#
+# This is a 100% static, no-build web app (native ES modules, zero
+# dependencies). Cloudflare Pages serves the pre-built production folder
+# directly — there is NO build step to run.
+#
+# When connecting the repo in the Cloudflare dashboard, use:
+#     Framework preset:        None
+#     Build command:           (leave empty)
+#     Build output directory:  release/production
+#
+# The line below configures the same output directory in-repo, so
+# `wrangler pages deploy` and Git-connected builds agree.
+
+name = "kids-creative-studio"
+pages_build_output_dir = "release/production"

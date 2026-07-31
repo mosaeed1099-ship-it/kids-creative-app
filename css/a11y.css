@@ -1,0 +1,55 @@
+/* ============================================================
+   a11y.css — Phase 12 (RC1). NEW, GLOBAL, ADDITIVE.
+   A production accessibility + polish layer that sits ON TOP of the
+   frozen module styles without modifying any of them. Include this LAST.
+   Covers: visible focus, reduced-motion, comfortable touch targets,
+   screen-reader utilities, a skip link, and high-contrast focus rings.
+   ============================================================ */
+
+/* ---- Visible keyboard focus (mouse users are unaffected) ---- */
+:where(a, button, input, select, textarea, [tabindex], [role="button"]):focus-visible {
+  outline: 3px solid var(--c-focus, #1d4ed8);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+/* Don't show the ring for pointer interactions that also set :focus */
+:where(button, [role="button"]):focus:not(:focus-visible) { outline: none; }
+
+/* ---- Screen-reader-only helper + skip link ---- */
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: fixed; inset-inline-start: 12px; top: -60px; z-index: 9999;
+  background: #1d4ed8; color: #fff; padding: 10px 16px; border-radius: 10px;
+  font-weight: 800; text-decoration: none; transition: top .18s ease;
+}
+.skip-link:focus { top: 12px; }
+
+/* ---- Comfortable touch targets on touch devices ---- */
+@media (pointer: coarse) {
+  button, [role="button"], a.btn, input[type="button"], input[type="submit"], select {
+    min-height: 44px;
+  }
+}
+
+/* ---- Respect reduced-motion: calmer, cheaper animations ---- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Optional high-contrast assist ---- */
+@media (prefers-contrast: more) {
+  :where(button, .btn, [role="button"]) { border-width: 2px; }
+}
+
+/* ---- Honor a global "reduce data / no images" toggle if the host sets it ---- */
+html[data-reduce-motion="1"] *, html[data-reduce-motion="1"] *::before, html[data-reduce-motion="1"] *::after {
+  animation: none !important; transition: none !important;
+}

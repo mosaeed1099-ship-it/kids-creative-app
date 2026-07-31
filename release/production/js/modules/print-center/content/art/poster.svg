@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="800" viewBox="0 0 600 800"><rect width="600" height="800" fill="#ffffff"/>
+ <rect width="600" height="800" fill="#eef6ff"/>
+ <circle cx="300" cy="300" r="150" fill="#ffd23d" stroke="#2b2b3a" stroke-width="6"/>
+ <text x="300" y="320" text-anchor="middle" font-size="120">⭐</text>
+ <text x="300" y="560" text-anchor="middle" font-family="sans-serif" font-size="48" font-weight="700" fill="#5b6bff">أحسنت!</text>
+ <text x="300" y="630" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#8a8aa3">استمر في الإبداع</text></svg>

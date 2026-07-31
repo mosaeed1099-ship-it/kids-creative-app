@@ -1,0 +1,65 @@
+{
+  "id": "alphabet",
+  "title": { "ar": "باقة الحروف", "en": "Alphabet Pack" },
+  "description": { "ar": "تعلّم الحروف بطرق متعددة.", "en": "Learn letters in many ways." },
+  "thumbnail": { "type": "emoji", "value": "🔤" },
+  "ageGroup": "kids",
+  "languages": ["ar", "en"],
+  "tags": ["alphabet", "letters", "learning"],
+  "license": { "type": "original", "author": "Studio" },
+  "version": 1,
+  "categories": [
+    { "id": "alphabet-coloring", "title": { "ar": "تلوين الحروف", "en": "Coloring" }, "icon": "🎨", "packId": "alphabet", "order": 1 },
+    { "id": "alphabet-writing", "title": { "ar": "كتابة", "en": "Writing" }, "icon": "✍️", "packId": "alphabet", "order": 2 },
+    { "id": "alphabet-trace", "title": { "ar": "تتبّع", "en": "Trace" }, "icon": "✏️", "packId": "alphabet", "order": 3 },
+    { "id": "alphabet-flashcards", "title": { "ar": "بطاقات", "en": "Flashcards" }, "icon": "🃏", "packId": "alphabet", "order": 4 },
+    { "id": "alphabet-pdf", "title": { "ar": "ملفات PDF", "en": "PDF" }, "icon": "📄", "packId": "alphabet", "order": 5 }
+  ],
+  "items": [
+    {
+      "id": "alphabet-coloring-alef", "assetType": "coloring",
+      "title": { "ar": "حرف الألف", "en": "Letter Alef" },
+      "description": { "ar": "لوّن حرف الألف.", "en": "Color the letter Alef." },
+      "tags": ["alphabet", "arabic", "alef"], "categoryId": "alphabet-coloring",
+      "languages": ["ar"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "assets/alphabet/coloring/alef.svg" },
+      "thumbnail": { "type": "emoji", "value": "🅰️" }, "order": 1
+    },
+    {
+      "id": "alphabet-writing-a", "assetType": "writing",
+      "title": { "ar": "اكتب حرف A", "en": "Write Letter A" },
+      "description": { "ar": "تدرّب على كتابة الحرف.", "en": "Practice writing the letter." },
+      "tags": ["alphabet", "english", "writing"], "categoryId": "alphabet-writing",
+      "languages": ["en"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "svg", "src": "assets/alphabet/writing/a.svg" },
+      "thumbnail": { "type": "emoji", "value": "✍️" }, "order": 1
+    },
+    {
+      "id": "alphabet-trace-baa", "assetType": "trace",
+      "title": { "ar": "تتبّع حرف الباء", "en": "Trace Letter Baa" },
+      "description": { "ar": "مرّر القلم على الحرف.", "en": "Trace the letter." },
+      "tags": ["alphabet", "arabic", "trace"], "categoryId": "alphabet-trace",
+      "languages": ["ar"], "ageGroup": "preschool", "difficulty": "easy",
+      "asset": { "type": "svg", "src": "assets/alphabet/trace/baa.svg" },
+      "thumbnail": { "type": "emoji", "value": "✏️" }, "order": 1
+    },
+    {
+      "id": "alphabet-flashcard-numbers", "assetType": "flashcard",
+      "title": { "ar": "بطاقات الأرقام", "en": "Number Flashcards" },
+      "description": { "ar": "بطاقات تعليمية للأرقام.", "en": "Educational number cards." },
+      "tags": ["numbers", "flashcards", "learning"], "categoryId": "alphabet-flashcards",
+      "languages": ["ar", "en"], "ageGroup": "kids", "difficulty": "medium",
+      "asset": { "type": "deck", "src": "assets/alphabet/flashcards/numbers.json" },
+      "thumbnail": { "type": "emoji", "value": "🔢" }, "order": 1
+    },
+    {
+      "id": "alphabet-pdf-workbook", "assetType": "pdf",
+      "title": { "ar": "كرّاسة الحروف", "en": "Alphabet Workbook" },
+      "description": { "ar": "كرّاسة قابلة للطباعة.", "en": "A printable workbook." },
+      "tags": ["alphabet", "workbook", "print"], "categoryId": "alphabet-pdf",
+      "languages": ["ar"], "ageGroup": "kids", "difficulty": "hard",
+      "asset": { "type": "pdf", "src": "assets/alphabet/pdf/workbook.pdf" },
+      "thumbnail": { "type": "emoji", "value": "📘" }, "order": 1
+    }
+  ]
+}

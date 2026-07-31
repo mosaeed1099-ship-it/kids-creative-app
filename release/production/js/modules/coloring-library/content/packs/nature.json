@@ -1,0 +1,205 @@
+{
+  "id": "nature",
+  "title": {
+    "ar": "الطبيعة",
+    "en": "Nature"
+  },
+  "description": {
+    "ar": "صفحات تلوين الطبيعة",
+    "en": "Nature coloring pages"
+  },
+  "thumbnail": {
+    "type": "emoji",
+    "value": "🌳"
+  },
+  "ageGroup": "preschool",
+  "languages": [
+    "ar",
+    "en"
+  ],
+  "license": {
+    "type": "original",
+    "author": "Studio"
+  },
+  "version": 1,
+  "featured": false,
+  "categories": [
+    {
+      "id": "nature-coloring",
+      "title": {
+        "ar": "تلوين",
+        "en": "Coloring"
+      },
+      "icon": "🎨",
+      "packId": "nature",
+      "order": 1
+    }
+  ],
+  "items": [
+    {
+      "id": "nature-clr-1",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الشجرة",
+        "en": "Tree"
+      },
+      "tags": [
+        "nature",
+        "tree"
+      ],
+      "categoryId": "nature-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌳",
+        "color": "#ffe3ef"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 1
+    },
+    {
+      "id": "nature-clr-2",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الزهرة",
+        "en": "Flower"
+      },
+      "tags": [
+        "nature",
+        "flower"
+      ],
+      "categoryId": "nature-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/cat.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌸",
+        "color": "#e6ecff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 2
+    },
+    {
+      "id": "nature-clr-3",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الشمس",
+        "en": "Sun"
+      },
+      "tags": [
+        "nature",
+        "sun"
+      ],
+      "categoryId": "nature-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "easy",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/lion.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "☀️",
+        "color": "#e3f8ee"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 3
+    },
+    {
+      "id": "nature-clr-4",
+      "assetType": "coloring",
+      "title": {
+        "ar": "قوس قزح",
+        "en": "Rainbow"
+      },
+      "tags": [
+        "nature",
+        "rainbow"
+      ],
+      "categoryId": "nature-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/fish.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "🌈",
+        "color": "#fff3d6"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 4
+    },
+    {
+      "id": "nature-clr-5",
+      "assetType": "coloring",
+      "title": {
+        "ar": "الجبل",
+        "en": "Mountain"
+      },
+      "tags": [
+        "nature",
+        "mountain"
+      ],
+      "categoryId": "nature-coloring",
+      "languages": [
+        "ar",
+        "en"
+      ],
+      "ageGroup": "preschool",
+      "difficulty": "medium",
+      "asset": {
+        "type": "svg",
+        "src": "../../coloring/content/art/rocket.svg"
+      },
+      "thumbnail": {
+        "type": "emoji",
+        "value": "⛰️",
+        "color": "#f0e6ff"
+      },
+      "license": {
+        "type": "original",
+        "author": "Studio"
+      },
+      "order": 5
+    }
+  ]
+}

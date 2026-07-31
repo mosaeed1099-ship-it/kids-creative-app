@@ -1,0 +1,132 @@
+{
+  "id": "cat",
+  "name": {
+    "ar": "القطة",
+    "en": "Cat"
+  },
+  "thumbnail": {
+    "value": "🐱"
+  },
+  "canvas": {
+    "w": 600,
+    "h": 600
+  },
+  "parts": [
+    {
+      "id": "tail",
+      "kind": "tail",
+      "src": "../parts/cat/tail.svg",
+      "x": 430,
+      "y": 400,
+      "z": 1
+    },
+    {
+      "id": "body",
+      "kind": "body",
+      "src": "../parts/cat/body.svg",
+      "x": 300,
+      "y": 410,
+      "z": 2
+    },
+    {
+      "id": "ear-l",
+      "kind": "ear",
+      "src": "../parts/cat/ear.svg",
+      "x": 232,
+      "y": 168,
+      "z": 3
+    },
+    {
+      "id": "ear-r",
+      "kind": "ear",
+      "src": "../parts/cat/ear.svg",
+      "x": 368,
+      "y": 168,
+      "z": 3,
+      "flipH": true
+    },
+    {
+      "id": "head",
+      "kind": "head",
+      "src": "../parts/cat/head.svg",
+      "x": 300,
+      "y": 250,
+      "z": 4
+    },
+    {
+      "id": "whiskers",
+      "kind": "whiskers",
+      "src": "../parts/cat/whiskers.svg",
+      "x": 300,
+      "y": 300,
+      "z": 5
+    },
+    {
+      "id": "eyebrows",
+      "kind": "eyebrows",
+      "slot": "eyebrows",
+      "src": "../parts/cat/eyebrows-neutral.svg",
+      "x": 300,
+      "y": 206,
+      "z": 7
+    },
+    {
+      "id": "eyes",
+      "kind": "eyes",
+      "slot": "eyes",
+      "src": "../parts/cat/eyes-happy.svg",
+      "x": 300,
+      "y": 236,
+      "z": 6
+    },
+    {
+      "id": "nose",
+      "kind": "nose",
+      "src": "../parts/cat/nose.svg",
+      "x": 300,
+      "y": 276,
+      "z": 8
+    },
+    {
+      "id": "mouth",
+      "kind": "mouth",
+      "slot": "mouth",
+      "src": "../parts/cat/mouth-happy.svg",
+      "x": 300,
+      "y": 312,
+      "z": 8
+    }
+  ],
+  "expressions": {
+    "happy": {
+      "eyes": "../parts/cat/eyes-happy.svg",
+      "mouth": "../parts/cat/mouth-happy.svg",
+      "eyebrows": "../parts/cat/eyebrows-neutral.svg"
+    },
+    "sad": {
+      "eyes": "../parts/cat/eyes-sad.svg",
+      "mouth": "../parts/cat/mouth-sad.svg",
+      "eyebrows": "../parts/cat/eyebrows-sad.svg"
+    },
+    "angry": {
+      "eyes": "../parts/cat/eyes-angry.svg",
+      "mouth": "../parts/cat/mouth-angry.svg",
+      "eyebrows": "../parts/cat/eyebrows-angry.svg"
+    },
+    "surprised": {
+      "eyes": "../parts/cat/eyes-surprised.svg",
+      "mouth": "../parts/cat/mouth-surprised.svg",
+      "eyebrows": "../parts/cat/eyebrows-up.svg"
+    },
+    "sleepy": {
+      "eyes": "../parts/cat/eyes-sleepy.svg",
+      "mouth": "../parts/cat/mouth-small.svg",
+      "eyebrows": "../parts/cat/eyebrows-neutral.svg"
+    },
+    "laughing": {
+      "eyes": "../parts/cat/eyes-laughing.svg",
+      "mouth": "../parts/cat/mouth-open.svg",
+      "eyebrows": "../parts/cat/eyebrows-up.svg"
+    }
+  }
+}

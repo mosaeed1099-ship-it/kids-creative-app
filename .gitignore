@@ -1,0 +1,22 @@
+# --- OS / editor junk ---
+.DS_Store
+.AppleDouble
+Thumbs.db
+*.swp
+*~
+
+# --- Editors / local tooling ---
+.vscode/
+.idea/
+.claude/
+
+# --- Logs & temp ---
+*.log
+/tmp/
+
+# --- Node (this project uses NO dependencies; guard anyway) ---
+node_modules/
+npm-debug.log*
+
+# NOTE: the release/ folder IS committed on purpose — Cloudflare Pages
+# serves release/production directly (no build step runs on the server).

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "title": { "ar": "قوالب التتبّع", "en": "Trace Templates" },
+  "packs": [
+    {
+      "id": "trace-samples",
+      "title": { "ar": "قوالب التتبّع", "en": "Trace Templates" },
+      "description": { "ar": "صور مرجعية للتتبّع.", "en": "Reference images to trace." },
+      "url": "trace.pack.json",
+      "thumbnail": { "type": "emoji", "value": "✏️" },
+      "ageGroup": "preschool",
+      "languages": ["ar", "en"],
+      "order": 1
+    }
+  ]
+}

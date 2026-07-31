@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parent Dashboard — Example</title>
+<link rel="stylesheet" href="../css/parent-dashboard.css" />
+<style>
+  html, body { margin: 0; min-height: 100%; background: #f6f4ff; }
+  #app { min-height: 100%; }
+  .demo-reset { position: fixed; inset-block-start: 14px; inset-inline-start: 14px; z-index: 9; font: inherit; font-weight: 700; border: 2px solid #e6e6ef; background: #fff; border-radius: 30px; padding: 6px 12px; cursor: pointer; opacity: .8; }
+</style>
+</head>
+<body>
+  <button class="demo-reset" onclick="localStorage.clear();location.reload()">↺ إعادة ضبط العرض</button>
+  <div id="app"></div>
+
+  <script type="module">
+    import ParentDashboard, { ProfileManager, Store } from '../js/modules/parent-dashboard/index.js';
+    import { ContentManager } from '../js/content/index.js';
+
+    // Content Engine (library packs) — lets the dashboard resolve item/pack names.
+    const base = new URL('../js/modules/coloring-library/content/', location.href).href;
+    const content = new ContentManager({ base });
+    await content.init({ catalog: 'catalog.json' });
+    await content.loadAll();
+
+    // ---- one-time demo seeding (only if there are no profiles yet) ----
+    const pm = new ProfileManager();
+    if (pm.count() === 0) {
+      const lina = pm.create({ name: 'لينا', avatar: '🦄', age: 5, favoriteColor: '#ff6bb0' });
+      pm.create({ name: 'يوسف', avatar: '🦁', age: 7, favoriteColor: '#5b6bff' });
+      pm.setActive(lina.id);
+
+      // seed rich activity for لينا directly (backdated daily so the chart looks real)
+      const store = new Store('kcs');
+      const dayKey = (d) => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+      const daily = {}; const counts = [2,3,2,4,1,5,3];
+      for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); daily[dayKey(d)] = { count: counts[6 - i], timeMs: counts[6 - i] * 6 * 60000 }; }
+      const now = Date.now();
+      const completed = {};
+      [['animals',5],['space',4],['alphabet',3]].forEach(([pk,n]) => { for (let i=1;i<=n;i++) completed[`${pk}-clr-${i}`] = { packId: pk, at: now }; });
+      store.set('kcs.stats:' + lina.id, {
+        completed,
+        started: { 'alphabet-clr-4': now, 'food-clr-1': now },
+        opened: ['space-clr-2','animals-clr-1','alphabet-clr-1','food-clr-2','vehicles-clr-1','princess-clr-1'].map((id) => ({ id, packId: id.split('-')[0], at: now })),
+        favorites: ['animals-clr-1','space-clr-1','alphabet-clr-2','food-clr-2'],
+        packsCompleted: ['animals','space'],
+        counters: { drawings: 12, prints: 3, exports: 5, timeMs: 46 * 60000 },
+        daily,
+        colors: { '#ff5a5a': 8, '#5b6bff': 5, '#57c98a': 4, '#ffd23d': 3, '#ff6bb0': 6, '#35b0ff': 6, '#b06bff': 1, '#ff9a3d': 2 },
+        categories: { animals: 5, space: 4, alphabet: 3 },
+        achievements: {},
+      });
+    }
+
+    const dash = new ParentDashboard({
+      mount: '#app',
+      options: {
+        content,
+        totalPages: content.filter({ assetType: 'coloring' }).length || 44,
+        onOpenItem: (id) => console.log('open coloring item:', id),
+      },
+    });
+    dash.mount();
+
+    window.__dash = dash;
+  </script>
+</body>
+</html>

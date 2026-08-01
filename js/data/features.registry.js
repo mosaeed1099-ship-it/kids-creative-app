@@ -63,7 +63,7 @@ export const FEATURES = [
     title: 'قصتي',
     icon: '📖',
     route: '/story',
-    path: 'story/StoryModule.js',
+    path: 'story-creator/StoryCreatorModule.js',
     description: 'كوّن قصة بالصور والكلمات.',
     color: '#35b0ff',
     enabled: true,

@@ -53,7 +53,7 @@ export const FEATURES = [
     title: 'الألغاز',
     icon: '🧩',
     route: '/puzzles',
-    path: 'puzzles/PuzzlesModule.js',
+    path: 'puzzle-studio/PuzzleStudioModule.js',
     description: 'ركّب القطع وكوّن الصورة.',
     color: '#b06bff',
     enabled: true,

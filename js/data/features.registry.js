@@ -23,7 +23,7 @@ export const FEATURES = [
     title: 'الرسم الحر',
     icon: '✏️',
     route: '/draw',
-    path: 'draw/DrawModule.js',
+    path: 'free-draw/FreeDrawModule.js',
     description: 'ارسم بنفسك بالفرشاة والألوان على لوحة فاضية.',
     color: '#5b6bff',
     enabled: true,

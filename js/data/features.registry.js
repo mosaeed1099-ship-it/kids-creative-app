@@ -43,7 +43,7 @@ export const FEATURES = [
     title: 'الملصقات',
     icon: '⭐',
     route: '/stickers',
-    path: 'stickers/StickersModule.js',
+    path: 'sticker-studio/StickerStudioModule.js',
     description: 'ألصق شخصيات وأشكال على لوحاتك.',
     color: '#ffb02e',
     enabled: true,

@@ -1,0 +1,24 @@
+{
+  "id": "things",
+  "title": { "ar": "أشياء", "en": "Things" },
+  "version": 1,
+  "premium": false,
+  "categories": [ { "id": "things-all", "title": { "ar": "أشياء", "en": "Things" }, "icon": "🏠" } ],
+  "items": [
+    {
+      "id": "things-house", "assetType": "puzzle", "categoryId": "things-all",
+      "title": { "ar": "البيت", "en": "House" }, "tags": ["house", "home", "بيت", "منزل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#cdeeff'/><circle cx='344' cy='56' r='28' fill='#ffd93b'/><rect y='232' width='400' height='68' fill='#8ed67a'/><rect x='120' y='140' width='160' height='96' fill='#ffe1a8'/><path d='M104 142 L200 78 L296 142Z' fill='#e0563b'/><rect x='182' y='188' width='36' height='48' fill='#8a5a2b'/><circle cx='210' cy='214' r='3' fill='#ffd93b'/><rect x='140' y='158' width='32' height='28' fill='#7ec8ff' stroke='#fff' stroke-width='3'/><rect x='228' y='158' width='32' height='28' fill='#7ec8ff' stroke='#fff' stroke-width='3'/></svg>" }
+    },
+    {
+      "id": "things-fruit", "assetType": "puzzle", "categoryId": "things-all",
+      "title": { "ar": "فواكه", "en": "Fruit" }, "tags": ["fruit", "apple", "فواكه", "تفاح"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#fff3e0'/><ellipse cx='200' cy='250' rx='150' ry='22' fill='#e6d3b3'/><ellipse cx='150' cy='190' rx='44' ry='42' fill='#ff4d4d'/><path d='M150 150 q6 -16 22 -14' fill='none' stroke='#3f9d4a' stroke-width='6' stroke-linecap='round'/><path d='M210 235 q30 -70 66 -18 q-30 34 -66 18Z' fill='#ffd93b'/><g fill='#7c3aed'><circle cx='268' cy='150' r='12'/><circle cx='290' cy='158' r='12'/><circle cx='279' cy='176' r='12'/><circle cx='256' cy='168' r='12'/><circle cx='300' cy='176' r='12'/></g><ellipse cx='96' cy='232' rx='30' ry='28' fill='#ff9e2c'/></svg>" }
+    },
+    {
+      "id": "things-rainbow", "assetType": "puzzle", "categoryId": "things-all",
+      "title": { "ar": "قوس قزح", "en": "Rainbow" }, "tags": ["rainbow", "sky", "قزح", "سماء"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#eaf6ff'/><g fill='none' stroke-width='16'><path d='M40 300 a160 160 0 0 1 320 0' stroke='#ff5a5a'/><path d='M64 300 a136 136 0 0 1 272 0' stroke='#ffb02e'/><path d='M88 300 a112 112 0 0 1 224 0' stroke='#ffd93b'/><path d='M112 300 a88 88 0 0 1 176 0' stroke='#57c98a'/><path d='M136 300 a64 64 0 0 1 128 0' stroke='#4ab8ff'/></g><g fill='#ffffff'><ellipse cx='70' cy='150' rx='30' ry='18'/><ellipse cx='330' cy='150' rx='30' ry='18'/></g><path d='M0 300 V270 Q200 250 400 270 V300Z' fill='#8ed67a'/></svg>" }
+    }
+  ]
+}

@@ -3,6 +3,32 @@
 All notable changes to this project are documented here.
 This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [1.1.0] — Feature release: three new studios
+
+Three placeholder tiles became full, production-quality, offline studios. Each
+was added as **new files only** under its own module folder, consuming the
+existing Canvas Engine / Content Engine / UI public APIs; the only change to
+pre-existing code was one line per module in `js/data/features.registry.js`
+wiring its route.
+
+### Added
+- **Free Draw Studio** (`/draw`, `js/modules/free-draw/`) — infinite canvas with
+  7 brushes, 9 shapes, full colour system, layers, unlimited undo/redo,
+  selection, autosave, PNG/JPG export and print.
+- **Sticker Studio** (`/stickers`, `js/modules/sticker-studio/`) — data-driven
+  sticker library (packs/categories/search/favourites/recent) with drag, resize,
+  rotate, flip, layer order, snap guides, autosave and export.
+- **Puzzle Studio** (`/puzzles`, `js/modules/puzzle-studio/`) — jigsaw generator
+  from Content-Engine images, multiple difficulties, snap-together pieces, hints,
+  optional timer, celebration, progress save and export.
+
+### Verified
+- Each module verified live across desktop/tablet/mobile, light/dark, with
+  **zero console errors**.
+
+### Unchanged / Frozen
+- All prior phases, engines, styles and content remain byte-for-byte frozen.
+
 ## [1.0.0] — Release Candidate (RC1)
 
 First commercial production release. **No new features** were added in this

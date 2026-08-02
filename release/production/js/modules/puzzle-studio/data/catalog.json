@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "title": { "ar": "صور الألغاز", "en": "Puzzle Pictures" },
+  "packs": [
+    { "id": "scenes", "title": { "ar": "مناظر", "en": "Scenes" }, "url": "packs/scenes.pack.json", "thumbnail": { "type": "emoji", "value": "🏞️" }, "order": 1, "premium": false },
+    { "id": "things", "title": { "ar": "أشياء", "en": "Things" }, "url": "packs/things.pack.json", "thumbnail": { "type": "emoji", "value": "🏠" }, "order": 2, "premium": false }
+  ]
+}

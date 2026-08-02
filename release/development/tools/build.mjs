@@ -52,7 +52,7 @@ async function harden(file, prefix) {
     `<link rel="manifest" href="${prefix}manifest.webmanifest" />`,
     `<meta name="theme-color" content="#5b6bff" />`,
     `<link rel="stylesheet" href="${prefix}css/a11y.css" />`,
-    `<script type="module">import("${prefix}js/app/boot.js").then(m=>m.installGlobalHandlers&&m.installGlobalHandlers()).catch(()=>{});</script>`,
+    `<script type="module">import("${prefix || './'}js/app/boot.js").then(m=>m.installGlobalHandlers&&m.installGlobalHandlers()).catch(()=>{});</script>`,
   ].join('\n  ');
   if (!html.includes('css/a11y.css')) {
     html = html.replace(/<\/head>/i, `  ${inject}\n</head>`);

@@ -1,0 +1,117 @@
+/* ============================================================
+   puzzle-studio.css — Puzzle Studio styles (Phase 15, additive).
+   Injected at runtime from js/modules/puzzle-studio/. Uses the app design
+   tokens (--c-*, --r-*, --sp-*, --sh-*) so light/dark themes just work.
+   ============================================================ */
+
+.pz-root {
+  position: fixed; inset: 0; z-index: 40;
+  display: flex; flex-direction: column;
+  background: var(--c-bg); color: var(--c-text);
+  font-family: inherit; overflow: hidden;
+}
+
+/* ---- buttons ---- */
+.pz-btn {
+  appearance: none; border: 2px solid transparent; background: var(--c-surface-2);
+  color: var(--c-text); border-radius: var(--r-md); min-width: 46px; min-height: 46px;
+  padding: 5px 9px; display: inline-flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 2px; cursor: pointer; font: inherit; line-height: 1.1;
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast);
+  -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.pz-btn:hover { background: var(--c-surface); }
+.pz-btn:active { transform: scale(.94); }
+.pz-btn:focus-visible { outline: 3px solid var(--c-primary); outline-offset: 2px; }
+.pz-btn[disabled] { opacity: .4; pointer-events: none; }
+.pz-btn.is-active { background: var(--c-primary); color: var(--c-primary-ink); border-color: var(--c-primary); }
+.pz-btn__emoji { font-size: 20px; }
+.pz-btn__label { font-size: 11px; font-weight: 700; }
+
+/* ---- top bar ---- */
+.pz-topbar {
+  display: flex; align-items: center; gap: var(--sp-2); padding: 8px 12px;
+  background: var(--c-surface); border-bottom: 2px solid var(--c-border);
+  box-shadow: var(--sh-1); z-index: 3; flex-wrap: wrap;
+}
+.pz-home { text-decoration: none; font-size: 22px; padding: 8px; border-radius: var(--r-md); }
+.pz-home:hover { background: var(--c-surface-2); }
+.pz-title { font-size: var(--fs-lg); font-weight: 800; margin: 0; color: var(--c-primary); }
+.pz-spacer { flex: 1 1 auto; }
+.pz-group { display: inline-flex; gap: 4px; background: var(--c-surface-2); padding: 4px; border-radius: var(--r-lg); }
+.pz-group .pz-btn { min-width: 42px; min-height: 42px; background: transparent; }
+.pz-group .pz-btn:hover { background: var(--c-surface); }
+.pz-zoom { min-width: 50px; text-align: center; font-weight: 700; font-size: var(--fs-sm); align-self: center; }
+
+/* ---- body / stage ---- */
+.pz-body { flex: 1 1 auto; display: flex; min-height: 0; position: relative; }
+.pz-stage-area { flex: 1 1 auto; position: relative; min-width: 0; overflow: hidden; background:
+  repeating-conic-gradient(var(--c-surface-2) 0% 25%, var(--c-bg) 0% 50%) 50% / 26px 26px; }
+[data-theme="dark"] .pz-stage-area { background:
+  repeating-conic-gradient(#1b1c2e 0% 25%, #191a2b 0% 50%) 50% / 26px 26px; }
+.pz-stage { position: absolute; inset: 0; touch-action: none; }
+.kcs-engine-canvas { width: 100%; height: 100%; }
+
+/* ---- HUD ---- */
+.pz-hud {
+  position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+  display: flex; align-items: center; gap: 10px;
+  background: var(--c-surface); border: 2px solid var(--c-border);
+  border-radius: var(--r-pill); padding: 6px 12px; box-shadow: var(--sh-2); z-index: 6;
+}
+.pz-hud[hidden] { display: none; }
+.pz-hud__stat { font-weight: 800; font-size: var(--fs-md); white-space: nowrap; }
+.pz-hud .pz-btn { flex-direction: row; gap: 5px; min-height: 42px; }
+
+/* ---- setup modal ---- */
+.pz-setup { position: fixed; inset: 0; z-index: 120; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.pz-setup[hidden] { display: none; }
+.pz-setup__box { background: var(--c-surface); border-radius: var(--r-xl); padding: 20px; width: min(720px, 96vw); max-height: 90vh; overflow: auto; box-shadow: var(--sh-3); }
+.pz-setup__title { margin: 0 0 14px; font-size: var(--fs-xl); text-align: center; }
+.pz-setup__sub { margin: 16px 0 8px; font-size: var(--fs-md); }
+.pz-setup-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.pz-pic { border: 3px solid var(--c-border); border-radius: var(--r-lg); background: var(--c-surface-2); padding: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 6px; align-items: center; transition: transform var(--dur-fast), border-color var(--dur-fast); }
+.pz-pic:hover { transform: translateY(-2px); }
+.pz-pic.is-active { border-color: var(--c-primary); box-shadow: var(--sh-1); }
+.pz-thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--r-sm); background: #fff; }
+.pz-pic__name { font-weight: 700; font-size: 13px; }
+.pz-levels { display: flex; flex-wrap: wrap; gap: 8px; }
+.pz-chip { appearance: none; border: 2px solid var(--c-border); background: var(--c-surface-2); color: var(--c-text); border-radius: var(--r-pill); padding: 8px 14px; font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; }
+.pz-chip:hover { background: var(--c-surface); }
+.pz-chip.is-active { background: var(--c-primary); color: var(--c-primary-ink); border-color: var(--c-primary); }
+.pz-start { margin-top: 18px; width: 100%; border: 0; border-radius: var(--r-pill); background: var(--c-success); color: #073; font: inherit; font-weight: 800; font-size: var(--fs-lg); padding: 14px; cursor: pointer; }
+.pz-start[disabled] { opacity: .5; pointer-events: none; }
+
+/* ---- celebration ---- */
+.pz-celebrate-host { position: absolute; inset: 0; pointer-events: none; z-index: 20; overflow: hidden; }
+.pz-celebrate { position: absolute; inset: 0; }
+.pz-confetti {
+  position: absolute; top: -20px; width: 12px; height: 16px; border-radius: 2px;
+  opacity: 0; animation: pz-fall var(--d, 2.4s) linear forwards;
+}
+@keyframes pz-fall {
+  0% { opacity: 1; transform: translate(0, -20px) rotate(0); }
+  100% { opacity: .9; transform: translate(var(--x, 40px), 110vh) rotate(var(--r, 360deg)); }
+}
+.pz-banner {
+  position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%) scale(0);
+  background: var(--c-surface); color: var(--c-primary); font-size: var(--fs-2xl); font-weight: 900;
+  padding: 18px 34px; border-radius: var(--r-xl); box-shadow: var(--sh-3);
+  animation: pz-pop .5s var(--ease-bounce) forwards;
+}
+@keyframes pz-pop { to { transform: translate(-50%, -50%) scale(1); } }
+
+/* ---- toasts ---- */
+.pz-toasts { position: absolute; bottom: 74px; inset-inline-start: 50%; transform: translateX(50%); display: flex; flex-direction: column; gap: 8px; z-index: 60; pointer-events: none; }
+.pz-toast { background: var(--c-text); color: var(--c-bg); padding: 10px 16px; border-radius: var(--r-pill); font-weight: 700; opacity: 0; transform: translateY(10px); transition: all var(--dur) var(--ease-out); box-shadow: var(--sh-2); }
+.pz-toast.is-in { opacity: 1; transform: translateY(0); }
+
+/* ---- responsive ---- */
+@media (max-width: 760px) {
+  .pz-topbar { flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .pz-topbar::-webkit-scrollbar { display: none; }
+  .pz-group, .pz-home, .pz-title { flex: 0 0 auto; }
+  .pz-title { display: none; }
+  .pz-hud { flex-wrap: wrap; justify-content: center; max-width: 94vw; }
+}
+@media (prefers-reduced-motion: reduce) { .pz-btn, .pz-toast, .pz-confetti, .pz-banner { animation: none; transition: none; } }

@@ -1,0 +1,41 @@
+{
+  "id": "animals",
+  "title": { "ar": "الحيوانات", "en": "Animals" },
+  "version": 1,
+  "premium": false,
+  "categories": [
+    { "id": "animals-cute", "title": { "ar": "حيوانات لطيفة", "en": "Cute Animals" }, "icon": "🐾" }
+  ],
+  "items": [
+    {
+      "id": "animals-cat", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "قطة", "en": "Cat" }, "tags": ["animal", "cat", "قطة", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M28 30 L38 12 L46 30Z' fill='#f4a259'/><path d='M72 30 L62 12 L54 30Z' fill='#f4a259'/><circle cx='50' cy='55' r='34' fill='#f4a259'/><circle cx='40' cy='50' r='5' fill='#232634'/><circle cx='60' cy='50' r='5' fill='#232634'/><path d='M50 60 l-5 5h10z' fill='#e05a6b'/><g stroke='#232634' stroke-width='2' stroke-linecap='round'><path d='M18 56 h16'/><path d='M18 62 h16'/><path d='M66 56 h16'/><path d='M66 62 h16'/></g></svg>" }
+    },
+    {
+      "id": "animals-dog", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "كلب", "en": "Dog" }, "tags": ["animal", "dog", "كلب", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='24' cy='46' rx='12' ry='20' fill='#7a4a24'/><ellipse cx='76' cy='46' rx='12' ry='20' fill='#7a4a24'/><circle cx='50' cy='52' r='34' fill='#a86a34'/><circle cx='40' cy='48' r='5' fill='#232634'/><circle cx='60' cy='48' r='5' fill='#232634'/><ellipse cx='50' cy='62' rx='7' ry='5' fill='#232634'/><path d='M50 66 q0 10 8 10' fill='none' stroke='#232634' stroke-width='3' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "animals-fish", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "سمكة", "en": "Fish" }, "tags": ["animal", "fish", "سمكة", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M68 50 L92 32 L92 68Z' fill='#ff8c42'/><ellipse cx='44' cy='50' rx='38' ry='24' fill='#ffb85c'/><path d='M44 28 q10 10 0 20' fill='#ff8c42'/><circle cx='28' cy='44' r='5' fill='#232634'/><path d='M18 54 q10 6 18 0' fill='none' stroke='#c2482f' stroke-width='2.5' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "animals-bird", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "عصفور", "en": "Bird" }, "tags": ["animal", "bird", "عصفور", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M30 56 q-18 4 -22 18 q20 -2 28 -6z' fill='#2a9be0'/><ellipse cx='48' cy='54' rx='30' ry='27' fill='#4ab8ff'/><circle cx='62' cy='44' r='15' fill='#4ab8ff'/><circle cx='66' cy='42' r='4' fill='#232634'/><path d='M80 44 l14 4 -14 4z' fill='#ffb02e'/></svg>" }
+    },
+    {
+      "id": "animals-bee", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "نحلة", "en": "Bee" }, "tags": ["animal", "bee", "نحلة", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><g fill='#eaf6ff' stroke='#9fc6dd' stroke-width='1'><ellipse cx='30' cy='34' rx='15' ry='9' transform='rotate(-20 30 34)'/><ellipse cx='70' cy='34' rx='15' ry='9' transform='rotate(20 70 34)'/></g><ellipse cx='50' cy='58' rx='30' ry='24' fill='#ffcc33'/><g fill='#232634'><rect x='38' y='38' width='8' height='40' rx='3'/><rect x='54' y='38' width='8' height='40' rx='3'/></g><circle cx='42' cy='52' r='4' fill='#232634'/><circle cx='58' cy='52' r='4' fill='#232634'/></svg>" }
+    },
+    {
+      "id": "animals-frog", "assetType": "sticker", "categoryId": "animals-cute",
+      "title": { "ar": "ضفدع", "en": "Frog" }, "tags": ["animal", "frog", "ضفدع", "حيوان"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='34' cy='30' r='13' fill='#7bd66a'/><circle cx='66' cy='30' r='13' fill='#7bd66a'/><circle cx='34' cy='28' r='5' fill='#232634'/><circle cx='66' cy='28' r='5' fill='#232634'/><path d='M14 52 a36 30 0 0 0 72 0Z' fill='#7bd66a'/><path d='M30 60 q20 16 40 0' fill='none' stroke='#2f7d2f' stroke-width='4' stroke-linecap='round'/></svg>" }
+    }
+  ]
+}

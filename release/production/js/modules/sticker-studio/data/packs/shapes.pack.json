@@ -1,0 +1,41 @@
+{
+  "id": "shapes",
+  "title": { "ar": "الأشكال", "en": "Shapes" },
+  "version": 1,
+  "premium": false,
+  "categories": [
+    { "id": "shapes-fun", "title": { "ar": "أشكال ممتعة", "en": "Fun Shapes" }, "icon": "⭐" }
+  ],
+  "items": [
+    {
+      "id": "shapes-heart", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "قلب", "en": "Heart" }, "tags": ["heart", "love", "قلب", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 86 C10 58 12 22 34 22 C44 22 50 32 50 32 C50 32 56 22 66 22 C88 22 90 58 50 86Z' fill='#ff3b5c'/></svg>" }
+    },
+    {
+      "id": "shapes-star", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "نجمة", "en": "Star" }, "tags": ["star", "نجمة", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 6 L61 38 L95 38 L67 58 L78 90 L50 70 L22 90 L33 58 L5 38 L39 38Z' fill='#ffd93b' stroke='#ffb300' stroke-width='3' stroke-linejoin='round'/></svg>" }
+    },
+    {
+      "id": "shapes-balloon", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "بالون", "en": "Balloon" }, "tags": ["balloon", "party", "بالون", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><ellipse cx='50' cy='40' rx='26' ry='32' fill='#ff6f9c'/><path d='M50 71 l-5 9 h10z' fill='#ff6f9c'/><path d='M50 80 q7 9 0 17' fill='none' stroke='#9aa' stroke-width='2'/></svg>" }
+    },
+    {
+      "id": "shapes-gift", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "هدية", "en": "Gift" }, "tags": ["gift", "present", "هدية", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='44' width='60' height='42' rx='4' fill='#7c5cff'/><rect x='20' y='44' width='60' height='14' fill='#6a49f2'/><rect x='44' y='44' width='12' height='42' fill='#ffd93b'/><path d='M50 44 C40 30 24 32 30 42 C34 46 46 44 50 44Z' fill='#ffd93b'/><path d='M50 44 C60 30 76 32 70 42 C66 46 54 44 50 44Z' fill='#ffd93b'/></svg>" }
+    },
+    {
+      "id": "shapes-crown", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "تاج", "en": "Crown" }, "tags": ["crown", "king", "تاج", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M16 74 L22 34 L40 54 L50 26 L60 54 L78 34 L84 74Z' fill='#ffd93b' stroke='#e6a700' stroke-width='3' stroke-linejoin='round'/><rect x='16' y='74' width='68' height='10' rx='3' fill='#e6a700'/><circle cx='50' cy='27' r='4' fill='#ff5a5a'/></svg>" }
+    },
+    {
+      "id": "shapes-speech", "assetType": "sticker", "categoryId": "shapes-fun",
+      "title": { "ar": "فقاعة كلام", "en": "Speech" }, "tags": ["speech", "bubble", "كلام", "شكل"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M14 20 h72 a8 8 0 0 1 8 8 v34 a8 8 0 0 1-8 8 H44 L28 84 V78 H14 a8 8 0 0 1-8-8 V28 a8 8 0 0 1 8-8Z' fill='#eaf1ff' stroke='#8fb4ff' stroke-width='3'/><g fill='#8fb4ff'><circle cx='34' cy='45' r='5'/><circle cx='50' cy='45' r='5'/><circle cx='66' cy='45' r='5'/></g></svg>" }
+    }
+  ]
+}

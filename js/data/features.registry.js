@@ -68,6 +68,16 @@ export const FEATURES = [
     color: '#35b0ff',
     enabled: true,
   },
+  {
+    id: 'admin',
+    title: 'إدارة المحتوى',
+    icon: '🗂️',
+    route: '/admin',
+    path: 'admin-cms/AdminCMSModule.js',
+    description: 'محرّر المحتوى لإنشاء بيانات المشروع (يعمل دون إنترنت).',
+    color: '#6b7280',
+    enabled: false,
+  },
 ];
 
 /** Only the features that are switched on. */

@@ -124,6 +124,31 @@
 .cms-preview-head { display: flex; gap: 14px; align-items: center; }
 .cms-preview-media .cms-thumb { width: 120px; height: 120px; }
 
+/* history / versions (17A.2) */
+.cms-history, .cms-trash { display: flex; flex-direction: column; gap: 12px; min-width: min(560px, 92vw); }
+.cms-history-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding-bottom: 8px; border-bottom: 2px solid var(--c-border); }
+.cms-history-bar .cms-input { flex: 0 1 auto; }
+.cms-vers { display: flex; flex-direction: column; gap: 6px; max-height: 55vh; overflow-y: auto; }
+.cms-ver { display: flex; align-items: center; gap: 10px; background: var(--c-surface); border: 2px solid var(--c-border); border-radius: var(--r-md); padding: 8px 10px; }
+.cms-ver.is-manual { border-color: var(--c-primary); }
+.cms-ver__main { flex: 1 1 auto; min-width: 0; }
+.cms-ver__head { display: flex; align-items: center; gap: 8px; }
+.cms-ver__note { font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cms-ver__actions { display: flex; gap: 4px; }
+.cms-ver__actions .cms-btn { min-height: 32px; padding: 4px 8px; }
+.cms-badge { font-size: 12px; font-weight: 800; background: var(--c-surface-2); border-radius: var(--r-pill); padding: 2px 8px; white-space: nowrap; }
+
+/* diff viewer (17A.2) */
+.cms-diff { display: flex; flex-direction: column; gap: 10px; min-width: min(560px, 92vw); }
+.cms-diff-sec { display: flex; flex-direction: column; gap: 3px; }
+.cms-diff-sec h4 { margin: 6px 0 2px; font-size: 14px; }
+.cms-diff-line { font-family: ui-monospace, monospace; font-size: 13px; padding: 3px 8px; border-radius: var(--r-sm); }
+.cms-diff-line.is-add { background: color-mix(in srgb, var(--c-success) 18%, transparent); }
+.cms-diff-line.is-del { background: color-mix(in srgb, var(--c-danger) 18%, transparent); }
+.cms-diff-line.is-chg { background: color-mix(in srgb, var(--c-accent-2) 24%, transparent); }
+.cms-trash-row { grid-template-columns: none; display: flex; align-items: center; gap: 10px; }
+.cms-trash-row .cms-col-name { flex: 1 1 auto; }
+
 /* toasts + scrim */
 .cms-toasts { position: absolute; bottom: 18px; inset-inline-start: 50%; transform: translateX(50%); display: flex; flex-direction: column; gap: 8px; z-index: 130; pointer-events: none; }
 .cms-toast { background: var(--c-text); color: var(--c-bg); padding: 10px 16px; border-radius: var(--r-pill); font-weight: 700; opacity: 0; transform: translateY(10px); transition: all var(--dur) var(--ease-out); box-shadow: var(--sh-2); }

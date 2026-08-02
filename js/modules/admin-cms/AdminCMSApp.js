@@ -21,6 +21,8 @@ import { initAssetStore, migrateInlineAssets, assetStore, assetStoreReady } from
 import { exportBackup as makeBackup, importBackup as restoreBackup } from './store/backup.js';
 import { downloadDeployPackage } from './generate/deployPackage.js';
 import { downloadJSON } from './generate/generators.js';
+import VersionManager from './history/VersionManager.js';
+import UndoManager from './history/UndoManager.js';
 import AdminUI from './ui/AdminUI.js';
 
 const stamp = () => new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
@@ -36,18 +38,38 @@ export default class AdminCMSApp {
     this._injectCss();
     this.store = new CmsStore();
     this._offErr = this.store.onPersistError((info) => this._onPersistError(info));
+    let author = 'المحرر'; try { author = localStorage.getItem('kcs.cms.author') || author; } catch { /* ignore */ }
+    this.store.author = author;
     await initAssetStore();                     // open IndexedDB (graceful if unavailable)
+
+    // 17A.2 — history & undo infrastructure (must exist before any commit)
+    this.undoMgr = new UndoManager(this.store);
+    this.vm = new VersionManager(this.store, { author });
+
     this.ui = new AdminUI(this);
     this.root = this.ui.build();
     document.body.appendChild(this.root);
     this._off = this.store.on(() => this.ui.refresh());
+    this._offUndo = this.undoMgr.on(() => this.ui.syncUndo());
+    document.addEventListener('keydown', this._onKey = (e) => this._handleKey(e));
     this.selectSection(this.sectionId);
     if (typeof location !== 'undefined' && new URLSearchParams(location.search).get('e2e')) window.__cms = this;
+
+    await this.vm.init();                        // opens the version store + baseline snapshot
 
     // C2 migration — move any legacy inline assets into IndexedDB (shrinks the blob)
     try { const moved = await migrateInlineAssets(this.store); if (moved) { this.ui.toast(`تم نقل ${moved} ملفًا إلى تخزين آمن 🔒`); this.ui.refresh(); } }
     catch (e) { console.error('[CMS] migrate', e); }
     return this;
+  }
+
+  _handleKey(e) {
+    const t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (!(e.ctrlKey || e.metaKey)) return;
+    const k = e.key.toLowerCase();
+    if (k === 'z' && !e.shiftKey) { e.preventDefault(); this.undo(); }
+    else if ((k === 'z' && e.shiftKey) || k === 'y') { e.preventDefault(); this.redo(); }
   }
 
   get section() { return sectionById(this.sectionId); }
@@ -69,16 +91,42 @@ export default class AdminCMSApp {
   duplicateEntity(section, id) { if (this.store.duplicate(section.coll, id)) { this.ui.clearError(); this.ui.toast('تم التكرار 📑'); } }
 
   async deleteEntity(section, id) {
-    if (!(await this.ui.confirm({ title: 'حذف عنصر', message: 'هل تريد حذف هذا العنصر؟ لا يمكن التراجع.', confirmLabel: 'حذف', danger: true }))) return;
-    if (this.store.remove(section.coll, id)) this.ui.toast('تم الحذف 🗑️');
+    if (!(await this.ui.confirm({ title: 'نقل إلى السلة', message: 'سيُنقل هذا العنصر إلى سلة المحذوفات — يمكنك استعادته لاحقًا أو التراجع فورًا.', confirmLabel: 'نقل إلى السلة' }))) return;
+    if (this.store.remove(section.coll, id)) this.ui.toast('نُقل إلى السلة 🗑️ — تراجع بـ Ctrl+Z');
   }
   async bulkDelete(section, ids, onDone) {
-    if (!(await this.ui.confirm({ title: 'حذف متعدد', message: `هل تريد حذف ${ids.length} عنصرًا؟ لا يمكن التراجع.`, confirmLabel: 'حذف الكل', danger: true }))) return;
-    if (this.store.bulkRemove(section.coll, ids)) { onDone && onDone(); this.ui.toast(`تم حذف ${ids.length} عنصرًا`); }
+    if (!(await this.ui.confirm({ title: 'نقل متعدد إلى السلة', message: `سيُنقل ${ids.length} عنصرًا إلى سلة المحذوفات. يمكنك استعادتها لاحقًا.`, confirmLabel: 'نقل إلى السلة' }))) return;
+    if (this.store.bulkRemove(section.coll, ids)) { onDone && onDone(); this.ui.toast(`نُقل ${ids.length} عنصرًا إلى السلة 🗑️`); }
   }
   bulkMove(section, ids, patch) { if (this.store.bulkUpdate(section.coll, ids, patch)) this.ui.toast(`تم نقل ${ids.length} عنصرًا`); }
   reorder(section, ids) { this.store.reorder(section.coll, ids); }
   preview(section, o) { this.ui.preview(section, o); }
+
+  // ---- undo / redo (17A.2) ----
+  undo() { this.vm.suspend = true; const ok = this.undoMgr.undoOp(); this.vm.suspend = false; if (ok) { this.ui.clearError(); this.ui.toast('تم التراجع ↶'); } else this.ui.toast('لا شيء للتراجع عنه'); this.ui.syncUndo(); }
+  redo() { this.vm.suspend = true; const ok = this.undoMgr.redoOp(); this.vm.suspend = false; if (ok) { this.ui.clearError(); this.ui.toast('تمت الإعادة ↷'); } else this.ui.toast('لا شيء للإعادة'); this.ui.syncUndo(); }
+
+  // ---- versions / history (17A.2) ----
+  async createVersion(note) { await this.vm.create({ kind: 'manual', note: note || 'إصدار يدوي' }); this.ui.toast('تم حفظ الإصدار 🔖'); }
+  async restoreVersion(id) {
+    if (!(await this.ui.confirm({ title: 'استعادة إصدار', message: 'سيُستبدل المحتوى الحالي بهذا الإصدار. يمكنك التراجع بعدها (Ctrl+Z).', confirmLabel: 'استعادة' }))) return;
+    if (await this.vm.restore(id)) { this.ui.clearError(); this.ui.toast('تمت الاستعادة 🕘'); this.ui.setSection(this.section); }
+  }
+  async deleteVersion(id) {
+    if (!(await this.ui.confirm({ title: 'حذف إصدار', message: 'حذف هذا الإصدار من السجل؟', confirmLabel: 'حذف', danger: true }))) return;
+    await this.vm.remove(id); this.ui.toast('تم حذف الإصدار');
+  }
+
+  // ---- trash (17A.2) ----
+  restoreTrash(trashId) { if (this.store.restoreFromTrash(trashId)) { this.ui.clearError(); this.ui.toast('تمت الاستعادة من السلة ♻️'); } }
+  async purgeTrash(trashId) {
+    if (!(await this.ui.confirm({ title: 'حذف نهائي', message: 'حذف هذا العنصر نهائيًا من السلة؟', confirmLabel: 'حذف نهائي', danger: true }))) return;
+    if (this.store.purge(trashId)) this.ui.toast('تم الحذف النهائي');
+  }
+  async emptyTrash() {
+    if (!(await this.ui.confirm({ title: 'إفراغ السلة', message: 'حذف كل عناصر السلة نهائيًا؟', note: 'اكتب كلمة التأكيد للمتابعة.', confirmLabel: 'إفراغ', danger: true, requireText: 'إفراغ' }))) return;
+    if (this.store.emptyTrash()) this.ui.toast('تم إفراغ السلة');
+  }
 
   // ---- backup / restore (C3) ----
   async exportBackup() {
@@ -126,6 +174,10 @@ export default class AdminCMSApp {
   destroy() {
     this._off && this._off();
     this._offErr && this._offErr();
+    this._offUndo && this._offUndo();
+    this._onKey && document.removeEventListener('keydown', this._onKey);
+    this.undoMgr && this.undoMgr.destroy();
+    this.vm && this.vm.destroy();
     if (this.root?.parentNode) this.root.remove();
     if (this._cssLink?.parentNode) this._cssLink.remove();
   }

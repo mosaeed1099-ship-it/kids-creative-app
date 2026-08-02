@@ -25,30 +25,39 @@ const write = (s) => { try { localStorage.setItem(KEY, JSON.stringify(s)); retur
 const clone = (o) => JSON.parse(JSON.stringify(o));
 const human = (b) => (b < 1024 ? `${b} ب` : b < 1024 * 1024 ? `${(b / 1024).toFixed(1)} ك.ب` : `${(b / 1024 / 1024).toFixed(2)} م.ب`);
 
-function defaults() { return { version: 1, packs: [], items: [], categories: [], assets: [] }; }
+function defaults() { return { version: 1, packs: [], items: [], categories: [], assets: [], trash: [] }; }
 
 export default class CmsStore {
-  constructor() { this.state = read() || defaults(); this._listeners = new Set(); this._errListeners = new Set(); }
+  constructor() {
+    this.state = read() || defaults();
+    if (!this.state.trash) this.state.trash = [];   // migrate pre-17A.2 stores
+    this.author = 'المحرر';
+    this._listeners = new Set(); this._errListeners = new Set(); this._commitListeners = new Set();
+  }
 
   on(fn) { this._listeners.add(fn); return () => this._listeners.delete(fn); }
   onPersistError(fn) { this._errListeners.add(fn); return () => this._errListeners.delete(fn); }
+  /** Fires AFTER a successful commit with the PRE-mutation state (undo/history). */
+  onCommit(fn) { this._commitListeners.add(fn); return () => this._commitListeners.delete(fn); }
   _emit() { this._listeners.forEach((f) => { try { f(); } catch (e) { console.error('[CMS] listener', e); } }); }
   _emitError(info) { this._errListeners.forEach((f) => { try { f(info); } catch (e) { console.error('[CMS] err-listener', e); } }); }
+  _emitCommit(before) { this._commitListeners.forEach((f) => { try { f(before); } catch (e) { console.error('[CMS] commit-listener', e); } }); }
 
   /**
    * Persist current state; on failure roll back to `backup`, notify error
-   * listeners, and return false. On success emit change and return true.
+   * listeners, and return false. On success emit change (+ commit unless
+   * `silent`) and return true.
    */
-  _commit(backup) {
-    if (write(this.state)) { this._emit(); return true; }
+  _commit(backup, silent = false) {
+    if (write(this.state)) { this._emit(); if (!silent) this._emitCommit(backup); return true; }
     this.state = backup;            // rollback memory — never keep an unpersisted change
     this._emit();
     this._emitError(this.usage());
     return false;
   }
 
-  /** Force a write of in-place mutations (used by the asset migration). */
-  flush() { return this._commit(clone(this.state)); }
+  /** Force a write of in-place mutations (used by the asset migration). Silent — not a user edit. */
+  flush() { return this._commit(clone(this.state), true); }
   /** @deprecated kept for compatibility — prefer the transactional mutators. */
   save() { return this.flush(); }
 
@@ -65,7 +74,10 @@ export default class CmsStore {
     return this._commit(backup) ? o : null;
   }
   update(coll, id, patch) { const backup = clone(this.state); const o = this.get(coll, id); if (!o) return null; Object.assign(o, patch); return this._commit(backup) ? o : null; }
-  remove(coll, id) { const backup = clone(this.state); this.state[coll] = this.list(coll).filter((x) => x.id !== id); return this._commit(backup); }
+
+  // ---- soft delete → trash (17A.2) ----
+  _toTrash(rec, coll) { this.state.trash.push({ ...clone(rec), _trashId: uid('trh'), _coll: coll, _deletedAt: new Date().toISOString(), _deletedBy: this.author }); }
+  remove(coll, id) { const backup = clone(this.state); const rec = this.get(coll, id); if (!rec) return false; this._toTrash(rec, coll); this.state[coll] = this.list(coll).filter((x) => x.id !== id); return this._commit(backup); }
 
   duplicate(coll, id) {
     const backup = clone(this.state);
@@ -85,8 +97,23 @@ export default class CmsStore {
     return this._commit(backup);
   }
 
-  bulkRemove(coll, ids) { const backup = clone(this.state); const set = new Set(ids); this.state[coll] = this.list(coll).filter((x) => !set.has(x.id)); return this._commit(backup); }
+  bulkRemove(coll, ids) { const backup = clone(this.state); const set = new Set(ids); const kept = []; for (const x of this.list(coll)) { if (set.has(x.id)) this._toTrash(x, coll); else kept.push(x); } this.state[coll] = kept; return this._commit(backup); }
   bulkUpdate(coll, ids, patch) { const backup = clone(this.state); const set = new Set(ids); this.list(coll).forEach((o) => { if (set.has(o.id)) Object.assign(o, patch); }); return this._commit(backup); }
+
+  // ---- trash ops (17A.2) ----
+  restoreFromTrash(trashId) {
+    const backup = clone(this.state);
+    const idx = this.state.trash.findIndex((t) => t._trashId === trashId);
+    if (idx < 0) return false;
+    const { _trashId, _coll, _deletedAt, _deletedBy, ...rec } = clone(this.state.trash[idx]);
+    if (!this.state[_coll]) this.state[_coll] = [];
+    rec.order = this.list(_coll).length;
+    this.state[_coll].push(rec);
+    this.state.trash.splice(idx, 1);
+    return this._commit(backup);
+  }
+  purge(trashId) { const backup = clone(this.state); this.state.trash = this.state.trash.filter((t) => t._trashId !== trashId); return this._commit(backup); }
+  emptyTrash() { const backup = clone(this.state); this.state.trash = []; return this._commit(backup); }
 
   // ---- items by assetType (a "section") ----
   itemsByType(t) { return this.list('items').filter((i) => i.assetType === t).sort((a, b) => (a.order || 0) - (b.order || 0)); }
@@ -98,7 +125,7 @@ export default class CmsStore {
   snapshot() { return clone(this.state); }
   replace(state) { const backup = clone(this.state); this.state = { ...defaults(), ...state }; return this._commit(backup); }
   clearAll() { const backup = clone(this.state); this.state = defaults(); return this._commit(backup); }
-  stats() { return { packs: this.list('packs').length, items: this.list('items').length, categories: this.list('categories').length, assets: this.list('assets').length }; }
+  stats() { return { packs: this.list('packs').length, items: this.list('items').length, categories: this.list('categories').length, assets: this.list('assets').length, trash: this.list('trash').length }; }
 
   /** Current localStorage footprint of this store vs the ~5 MB budget (C1). */
   usage() {

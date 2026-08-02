@@ -9,22 +9,30 @@ import { resolveAssetData } from '../io/assets.js';
 import Sidebar from './Sidebar.js';
 import ListView from './ListView.js';
 import EntityForm from './EntityForm.js';
+import HistoryPanel from './HistoryPanel.js';
+import TrashPanel from './TrashPanel.js';
 import { generateAll, downloadJSON } from '../generate/generators.js';
 
 export default class AdminUI {
-  constructor(app) { this.app = app; this.form = new EntityForm(app); }
+  constructor(app) { this.app = app; this.form = new EntityForm(app); this.history = new HistoryPanel(app); this.trash = new TrashPanel(app); }
 
   build() {
     const a = this.app;
     this.sidebar = new Sidebar(a);
     this.listview = new ListView(a);
     this.title = el('h1', { class: 'cms-title', text: 'المحتوى' });
+    this.undoBtn = btn({ emoji: '↶', title: 'تراجع (Ctrl/⌘+Z)', cls: 'cms-btn--sm', onClick: () => a.undo() });
+    this.redoBtn = btn({ emoji: '↷', title: 'إعادة (Ctrl/⌘+Shift+Z)', cls: 'cms-btn--sm', onClick: () => a.redo() });
     this.header = el('header', { class: 'cms-header' }, [
       btn({ emoji: '☰', title: 'الأقسام', cls: 'cms-nav-toggle', onClick: () => this.root.classList.toggle('nav-open') }),
       this.title,
       el('div', { class: 'cms-spacer' }),
+      this.undoBtn, this.redoBtn,
+      btn({ emoji: '🕘', title: 'السجل والإصدارات', cls: 'cms-btn--sm', onClick: () => this.openHistory() }),
+      btn({ emoji: '🗑️', title: 'سلة المحذوفات', cls: 'cms-btn--sm', onClick: () => this.openTrash() }),
       btn({ emoji: '⚙️', label: 'توليد', cls: 'cms-primary', onClick: () => this.openGenerate() }),
     ]);
+    this.syncUndo();
     this.errorBar = el('div', { class: 'cms-errorbar', attrs: { role: 'alert', hidden: 'hidden' } });
     this.main = el('div', { class: 'cms-main' }, [this.header, this.errorBar, this.listview.build()]);
     this.scrim = el('div', { class: 'cms-scrim', on: { click: () => this.root.classList.remove('nav-open') } });
@@ -34,8 +42,19 @@ export default class AdminUI {
   }
 
   setSection(section) { this.title.textContent = `${section.icon} ${section.label}`; this.listview.setSection(section); this.sidebar.refresh(); this.root.classList.remove('nav-open'); }
-  refresh() { this.sidebar.refresh(); this.listview.refresh(); }
+  refresh() { this.sidebar.refresh(); this.listview.refresh(); this.syncUndo(); }
   openForm(section, obj) { this.form.open(section, obj); }
+  openHistory() { this.history.open(); }
+  openTrash() { this.trash.open(); }
+
+  /** Reflect undo/redo availability on the header buttons. */
+  syncUndo() {
+    if (!this.undoBtn) return;
+    const u = this.app.undoMgr;
+    const set = (b, on) => { b.disabled = !on; if (on) b.removeAttribute('disabled'); else b.setAttribute('disabled', 'true'); };
+    set(this.undoBtn, u && u.canUndo());
+    set(this.redoBtn, u && u.canRedo());
+  }
 
   // ---- persistent error bar (C1) ----
   setError(msg) {
@@ -84,8 +103,9 @@ export default class AdminUI {
     });
   }
 
-  _modal(title, body) {
-    const close = () => { overlay.remove(); document.removeEventListener('keydown', onKey); };
+  _modal(title, body, onClose) {
+    let closed = false;
+    const close = () => { if (closed) return; closed = true; overlay.remove(); document.removeEventListener('keydown', onKey); onClose && onClose(); };
     const onKey = (e) => { if (e.key === 'Escape') close(); };
     const overlay = el('div', { class: 'cms-modal', attrs: { role: 'dialog', 'aria-modal': 'true', 'aria-label': title } }, [
       el('div', { class: 'cms-modal__box' }, [el('div', { class: 'cms-modal__head' }, [el('h2', { text: title }), btn({ emoji: '✖️', title: 'إغلاق', onClick: close })]), body]),

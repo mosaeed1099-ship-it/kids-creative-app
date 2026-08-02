@@ -60,6 +60,30 @@ Fixes for the four Critical review findings:
   files, a manifest, Cloudflare `_headers` / `_redirects`, and `release/` +
   `production/` copies. It generates the package only — it does not deploy.
 
+## Versioning & history (Phase 17A.2)
+
+Infrastructure, not a feature — reuses the store's own `snapshot()`/`replace()`
+and the shared IndexedDB layer; no backend, no APIs, fully offline.
+
+- **Snapshots / versions** (`store/VersionStore.js`, `history/VersionManager.js`)
+  live in IndexedDB and hold the state (asset *references*, not binaries), so
+  they stay small. Each carries **author, timestamp, note, kind** and stats.
+- **Automatic versions** — a debounced, coalesced snapshot after changes; no-op
+  changes are skipped and auto versions are capped (manual ones are kept).
+- **Manual versions** — "🔖 حفظ إصدار" with an author + note.
+- **Restore** any version (undoable). **Compare** any two → the **diff viewer**
+  (`history/diff.js`): added / removed / changed with field-level detail.
+- **Change log** — the ordered version list in the 🕘 History panel.
+- **Undo / redo** (`history/UndoManager.js`) for **all** operations, destructive
+  included, via one uniform state-snapshot stack (the store emits the
+  pre-mutation state on every commit). Keyboard: Ctrl/⌘+Z, Ctrl/⌘+Shift+Z.
+- **Soft delete → Trash** — `remove`/`bulkRemove` move records to a `trash`
+  collection (with origin + who/when). The 🗑️ Trash panel restores, permanently
+  deletes, or empties. Publishing/generators ignore trashed records.
+
+The IndexedDB boilerplate is shared: `store/idb.js` (a generic KV store) backs
+both `AssetStore` and `VersionStore`.
+
 ## Design
 
 - **Data-driven + modular:** one generic `ListView` and one generic `EntityForm`
@@ -72,12 +96,13 @@ Fixes for the four Critical review findings:
 
 ```
 AdminCMSModule.js  AdminCMSApp.js  index.js  example.html  README.md
-store/ CmsStore.js  schema.js  seed.js  AssetStore.js  backup.js
+store/ CmsStore.js  schema.js  seed.js  AssetStore.js  VersionStore.js  backup.js  idb.js
 editors/ fields.js  PackEditor.js  ColoringEditor.js  StickerEditor.js
          PuzzleImageEditor.js  StoryEditor.js  ActivityEditor.js  PdfEditor.js
          CategoryEditor.js  AssetEditor.js
 io/ upload.js  assets.js
 generate/ generators.js  deployPackage.js  zip.js
-ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  helpers.js
+history/ VersionManager.js  UndoManager.js  diff.js
+ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  HistoryPanel.js  TrashPanel.js  helpers.js
 styles/ admin-cms.css
 ```

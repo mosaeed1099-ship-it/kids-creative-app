@@ -6,6 +6,7 @@
 import { el } from '../../../utils/dom.js';
 import { btn, localized, assetThumb } from './helpers.js';
 import { readAssetFile } from '../io/upload.js';
+import { putUploadedAsset } from '../io/assets.js';
 
 export default class EntityForm {
   constructor(app) { this.app = app; }
@@ -67,7 +68,7 @@ export default class EntityForm {
     render();
     const file = el('input', {
       attrs: { type: 'file', accept: f.accept }, class: 'cms-hidden',
-      on: { change: async (e) => { const fl = e.target.files[0]; if (!fl) return; try { values[f.key] = await readAssetFile(fl); render(); } catch { a.ui.toast('تعذّر قراءة الملف'); } e.target.value = ''; } },
+      on: { change: async (e) => { const fl = e.target.files[0]; if (!fl) return; try { const desc = await readAssetFile(fl); values[f.key] = await putUploadedAsset(desc); render(); } catch { a.ui.toast('تعذّر قراءة الملف'); } e.target.value = ''; } },
     });
     const kids = [preview, el('label', { class: 'cms-upload' }, ['⬆️ اختر ملف', file])];
     if (f.emoji) {

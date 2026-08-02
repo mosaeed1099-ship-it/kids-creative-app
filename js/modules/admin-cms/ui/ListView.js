@@ -79,7 +79,7 @@ export default class ListView {
     const moveTo = (coll, key) => this._filterSelect(coll, '', `نقل إلى ${coll === 'packs' ? 'حزمة' : 'تصنيف'}…`, (v) => { if (v) { a.bulkMove(this.section, [...this.selected], { [key]: v }); } });
     const bar = el('div', { class: 'cms-bulkbar' }, [
       el('span', { class: 'cms-mini', text: `${this.selected.size} محدد` }),
-      btn({ emoji: '🗑️', label: 'حذف', cls: 'cms-danger', onClick: () => { if (confirm(`حذف ${this.selected.size} عنصرًا؟`)) { a.bulkDelete(this.section, [...this.selected]); this.selected.clear(); } } }),
+      btn({ emoji: '🗑️', label: 'حذف', cls: 'cms-danger', onClick: () => a.bulkDelete(this.section, [...this.selected], () => { this.selected.clear(); this.refresh(); }) }),
     ]);
     if (this._isItemSection()) { bar.append(moveTo('packs', 'packId'), moveTo('categories', 'categoryId')); }
     bar.append(btn({ label: 'إلغاء التحديد', onClick: () => { this.selected.clear(); this.refresh(); } }));

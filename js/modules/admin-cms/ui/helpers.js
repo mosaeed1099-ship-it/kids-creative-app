@@ -2,6 +2,7 @@
  * helpers.js — shared CMS UI builders + tiny data helpers.
  */
 import { el } from '../../../utils/dom.js';
+import { resolveAssetData } from '../io/assets.js';
 
 export function btn({ emoji = '', label = '', title = '', cls = '', onClick = null, disabled = false }) {
   return el('button', {
@@ -20,14 +21,26 @@ export function localized(v) {
 /** Best display name for any entity. */
 export function displayName(o) { return localized(o.title) || o.name || '(بدون عنوان)'; }
 
-/** A thumbnail node for an inline asset {type,data}. */
+/**
+ * A thumbnail node for an asset. Returns a node synchronously (a placeholder)
+ * and fills it in once the asset data resolves — assets may now be IndexedDB
+ * references rather than inline data (Phase 17A.1, C2), so resolution is async.
+ */
 export function assetThumb(asset) {
-  if (!asset || !asset.data) return el('span', { class: 'cms-thumb cms-thumb--none', text: '—' });
-  if (asset.type === 'emoji') return el('span', { class: 'cms-thumb cms-thumb--emoji', text: asset.data });
-  if (asset.type === 'svg') return el('img', { class: 'cms-thumb', attrs: { src: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(asset.data)}`, alt: '', draggable: 'false' } });
-  if (asset.type === 'image') return el('img', { class: 'cms-thumb', attrs: { src: asset.data, alt: '', draggable: 'false' } });
-  if (asset.type === 'pdf') return el('span', { class: 'cms-thumb cms-thumb--pdf', text: '📄' });
-  return el('span', { class: 'cms-thumb', text: '?' });
+  const holder = el('span', { class: 'cms-thumb cms-thumb--none', text: '—' });
+  resolveAssetData(asset).then((a) => paintThumb(holder, a)).catch(() => paintThumb(holder, null));
+  return holder;
+}
+
+function paintThumb(holder, a) {
+  holder.style.backgroundImage = '';
+  holder.textContent = '';
+  if (!a || !a.data) { holder.className = 'cms-thumb cms-thumb--none'; holder.textContent = '—'; return; }
+  if (a.type === 'emoji') { holder.className = 'cms-thumb cms-thumb--emoji'; holder.textContent = a.data; return; }
+  if (a.type === 'pdf') { holder.className = 'cms-thumb cms-thumb--pdf'; holder.textContent = '📄'; return; }
+  if (a.type === 'svg') { holder.className = 'cms-thumb cms-thumb--img'; holder.style.backgroundImage = `url("data:image/svg+xml;charset=utf-8,${encodeURIComponent(a.data)}")`; return; }
+  if (a.type === 'image') { holder.className = 'cms-thumb cms-thumb--img'; holder.style.backgroundImage = `url("${a.data}")`; return; }
+  holder.className = 'cms-thumb'; holder.textContent = '?';
 }
 
 /** Thumbnail for a whole row given its section. */

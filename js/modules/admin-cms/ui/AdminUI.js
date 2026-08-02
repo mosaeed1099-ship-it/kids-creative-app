@@ -1,9 +1,11 @@
 /**
  * AdminUI.js — the CMS shell: sidebar + main (header + generic ListView), plus
- * the generate-files modal, the preview modal, toasts and a mobile nav toggle.
+ * the generate-files modal, the preview modal, a persistent error bar, a
+ * professional confirmation dialog, toasts and a mobile nav toggle.
  */
 import { el, clear } from '../../../utils/dom.js';
 import { btn, displayName, assetThumb, localized } from './helpers.js';
+import { resolveAssetData } from '../io/assets.js';
 import Sidebar from './Sidebar.js';
 import ListView from './ListView.js';
 import EntityForm from './EntityForm.js';
@@ -23,7 +25,8 @@ export default class AdminUI {
       el('div', { class: 'cms-spacer' }),
       btn({ emoji: '⚙️', label: 'توليد', cls: 'cms-primary', onClick: () => this.openGenerate() }),
     ]);
-    this.main = el('div', { class: 'cms-main' }, [this.header, this.listview.build()]);
+    this.errorBar = el('div', { class: 'cms-errorbar', attrs: { role: 'alert', hidden: 'hidden' } });
+    this.main = el('div', { class: 'cms-main' }, [this.header, this.errorBar, this.listview.build()]);
     this.scrim = el('div', { class: 'cms-scrim', on: { click: () => this.root.classList.remove('nav-open') } });
     this.toastHost = el('div', { class: 'cms-toasts', attrs: { 'aria-live': 'polite' } });
     this.root = el('div', { class: 'cms-root', attrs: { dir: 'rtl' } }, [this.sidebar.build(), this.main, this.scrim, this.toastHost]);
@@ -34,6 +37,18 @@ export default class AdminUI {
   refresh() { this.sidebar.refresh(); this.listview.refresh(); }
   openForm(section, obj) { this.form.open(section, obj); }
 
+  // ---- persistent error bar (C1) ----
+  setError(msg) {
+    clear(this.errorBar); this.errorBar.hidden = false;
+    this.errorBar.append(
+      el('span', { class: 'cms-errorbar__msg', text: `⚠️ ${msg}` }),
+      el('span', { class: 'cms-spacer' }),
+      btn({ emoji: '💾', label: 'تصدير نسخة احتياطية', cls: 'cms-btn--sm', onClick: () => this.app.exportBackup() }),
+      btn({ emoji: '✖️', title: 'إخفاء', cls: 'cms-btn--sm', onClick: () => this.clearError() }),
+    );
+  }
+  clearError() { this.errorBar.hidden = true; clear(this.errorBar); }
+
   toast(msg) {
     const c = el('div', { class: 'cms-toast', text: msg });
     this.toastHost.append(c);
@@ -41,18 +56,50 @@ export default class AdminUI {
     setTimeout(() => { c.classList.remove('is-in'); setTimeout(() => c.remove(), 300); }, 1900);
   }
 
+  // ---- professional confirmation dialog (C3) — replaces window.confirm ----
+  confirm({ title, message, confirmLabel = 'تأكيد', cancelLabel = 'إلغاء', danger = false, requireText = null, note = '' }) {
+    return new Promise((resolve) => {
+      let done = false;
+      const finish = (v) => { if (done) return; done = true; overlay.remove(); document.removeEventListener('keydown', onKey); resolve(v); };
+      const onKey = (e) => { if (e.key === 'Escape') finish(false); };
+      const okBtn = btn({ label: confirmLabel, cls: danger ? 'cms-danger' : 'cms-primary', onClick: () => finish(true) });
+      let input = null;
+      if (requireText) {
+        okBtn.disabled = true; okBtn.setAttribute('disabled', 'true');
+        input = el('input', { class: 'cms-input', attrs: { placeholder: `اكتب «${requireText}» للتأكيد`, dir: 'rtl' } });
+        input.addEventListener('input', () => { const ok = input.value.trim() === requireText; okBtn.disabled = !ok; if (ok) okBtn.removeAttribute('disabled'); else okBtn.setAttribute('disabled', 'true'); });
+      }
+      const box = el('div', { class: 'cms-modal__box cms-confirm' }, [
+        el('div', { class: 'cms-modal__head' }, [el('h2', { text: title })]),
+        el('p', { class: 'cms-confirm__msg', text: message }),
+        note ? el('p', { class: 'cms-mini', text: note }) : null,
+        input,
+        el('div', { class: 'cms-modal__foot' }, [okBtn, btn({ label: cancelLabel, onClick: () => finish(false) })]),
+      ]);
+      const overlay = el('div', { class: 'cms-modal', attrs: { role: 'alertdialog', 'aria-modal': 'true', 'aria-label': title } }, [box]);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) finish(false); });
+      document.addEventListener('keydown', onKey);
+      this.root.append(overlay);
+      setTimeout(() => (input || okBtn).focus(), 0);
+    });
+  }
+
   _modal(title, body) {
-    const close = () => overlay.remove();
+    const close = () => { overlay.remove(); document.removeEventListener('keydown', onKey); };
+    const onKey = (e) => { if (e.key === 'Escape') close(); };
     const overlay = el('div', { class: 'cms-modal', attrs: { role: 'dialog', 'aria-modal': 'true', 'aria-label': title } }, [
       el('div', { class: 'cms-modal__box' }, [el('div', { class: 'cms-modal__head' }, [el('h2', { text: title }), btn({ emoji: '✖️', title: 'إغلاق', onClick: close })]), body]),
     ]);
     overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', onKey);
     this.root.append(overlay);
     return { overlay, close };
   }
 
-  openGenerate() {
-    const files = generateAll(this.app.store);
+  async openGenerate() {
+    const { overlay, close } = this._modal('⚙️ توليد ملفات البيانات', el('p', { class: 'cms-mini', text: 'جارٍ التحضير…' }));
+    const files = await generateAll(this.app.store);
+    if (!overlay.isConnected) return; // closed while awaiting
     const rows = Object.entries(files).map(([name, obj]) => {
       const count = Array.isArray(obj) ? obj.length : (obj.items ? obj.items.length : (obj.packs ? obj.packs.length : 0));
       const bytes = JSON.stringify(obj).length;
@@ -65,17 +112,25 @@ export default class AdminUI {
     const body = el('div', {}, [
       el('p', { class: 'cms-mini', text: 'تُولَّد هذه الملفات تلقائيًا من المحتوى — بدون تحرير يدوي. نزّلها وضعها في مجلدات البيانات.' }),
       el('div', { class: 'cms-genlist' }, rows),
-      el('div', { class: 'cms-modal__foot' }, [btn({ emoji: '⬇️', label: 'تنزيل الكل', cls: 'cms-primary', onClick: () => Object.entries(files).forEach(([n, o], i) => setTimeout(() => downloadJSON(n, o), i * 250)) })]),
+      el('div', { class: 'cms-modal__foot' }, [
+        btn({ emoji: '⬇️', label: 'تنزيل الكل', cls: 'cms-primary', onClick: () => Object.entries(files).forEach(([n, o], i) => setTimeout(() => downloadJSON(n, o), i * 250)) }),
+        btn({ emoji: '📦', label: 'حزمة النشر (ZIP)', onClick: () => this.app.buildDeploy() }),
+      ]),
     ]);
-    this._modal('⚙️ توليد ملفات البيانات', body);
+    // swap the "preparing…" placeholder for the real content
+    const boxBody = overlay.querySelector('.cms-modal__box');
+    boxBody.replaceChild(body, boxBody.lastChild);
   }
 
-  preview(section, o) {
+  async preview(section, o) {
     const big = el('div', { class: 'cms-preview-media' }, [o.asset ? assetThumb(o.asset) : el('span', { class: 'cms-thumb cms-thumb--emoji', text: o.icon || '—' })]);
     const clean = { ...o }; delete clean._reorder;
+    const pdfBtn = (o.asset && o.asset.type === 'pdf')
+      ? btn({ emoji: '📄', label: 'فتح PDF', onClick: async () => { const a = await resolveAssetData(o.asset); if (a?.data) window.open(a.data, '_blank'); } })
+      : null;
     const body = el('div', {}, [
       el('div', { class: 'cms-preview-head' }, [big, el('div', {}, [el('h3', { text: displayName(o) }), el('p', { class: 'cms-mini', text: localized(o.description) })])]),
-      o.asset && o.asset.type === 'pdf' ? btn({ emoji: '📄', label: 'فتح PDF', onClick: () => window.open(o.asset.data, '_blank') }) : null,
+      pdfBtn,
       el('pre', { class: 'cms-json', text: JSON.stringify(clean, null, 2) }),
     ]);
     this._modal('👁️ معاينة', body);

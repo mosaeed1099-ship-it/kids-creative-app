@@ -37,6 +37,29 @@ Download them individually or all at once from **⚙️ توليد ملفات JS
 **📥 استيراد المحتوى الحالي** seeds the store from the shipped Sticker/Puzzle
 packs so there's real content to manage.
 
+## Reliability & data safety (Phase 17A.1)
+
+Fixes for the four Critical review findings:
+
+- **C1 — no silent save failures.** Every mutation in `CmsStore` is
+  transactional: the previous state is snapshotted, the change applied, then
+  persisted. If `localStorage` is full the write fails, the in-memory change is
+  **rolled back**, and a persistent error bar appears (with a one-click
+  "export backup"). A live **storage meter** shows usage vs the ~5 MB budget.
+- **C2 — assets in IndexedDB, not `localStorage`.** Binary assets (SVG / image /
+  PDF) live in `store/AssetStore.js` (IndexedDB); records keep only a
+  `{ ref }`. `io/assets.js` resolves refs on demand and migrates any legacy
+  inline assets automatically on load. Emoji stay inline (tiny). Degrades
+  gracefully to inline data if IndexedDB is unavailable.
+- **C3 — full backup / restore.** `store/backup.js` exports the entire store
+  **plus** every asset as one self-contained JSON, and restores it. Clear-all is
+  now a professional typed-confirmation dialog that **auto-exports a backup
+  first**. `window.confirm` is gone.
+- **C4 — one-click deploy package.** `generate/deployPackage.js` builds a single
+  ZIP (pure-JS writer in `generate/zip.js`, no dependencies) containing the data
+  files, a manifest, Cloudflare `_headers` / `_redirects`, and `release/` +
+  `production/` copies. It generates the package only — it does not deploy.
+
 ## Design
 
 - **Data-driven + modular:** one generic `ListView` and one generic `EntityForm`
@@ -49,12 +72,12 @@ packs so there's real content to manage.
 
 ```
 AdminCMSModule.js  AdminCMSApp.js  index.js  example.html  README.md
-store/ CmsStore.js  schema.js  seed.js
+store/ CmsStore.js  schema.js  seed.js  AssetStore.js  backup.js
 editors/ fields.js  PackEditor.js  ColoringEditor.js  StickerEditor.js
          PuzzleImageEditor.js  StoryEditor.js  ActivityEditor.js  PdfEditor.js
          CategoryEditor.js  AssetEditor.js
-io/ upload.js
-generate/ generators.js
+io/ upload.js  assets.js
+generate/ generators.js  deployPackage.js  zip.js
 ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  helpers.js
 styles/ admin-cms.css
 ```

@@ -26,12 +26,12 @@ export async function readAssetFile(file) {
   const img = await loadImg(raw);
   const scale = Math.min(1, MAX_DIM / Math.max(img.naturalWidth, img.naturalHeight));
   const isJpeg = /jpe?g/i.test(mime);
-  if (scale >= 1 && raw.length < 400000) return { type: 'image', data: raw, mime, ...base };
+  if (scale >= 1 && raw.length < 400000) return { type: 'image', data: raw, mime, width: img.naturalWidth, height: img.naturalHeight, ...base };
   const cv = document.createElement('canvas');
   cv.width = Math.round(img.naturalWidth * scale);
   cv.height = Math.round(img.naturalHeight * scale);
   cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height);
-  return { type: 'image', data: cv.toDataURL(isJpeg ? 'image/jpeg' : 'image/png', 0.86), mime: isJpeg ? 'image/jpeg' : 'image/png', ...base };
+  return { type: 'image', data: cv.toDataURL(isJpeg ? 'image/jpeg' : 'image/png', 0.86), mime: isJpeg ? 'image/jpeg' : 'image/png', width: cv.width, height: cv.height, ...base };
 }
 
 /** The visual kind used for previews. */

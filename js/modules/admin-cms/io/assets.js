@@ -12,6 +12,7 @@
  */
 import AssetStore from '../store/AssetStore.js';
 import { uid } from '../store/CmsStore.js';
+import { hashString } from '../media/hash.js';
 
 let _store = null;
 
@@ -40,10 +41,12 @@ export async function resolveAssetData(asset) {
  */
 export async function putUploadedAsset(descriptor) {
   if (!descriptor || descriptor.type === 'emoji' || descriptor.data == null) return descriptor;
-  if (!assetStoreReady()) return descriptor;
+  const hash = descriptor.hash || hashString(descriptor.data);
+  const meta = { type: descriptor.type, mime: descriptor.mime, name: descriptor.name, size: descriptor.size, width: descriptor.width, height: descriptor.height, hash };
+  if (!assetStoreReady()) return { ...descriptor, hash };   // inline fallback still carries the hash
   const ref = descriptor.ref || uid('ast');
-  await _store.put(ref, { type: descriptor.type, data: descriptor.data, mime: descriptor.mime, name: descriptor.name, size: descriptor.size });
-  return { type: descriptor.type, mime: descriptor.mime, name: descriptor.name, size: descriptor.size, ref };
+  await _store.put(ref, { ...meta, data: descriptor.data });
+  return { ...meta, ref };
 }
 
 /**
@@ -63,4 +66,25 @@ export async function migrateInlineAssets(cmsStore) {
   }
   if (moved) cmsStore.flush();
   return moved;
+}
+
+/**
+ * Backfill content hashes (+ dimensions) on records whose asset predates 17A.3
+ * (a ref with no hash). Resolves the bytes once, hashes them, and stores the
+ * hash on the record so duplicate/usage detection works without re-resolving.
+ * Idempotent (skips assets that already have a hash). Returns the count updated.
+ */
+export async function backfillAssetMeta(cmsStore) {
+  if (!assetStoreReady()) return 0;
+  let n = 0;
+  for (const coll of ['items', 'assets']) {
+    for (const rec of cmsStore.list(coll)) {
+      const a = rec.asset;
+      if (!a || a.type === 'emoji' || a.hash || a.data != null) continue;   // no asset / emoji / already hashed / inline (migrated separately)
+      const full = await resolveAssetData(a);                                // eslint-disable-line no-await-in-loop
+      if (full && full.data != null) { a.hash = full.hash || hashString(full.data); if (full.width) a.width = full.width; if (full.height) a.height = full.height; n++; }
+    }
+  }
+  if (n) cmsStore.flush();
+  return n;
 }

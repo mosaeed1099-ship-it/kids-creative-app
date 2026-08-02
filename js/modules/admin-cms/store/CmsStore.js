@@ -99,6 +99,8 @@ export default class CmsStore {
 
   bulkRemove(coll, ids) { const backup = clone(this.state); const set = new Set(ids); const kept = []; for (const x of this.list(coll)) { if (set.has(x.id)) this._toTrash(x, coll); else kept.push(x); } this.state[coll] = kept; return this._commit(backup); }
   bulkUpdate(coll, ids, patch) { const backup = clone(this.state); const set = new Set(ids); this.list(coll).forEach((o) => { if (set.has(o.id)) Object.assign(o, patch); }); return this._commit(backup); }
+  /** Per-record bulk edit in ONE commit (mapFn(record) → patch|null). Used for bulk rename / tag-merge. */
+  bulkApply(coll, ids, mapFn) { const backup = clone(this.state); const set = new Set(ids); this.list(coll).forEach((o) => { if (set.has(o.id)) { const patch = mapFn(o); if (patch) Object.assign(o, patch); } }); return this._commit(backup); }
 
   // ---- trash ops (17A.2) ----
   restoreFromTrash(trashId) {

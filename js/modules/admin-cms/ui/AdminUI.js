@@ -11,15 +11,18 @@ import ListView from './ListView.js';
 import EntityForm from './EntityForm.js';
 import HistoryPanel from './HistoryPanel.js';
 import TrashPanel from './TrashPanel.js';
+import MediaLibrary from './MediaLibrary.js';
+import AssetInspector from './AssetInspector.js';
 import { generateAll, downloadJSON } from '../generate/generators.js';
 
 export default class AdminUI {
-  constructor(app) { this.app = app; this.form = new EntityForm(app); this.history = new HistoryPanel(app); this.trash = new TrashPanel(app); }
+  constructor(app) { this.app = app; this.form = new EntityForm(app); this.history = new HistoryPanel(app); this.trash = new TrashPanel(app); this.inspector = new AssetInspector(app); }
 
   build() {
     const a = this.app;
     this.sidebar = new Sidebar(a);
     this.listview = new ListView(a);
+    this.medialib = new MediaLibrary(a);
     this.title = el('h1', { class: 'cms-title', text: 'المحتوى' });
     this.undoBtn = btn({ emoji: '↶', title: 'تراجع (Ctrl/⌘+Z)', cls: 'cms-btn--sm', onClick: () => a.undo() });
     this.redoBtn = btn({ emoji: '↷', title: 'إعادة (Ctrl/⌘+Shift+Z)', cls: 'cms-btn--sm', onClick: () => a.redo() });
@@ -34,18 +37,27 @@ export default class AdminUI {
     ]);
     this.syncUndo();
     this.errorBar = el('div', { class: 'cms-errorbar', attrs: { role: 'alert', hidden: 'hidden' } });
-    this.main = el('div', { class: 'cms-main' }, [this.header, this.errorBar, this.listview.build()]);
+    this.mediaEl = this.medialib.build(); this.mediaEl.style.display = 'none';
+    this.main = el('div', { class: 'cms-main' }, [this.header, this.errorBar, this.listview.build(), this.mediaEl]);
     this.scrim = el('div', { class: 'cms-scrim', on: { click: () => this.root.classList.remove('nav-open') } });
     this.toastHost = el('div', { class: 'cms-toasts', attrs: { 'aria-live': 'polite' } });
     this.root = el('div', { class: 'cms-root', attrs: { dir: 'rtl' } }, [this.sidebar.build(), this.main, this.scrim, this.toastHost]);
     return this.root;
   }
 
-  setSection(section) { this.title.textContent = `${section.icon} ${section.label}`; this.listview.setSection(section); this.sidebar.refresh(); this.root.classList.remove('nav-open'); }
-  refresh() { this.sidebar.refresh(); this.listview.refresh(); this.syncUndo(); }
+  setSection(section) {
+    this.title.textContent = `${section.icon} ${section.label}`;
+    this._media = section.id === 'assets';
+    this.listview.el.style.display = this._media ? 'none' : '';
+    this.mediaEl.style.display = this._media ? '' : 'none';
+    if (this._media) this.medialib.refresh(); else this.listview.setSection(section);
+    this.sidebar.refresh(); this.root.classList.remove('nav-open');
+  }
+  refresh() { this.sidebar.refresh(); if (this._media) this.medialib.refresh(); else this.listview.refresh(); this.syncUndo(); }
   openForm(section, obj) { this.form.open(section, obj); }
   openHistory() { this.history.open(); }
   openTrash() { this.trash.open(); }
+  openInspector(id) { this.inspector.open(id); }
 
   /** Reflect undo/redo availability on the header buttons. */
   syncUndo() {
@@ -100,6 +112,27 @@ export default class AdminUI {
       document.addEventListener('keydown', onKey);
       this.root.append(overlay);
       setTimeout(() => (input || okBtn).focus(), 0);
+    });
+  }
+
+  /** Text-input dialog (17A.3 bulk ops). Resolves the string, or null on cancel. */
+  prompt({ title, message = '', placeholder = '', value = '', confirmLabel = 'موافق' }) {
+    return new Promise((resolve) => {
+      let done = false;
+      const finish = (v) => { if (done) return; done = true; overlay.remove(); document.removeEventListener('keydown', onKey); resolve(v); };
+      const input = el('input', { class: 'cms-input', attrs: { placeholder, value, dir: 'auto' } });
+      const onKey = (e) => { if (e.key === 'Escape') finish(null); if (e.key === 'Enter') finish(input.value); };
+      const box = el('div', { class: 'cms-modal__box cms-confirm' }, [
+        el('div', { class: 'cms-modal__head' }, [el('h2', { text: title })]),
+        message ? el('p', { class: 'cms-confirm__msg', text: message }) : null,
+        input,
+        el('div', { class: 'cms-modal__foot' }, [btn({ label: confirmLabel, cls: 'cms-primary', onClick: () => finish(input.value) }), btn({ label: 'إلغاء', onClick: () => finish(null) })]),
+      ]);
+      const overlay = el('div', { class: 'cms-modal', attrs: { role: 'dialog', 'aria-modal': 'true', 'aria-label': title } }, [box]);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) finish(null); });
+      document.addEventListener('keydown', onKey);
+      this.root.append(overlay);
+      setTimeout(() => input.focus(), 0);
     });
   }
 

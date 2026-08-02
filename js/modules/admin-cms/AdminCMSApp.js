@@ -17,7 +17,8 @@ import { el } from '../../utils/dom.js';
 import CmsStore from './store/CmsStore.js';
 import { SECTIONS, sectionById } from './store/schema.js';
 import { importExistingContent } from './store/seed.js';
-import { initAssetStore, migrateInlineAssets, assetStore, assetStoreReady } from './io/assets.js';
+import { initAssetStore, migrateInlineAssets, backfillAssetMeta, putUploadedAsset, assetStore, assetStoreReady } from './io/assets.js';
+import { readAssetFile } from './io/upload.js';
 import { exportBackup as makeBackup, importBackup as restoreBackup } from './store/backup.js';
 import { downloadDeployPackage } from './generate/deployPackage.js';
 import { downloadJSON } from './generate/generators.js';
@@ -60,6 +61,9 @@ export default class AdminCMSApp {
     // C2 migration — move any legacy inline assets into IndexedDB (shrinks the blob)
     try { const moved = await migrateInlineAssets(this.store); if (moved) { this.ui.toast(`تم نقل ${moved} ملفًا إلى تخزين آمن 🔒`); this.ui.refresh(); } }
     catch (e) { console.error('[CMS] migrate', e); }
+    // 17A.3 — backfill content hashes so duplicate/usage detection works on old data
+    try { const n = await backfillAssetMeta(this.store); if (n) this.ui.refresh(); }
+    catch (e) { console.error('[CMS] backfill', e); }
     return this;
   }
 
@@ -126,6 +130,53 @@ export default class AdminCMSApp {
   async emptyTrash() {
     if (!(await this.ui.confirm({ title: 'إفراغ السلة', message: 'حذف كل عناصر السلة نهائيًا؟', note: 'اكتب كلمة التأكيد للمتابعة.', confirmLabel: 'إفراغ', danger: true, requireText: 'إفراغ' }))) return;
     if (this.store.emptyTrash()) this.ui.toast('تم إفراغ السلة');
+  }
+
+  // ---- media library & asset manager (17A.3) ----
+  openInspector(id) { this.ui.openInspector(id); }
+  toggleFav(id) { const a = this.store.get('assets', id); if (a) this.store.update('assets', id, { fav: !a.fav }); }
+
+  async addAssetFiles(files) {
+    let added = 0;
+    for (const f of files) {
+      try { const desc = await putUploadedAsset(await readAssetFile(f)); const now = new Date().toISOString(); if (this.store.create('assets', { name: (f.name || 'ملف').replace(/\.[^.]+$/, ''), category: '', tags: [], fav: false, asset: desc, createdAt: now, updatedAt: now })) added++; } // eslint-disable-line no-await-in-loop
+      catch (e) { console.error('[CMS] upload', e); }
+    }
+    if (added) this.ui.clearError();
+    this.ui.toast(added ? `تم رفع ${added} ملفًا 📥` : 'تعذّر الرفع');
+  }
+
+  async replaceAsset(id, file) {
+    try { const desc = await putUploadedAsset(await readAssetFile(file)); if (this.store.update('assets', id, { asset: desc, updatedAt: new Date().toISOString() })) this.ui.toast('تم استبدال الملف 🔄'); }
+    catch (e) { console.error('[CMS] replace', e); this.ui.toast('تعذّر الاستبدال'); }
+  }
+
+  async deleteAsset(id, usageCount = 0) {
+    const msg = usageCount ? `هذا الأصل مُستخدَم في ${usageCount} عنصرًا. حذفه من المكتبة لا يؤثر عليها. نقله إلى السلة؟` : 'نقل هذا الأصل إلى سلة المحذوفات؟';
+    if (!(await this.ui.confirm({ title: 'حذف آمن', message: msg, confirmLabel: 'نقل إلى السلة', danger: !!usageCount }))) return;
+    if (this.store.remove('assets', id)) { document.querySelectorAll('.cms-modal').forEach((m) => { if (m.querySelector('.cms-insp')) m.remove(); }); this.ui.toast('نُقل إلى السلة 🗑️'); }
+  }
+
+  async bulkRename(ids, onDone) {
+    const pattern = await this.ui.prompt({ title: 'إعادة تسمية جماعية', message: 'استخدم # لرقم متسلسل. مثال: رسمة #', placeholder: 'اسم #', value: 'أصل #' });
+    if (pattern == null) return;
+    let i = 0;
+    if (this.store.bulkApply('assets', ids, () => ({ name: pattern.includes('#') ? pattern.replace(/#/g, String(++i)) : `${pattern} ${++i}`, updatedAt: new Date().toISOString() }))) { onDone && onDone(); this.ui.toast(`أعيدت تسمية ${ids.length} أصلًا`); }
+  }
+  async bulkMoveCategory(ids, onDone) {
+    const cat = await this.ui.prompt({ title: 'نقل إلى تصنيف', message: 'اسم التصنيف (اتركه فارغًا لإزالة التصنيف).', placeholder: 'تصنيف' });
+    if (cat == null) return;
+    if (this.store.bulkUpdate('assets', ids, { category: cat.trim() })) { onDone && onDone(); this.ui.toast(`نُقل ${ids.length} أصلًا`); }
+  }
+  async bulkAddTags(ids, onDone) {
+    const raw = await this.ui.prompt({ title: 'إضافة وسوم', message: 'وسوم مفصولة بفواصل تُضاف للمحدد.', placeholder: 'قطة، حيوان' });
+    if (raw == null) return;
+    const tags = raw.split(/[،,]+/).map((s) => s.trim()).filter(Boolean);
+    if (this.store.bulkApply('assets', ids, (o) => ({ tags: [...new Set([...(o.tags || []), ...tags])] }))) { onDone && onDone(); this.ui.toast(`أُضيفت الوسوم لـ ${ids.length} أصلًا`); }
+  }
+  async bulkDeleteAssets(ids, onDone) {
+    if (!(await this.ui.confirm({ title: 'حذف جماعي', message: `نقل ${ids.length} أصلًا إلى سلة المحذوفات؟`, confirmLabel: 'نقل إلى السلة' }))) return;
+    if (this.store.bulkRemove('assets', ids)) { onDone && onDone(); this.ui.toast(`نُقل ${ids.length} أصلًا إلى السلة`); }
   }
 
   // ---- backup / restore (C3) ----

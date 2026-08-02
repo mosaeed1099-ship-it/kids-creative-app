@@ -149,6 +149,45 @@
 .cms-trash-row { grid-template-columns: none; display: flex; align-items: center; gap: 10px; }
 .cms-trash-row .cms-col-name { flex: 1 1 auto; }
 
+/* media library (17A.3) */
+.cms-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.cms-chip { border: 2px solid var(--c-border); background: var(--c-surface); color: var(--c-text); border-radius: var(--r-pill); padding: 5px 12px; font: inherit; font-weight: 700; cursor: pointer; }
+.cms-chip:hover { background: var(--c-surface-2); }
+.cms-chip.is-active { background: var(--c-primary); color: var(--c-primary-ink); border-color: var(--c-primary); }
+.cms-media-count { margin: 0 2px 8px; }
+.cms-media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 10px; }
+.cms-media-card { position: relative; background: var(--c-surface); border: 2px solid var(--c-border); border-radius: var(--r-md); padding: 8px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; transition: border-color var(--dur-fast), transform var(--dur-fast); }
+.cms-media-card:hover { border-color: var(--c-primary); transform: translateY(-2px); }
+.cms-media-card.is-sel { border-color: var(--c-primary); box-shadow: 0 0 0 2px var(--c-primary) inset; }
+.cms-media-top { display: flex; align-items: center; justify-content: space-between; }
+.cms-media-check { width: 20px; height: 20px; accent-color: var(--c-primary); cursor: pointer; }
+.cms-media-fav { border: none; background: transparent; font-size: 18px; cursor: pointer; line-height: 1; padding: 0; opacity: .6; }
+.cms-media-fav.is-on { opacity: 1; }
+.cms-media-thumb { display: flex; align-items: center; justify-content: center; padding: 4px; }
+.cms-media-thumb .cms-thumb { width: 84px; height: 84px; }
+.cms-media-name { font-weight: 700; font-size: 13px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cms-media-meta { font-size: 11px; color: var(--c-muted); text-align: center; }
+.cms-media-badges { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+.cms-media-badge { font-size: 10px; font-weight: 800; border-radius: var(--r-pill); padding: 1px 6px; }
+.cms-media-badge.is-dup { background: color-mix(in srgb, var(--c-accent-2) 30%, transparent); }
+.cms-media-badge.is-unused { background: color-mix(in srgb, var(--c-muted) 25%, transparent); }
+
+/* asset inspector (17A.3) */
+.cms-insp { display: flex; flex-direction: column; gap: 14px; min-width: min(560px, 92vw); }
+.cms-insp-preview { display: flex; align-items: center; justify-content: center; background: var(--c-surface-2); border-radius: var(--r-md); padding: 12px; min-height: 160px; }
+.cms-insp-media { width: 220px; height: 220px; background-size: contain; background-repeat: no-repeat; background-position: center; border-radius: var(--r-sm); }
+.cms-insp-media--img { object-fit: contain; background: #fff; }
+.cms-insp-media--pdf { width: min(100%, 420px); height: 320px; border: 1px solid var(--c-border); background: #fff; }
+.cms-insp-media--none { display: flex; align-items: center; justify-content: center; color: var(--c-muted); font-size: 40px; }
+.cms-insp-info { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.cms-kv { display: flex; justify-content: space-between; gap: 8px; background: var(--c-surface-2); border-radius: var(--r-sm); padding: 5px 9px; font-size: 13px; }
+.cms-kv__k { color: var(--c-muted); font-weight: 700; }
+.cms-kv__v { font-weight: 700; font-family: ui-monospace, monospace; overflow: hidden; text-overflow: ellipsis; }
+.cms-insp-usage h4 { margin: 0 0 6px; }
+.cms-usage-list { display: flex; gap: 6px; flex-wrap: wrap; }
+.cms-usage-chip { background: var(--c-surface-2); border-radius: var(--r-pill); padding: 3px 10px; font-size: 13px; font-weight: 700; }
+.cms-insp-actions { flex-wrap: wrap; }
+
 /* toasts + scrim */
 .cms-toasts { position: absolute; bottom: 18px; inset-inline-start: 50%; transform: translateX(50%); display: flex; flex-direction: column; gap: 8px; z-index: 130; pointer-events: none; }
 .cms-toast { background: var(--c-text); color: var(--c-bg); padding: 10px 16px; border-radius: var(--r-pill); font-weight: 700; opacity: 0; transform: translateY(10px); transition: all var(--dur) var(--ease-out); box-shadow: var(--sh-2); }

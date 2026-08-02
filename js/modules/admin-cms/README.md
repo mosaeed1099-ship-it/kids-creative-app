@@ -84,6 +84,31 @@ and the shared IndexedDB layer; no backend, no APIs, fully offline.
 The IndexedDB boilerplate is shared: `store/idb.js` (a generic KV store) backs
 both `AssetStore` and `VersionStore`.
 
+## Media Library & Asset Manager (Phase 17A.3)
+
+The "الوسائط" section is a full asset manager (`ui/MediaLibrary.js`) shown in
+place of the generic list; the generic list still drives every other section.
+Offline and data-driven; reuses IndexedDB, trash (safe delete), version history
+(undo), backup, and the shared UI.
+
+- **Library / preview** — a thumbnail grid; multi-file upload; **SVG, image and
+  PDF previews** (in the grid and the Inspector: `<img>` / SVG background /
+  `<object>` PDF).
+- **Search · Categories · Tags · Favorites · Recent** — search across
+  name/tags/category/mime; a category filter; a favorites view; sort by recent
+  (or name/size/type). Data-driven: categories come from the assets themselves.
+- **Asset Inspector** (`ui/AssetInspector.js`) — large preview, editable
+  name/category/tags/favorite, technical info (type, mime, size, dimensions,
+  content hash, dates), **usage references**, and actions.
+- **Content-hash intelligence** (`media/hash.js`, `media/usage.js`) — every
+  uploaded asset gets a fast content hash. From it, with no backend:
+  **usage references** (which content items use the same bytes), **duplicate
+  detection**, and **unused detection** (chips show live counts). Existing
+  assets are hash-backfilled on load.
+- **Replace asset**; **safe delete** (soft-delete to Trash, warns if the asset
+  is used); **bulk rename / move / tag / delete** (each a single, undoable
+  commit via `CmsStore.bulkApply`).
+
 ## Design
 
 - **Data-driven + modular:** one generic `ListView` and one generic `EntityForm`
@@ -103,6 +128,8 @@ editors/ fields.js  PackEditor.js  ColoringEditor.js  StickerEditor.js
 io/ upload.js  assets.js
 generate/ generators.js  deployPackage.js  zip.js
 history/ VersionManager.js  UndoManager.js  diff.js
-ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  HistoryPanel.js  TrashPanel.js  helpers.js
+media/ hash.js  usage.js
+ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  HistoryPanel.js  TrashPanel.js
+    MediaLibrary.js  AssetInspector.js  helpers.js
 styles/ admin-cms.css
 ```

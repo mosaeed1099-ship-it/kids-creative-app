@@ -10,7 +10,7 @@ const CRC_TABLE = (() => {
   return t;
 })();
 
-function crc32(bytes) {
+export function crc32(bytes) {
   let c = 0xffffffff;
   for (let i = 0; i < bytes.length; i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xff] ^ (c >>> 8);
   return (c ^ 0xffffffff) >>> 0;
@@ -93,4 +93,38 @@ export function zipSync(files) {
   end.setUint16(20, 0, true);                // comment len
 
   return new Blob([...chunks, ...central, new Uint8Array(end.buffer)], { type: 'application/zip' });
+}
+
+/**
+ * Parse a ZIP (store method) and verify every entry's CRC. Used to validate the
+ * produced release archive (Phase 17B). Returns { count, entries:[{name,size,crcOk}] }.
+ */
+export function readZip(bytes) {
+  const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  const dec = new TextDecoder();
+  // locate End Of Central Directory (scan from the end for its signature)
+  let p = bytes.length - 22;
+  for (; p >= 0; p--) if (dv.getUint32(p, true) === 0x06054b50) break;
+  if (p < 0) throw new Error('EOCD not found');
+  const count = dv.getUint16(p + 10, true);
+  let cd = dv.getUint32(p + 16, true);
+  const entries = [];
+  for (let i = 0; i < count; i++) {
+    if (dv.getUint32(cd, true) !== 0x02014b50) throw new Error('bad central header');
+    const crc = dv.getUint32(cd + 16, true);
+    const compSize = dv.getUint32(cd + 20, true);
+    const nameLen = dv.getUint16(cd + 28, true);
+    const extraLen = dv.getUint16(cd + 30, true);
+    const commentLen = dv.getUint16(cd + 32, true);
+    const localOff = dv.getUint32(cd + 42, true);
+    const name = dec.decode(bytes.subarray(cd + 46, cd + 46 + nameLen));
+    if (dv.getUint32(localOff, true) !== 0x04034b50) throw new Error('bad local header');
+    const lNameLen = dv.getUint16(localOff + 26, true);
+    const lExtraLen = dv.getUint16(localOff + 28, true);
+    const dataStart = localOff + 30 + lNameLen + lExtraLen;
+    const data = bytes.subarray(dataStart, dataStart + compSize);
+    entries.push({ name, size: compSize, crcOk: crc32(data) === crc, data });
+    cd += 46 + nameLen + extraLen + commentLen;
+  }
+  return { count, entries };
 }

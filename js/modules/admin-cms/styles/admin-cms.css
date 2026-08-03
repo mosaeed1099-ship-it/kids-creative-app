@@ -188,6 +188,21 @@
 .cms-usage-chip { background: var(--c-surface-2); border-radius: var(--r-pill); padding: 3px 10px; font-size: 13px; font-weight: 700; }
 .cms-insp-actions { flex-wrap: wrap; }
 
+/* release builder (17B) */
+.cms-release { display: flex; flex-direction: column; gap: 12px; min-width: min(560px, 92vw); }
+.cms-release textarea.cms-input { resize: vertical; font: inherit; }
+.cms-rel-status { text-align: center; font-weight: 800; padding: 10px; border-radius: var(--r-md); }
+.cms-rel-status.is-ok { background: color-mix(in srgb, var(--c-success) 20%, transparent); }
+.cms-rel-status.is-bad { background: color-mix(in srgb, var(--c-danger) 20%, transparent); }
+.cms-rel-group { display: flex; flex-direction: column; gap: 3px; }
+.cms-rel-group h4 { margin: 6px 0 2px; font-size: 14px; }
+.cms-rel-line { font-size: 13px; font-weight: 600; padding: 3px 8px; border-radius: var(--r-sm); }
+.cms-rel-line.is-pass { color: var(--c-text); }
+.cms-rel-line.is-warn { background: color-mix(in srgb, var(--c-accent-2) 22%, transparent); }
+.cms-rel-line.is-fail { background: color-mix(in srgb, var(--c-danger) 18%, transparent); font-weight: 800; }
+.cms-rel-files { display: flex; flex-direction: column; gap: 2px; font-family: ui-monospace, monospace; }
+.cms-rel-actions { flex-wrap: wrap; }
+
 /* toasts + scrim */
 .cms-toasts { position: absolute; bottom: 18px; inset-inline-start: 50%; transform: translateX(50%); display: flex; flex-direction: column; gap: 8px; z-index: 130; pointer-events: none; }
 .cms-toast { background: var(--c-text); color: var(--c-bg); padding: 10px 16px; border-radius: var(--r-pill); font-weight: 700; opacity: 0; transform: translateY(10px); transition: all var(--dur) var(--ease-out); box-shadow: var(--sh-2); }

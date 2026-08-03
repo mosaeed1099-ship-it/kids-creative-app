@@ -21,7 +21,8 @@ export default class Sidebar {
       this.nav,
       this.meter,
       el('div', { class: 'cms-side-actions' }, [
-        btn({ emoji: '⚙️', label: 'توليد ملفات JSON', cls: 'cms-primary', onClick: () => a.ui.openGenerate() }),
+        btn({ emoji: '🚀', label: 'بناء إصدار الإنتاج', cls: 'cms-primary', onClick: () => a.ui.openRelease() }),
+        btn({ emoji: '⚙️', label: 'توليد ملفات JSON', onClick: () => a.ui.openGenerate() }),
         btn({ emoji: '📦', label: 'حزمة النشر (ZIP)', onClick: () => a.buildDeploy() }),
         btn({ emoji: '💾', label: 'تصدير نسخة احتياطية', onClick: () => a.exportBackup() }),
         btn({ emoji: '📤', label: 'استيراد نسخة احتياطية', onClick: () => this.restoreInput.click() }),

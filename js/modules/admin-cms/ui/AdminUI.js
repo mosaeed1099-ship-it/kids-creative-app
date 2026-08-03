@@ -13,10 +13,11 @@ import HistoryPanel from './HistoryPanel.js';
 import TrashPanel from './TrashPanel.js';
 import MediaLibrary from './MediaLibrary.js';
 import AssetInspector from './AssetInspector.js';
+import ReleasePanel from './ReleasePanel.js';
 import { generateAll, downloadJSON } from '../generate/generators.js';
 
 export default class AdminUI {
-  constructor(app) { this.app = app; this.form = new EntityForm(app); this.history = new HistoryPanel(app); this.trash = new TrashPanel(app); this.inspector = new AssetInspector(app); }
+  constructor(app) { this.app = app; this.form = new EntityForm(app); this.history = new HistoryPanel(app); this.trash = new TrashPanel(app); this.inspector = new AssetInspector(app); this.release = new ReleasePanel(app); }
 
   build() {
     const a = this.app;
@@ -58,6 +59,7 @@ export default class AdminUI {
   openHistory() { this.history.open(); }
   openTrash() { this.trash.open(); }
   openInspector(id) { this.inspector.open(id); }
+  openRelease() { this.release.open(); }
 
   /** Reflect undo/redo availability on the header buttons. */
   syncUndo() {

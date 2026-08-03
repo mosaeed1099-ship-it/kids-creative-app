@@ -21,7 +21,8 @@ import { initAssetStore, migrateInlineAssets, backfillAssetMeta, putUploadedAsse
 import { readAssetFile } from './io/upload.js';
 import { exportBackup as makeBackup, importBackup as restoreBackup } from './store/backup.js';
 import { downloadDeployPackage } from './generate/deployPackage.js';
-import { downloadJSON } from './generate/generators.js';
+import { downloadJSON, triggerDownload } from './generate/generators.js';
+import { buildRelease, fileStamp } from './release/releaseBuilder.js';
 import VersionManager from './history/VersionManager.js';
 import UndoManager from './history/UndoManager.js';
 import AdminUI from './ui/AdminUI.js';
@@ -198,6 +199,21 @@ export default class AdminCMSApp {
   async buildDeploy() {
     try { const m = await downloadDeployPackage(this.store); this.ui.toast(`تم توليد حزمة النشر 📦 (${m.files.length} ملف بيانات)`); }
     catch (e) { console.error('[CMS] deploy package', e); this.ui.toast('تعذّر توليد حزمة النشر'); }
+  }
+
+  // ---- publishing / release builder (17B) — generates only, never deploys ----
+  async buildRelease({ version, notes }) {
+    try {
+      let sinceIso = null; try { sinceIso = localStorage.getItem('kcs.cms.release.at'); } catch { /* */ }
+      const res = await buildRelease(this.store, { version, vm: this.vm, notesText: notes, sinceIso });
+      this.ui.toast(res.ok ? 'تم بناء الإصدار ✅' : 'اكتمل البناء مع مشكلات ⚠️');
+      return res;
+    } catch (e) { console.error('[CMS] release', e); this.ui.toast('تعذّر بناء الإصدار'); return null; }
+  }
+  downloadRelease(res) {
+    triggerDownload(`kcs-release-v${res.version}-${fileStamp()}.zip`, res.zipBlob);
+    try { localStorage.setItem('kcs.cms.release.version', res.version); localStorage.setItem('kcs.cms.release.at', new Date().toISOString()); } catch { /* */ }
+    this.ui.toast(`تم تنزيل الإصدار v${res.version} 🚀`);
   }
 
   // ---- seed / clear ----

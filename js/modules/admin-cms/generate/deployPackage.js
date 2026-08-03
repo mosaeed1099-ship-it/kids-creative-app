@@ -9,7 +9,7 @@
 import { generateAll, triggerDownload } from './generators.js';
 import { zipSync } from './zip.js';
 
-const HEADERS = `# Cloudflare Pages — security + caching headers
+export const CF_HEADERS = `# Cloudflare Pages — security + caching headers
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
@@ -23,7 +23,7 @@ const HEADERS = `# Cloudflare Pages — security + caching headers
   Cache-Control: public, max-age=31536000, immutable
 `;
 
-const REDIRECTS = `# SPA fallback — the app is hash-routed, this keeps deep links safe
+export const CF_REDIRECTS = `# SPA fallback — the app is hash-routed, this keeps deep links safe
 /*    /index.html    200
 `;
 
@@ -61,16 +61,16 @@ export async function buildDeployPackage(store) {
   // Root of the package
   addJson('manifest.json', manifest);
   for (const [n, o] of Object.entries(dataFiles)) addJson(n, o);
-  addText('_headers', HEADERS);
-  addText('_redirects', REDIRECTS);
+  addText('_headers', CF_HEADERS);
+  addText('_redirects', CF_REDIRECTS);
   addText('README.txt', readme(manifest));
 
   // release/ and production/ (identical deploy-ready copies)
   for (const dir of ['release', 'production']) {
     addJson(`${dir}/manifest.json`, manifest);
     for (const [n, o] of Object.entries(dataFiles)) addJson(`${dir}/${n}`, o);
-    addText(`${dir}/_headers`, HEADERS);
-    addText(`${dir}/_redirects`, REDIRECTS);
+    addText(`${dir}/_headers`, CF_HEADERS);
+    addText(`${dir}/_redirects`, CF_REDIRECTS);
   }
 
   return { blob: zipSync(files), manifest, dataFiles, fileList: files.map((f) => f.name) };

@@ -109,6 +109,36 @@ Offline and data-driven; reuses IndexedDB, trash (safe delete), version history
   is used); **bulk rename / move / tag / delete** (each a single, undoable
   commit via `CmsStore.bulkApply`).
 
+## Publishing System & Release Builder (Phase 17B)
+
+The final infrastructure phase: a complete, offline publishing pipeline
+(`release/`) that turns the CMS into a production-ready release. Generates only —
+it never deploys, pushes, or rebuilds the site. Opened from **🚀 بناء إصدار
+الإنتاج**.
+
+Pipeline (`release/releaseBuilder.js`), reusing generators, zip, version history
+and asset resolution:
+
+1. **Validate** (`release/validate.js`) — duplicate IDs, broken references
+   (pack/category), and missing assets (resolved from IndexedDB). Errors block a
+   clean release; warnings are advisory.
+2. **Generate** all JSON (catalog / packs / stickers / activities / stories).
+3. **Copy assets** — every referenced binary is resolved and written to
+   `assets/` (deduped); a missing binary is a validation error.
+4. **Reports** — `manifest.json` (version, files with byte-size + content hash,
+   counts, validation summary), `RELEASE_REPORT.md`, `RELEASE_NOTES.md` (from
+   version history since the last release), `CHANGELOG.md`, `validation.json`.
+5. **Assemble** `release/` + `production/` (data + assets + `_headers` /
+   `_redirects` + manifest) and build the **production ZIP** (`generate/zip.js`).
+6. **Validate the ZIP** — `readZip()` re-parses the archive and verifies every
+   entry's CRC and that `manifest.json` parses.
+7. **Verify the release** — re-reads the emitted JSON: parse-ability, counts vs
+   source, all assets inlined, no duplicate IDs, assets copied, validation clean.
+
+The Release panel (`ui/ReleasePanel.js`) shows the three check groups + content
+summary and offers downloads for the ZIP and every report. The simpler quick
+"حزمة النشر (ZIP)" (17A.1) remains for a fast bundle.
+
 ## Design
 
 - **Data-driven + modular:** one generic `ListView` and one generic `EntityForm`
@@ -129,7 +159,8 @@ io/ upload.js  assets.js
 generate/ generators.js  deployPackage.js  zip.js
 history/ VersionManager.js  UndoManager.js  diff.js
 media/ hash.js  usage.js
+release/ validate.js  releaseBuilder.js
 ui/ AdminUI.js  Sidebar.js  ListView.js  EntityForm.js  HistoryPanel.js  TrashPanel.js
-    MediaLibrary.js  AssetInspector.js  helpers.js
+    MediaLibrary.js  AssetInspector.js  ReleasePanel.js  helpers.js
 styles/ admin-cms.css
 ```

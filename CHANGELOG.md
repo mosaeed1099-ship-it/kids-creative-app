@@ -3,6 +3,23 @@
 All notable changes to this project are documented here.
 This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [1.2.0] — Creative modules + Content Management System
+
+Adds the full creative studios and an offline Content Management System on top
+of 1.0.0. All additive (native ES modules, zero dependencies, fully offline).
+
+### Added
+- Free Draw Studio (`/draw`), Sticker Studio (`/stickers`), Puzzle Studio
+  (`/puzzles`), Story Creator (`/story`).
+- Admin CMS (`#/admin`) — offline content editor: reliability & data-safety
+  (IndexedDB assets, verified persistence, backup/restore), version history +
+  undo/redo, trash, Media Library & Asset Manager, and a publishing/release
+  builder that produces a validated production package.
+
+### Notes
+- `learning-activities` remains built but not yet wired into navigation.
+- `/trace` still routes to the placeholder (full `trace-studio` not yet wired).
+
 ## [1.0.0] — Release Candidate (RC1)
 
 First commercial production release. **No new features** were added in this

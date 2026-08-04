@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Content CMS — Example</title>
+  <link rel="stylesheet" href="../../../css/tokens.css" />
+  <style>
+    :root {
+      --c-bg: #f6f4ff; --c-surface: #ffffff; --c-surface-2: #f2f4ff; --c-text: #2b2b3a;
+      --c-muted: #8a8aa3; --c-border: #e6e6ef; --c-primary: #5b6bff; --c-primary-ink: #fff;
+      --c-accent: #ff6b9d; --c-accent-2: #ffcf6b; --c-success: #57c98a; --c-danger: #ff5a5a;
+      --c-shadow: rgba(91,107,255,.14);
+    }
+    html, body { margin: 0; height: 100%; font-family: system-ui, "Segoe UI", Tahoma, sans-serif; }
+  </style>
+</head>
+<body>
+  <div id="host"></div>
+  <script type="module">
+    import AdminCMSApp from './AdminCMSApp.js';
+    const app = new AdminCMSApp({ mount: document.getElementById('host') });
+    app.mount();
+  </script>
+</body>
+</html>

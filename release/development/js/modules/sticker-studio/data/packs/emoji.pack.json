@@ -1,0 +1,29 @@
+{
+  "id": "emoji",
+  "title": { "ar": "إيموجي", "en": "Emoji" },
+  "version": 1,
+  "premium": false,
+  "categories": [
+    { "id": "emoji-fun", "title": { "ar": "مرح", "en": "Fun" }, "icon": "🎉" },
+    { "id": "emoji-animals", "title": { "ar": "حيوانات", "en": "Animals" }, "icon": "🐶" },
+    { "id": "emoji-food", "title": { "ar": "طعام", "en": "Food" }, "icon": "🍎" }
+  ],
+  "items": [
+    { "id": "emoji-party", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "احتفال", "en": "Party" }, "tags": ["party", "احتفال"], "asset": { "type": "emoji", "data": "🎉" } },
+    { "id": "emoji-star", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "نجمة", "en": "Star" }, "tags": ["star", "نجمة"], "asset": { "type": "emoji", "data": "🌟" } },
+    { "id": "emoji-heart", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "قلب", "en": "Heart" }, "tags": ["heart", "قلب"], "asset": { "type": "emoji", "data": "❤️" } },
+    { "id": "emoji-rainbow", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "قزح", "en": "Rainbow" }, "tags": ["rainbow", "قزح"], "asset": { "type": "emoji", "data": "🌈" } },
+    { "id": "emoji-balloon", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "بالون", "en": "Balloon" }, "tags": ["balloon", "بالون"], "asset": { "type": "emoji", "data": "🎈" } },
+    { "id": "emoji-crown", "assetType": "sticker", "categoryId": "emoji-fun", "title": { "ar": "تاج", "en": "Crown" }, "tags": ["crown", "تاج"], "asset": { "type": "emoji", "data": "👑" } },
+    { "id": "emoji-dog", "assetType": "sticker", "categoryId": "emoji-animals", "title": { "ar": "كلب", "en": "Dog" }, "tags": ["dog", "كلب"], "asset": { "type": "emoji", "data": "🐶" } },
+    { "id": "emoji-cat", "assetType": "sticker", "categoryId": "emoji-animals", "title": { "ar": "قطة", "en": "Cat" }, "tags": ["cat", "قطة"], "asset": { "type": "emoji", "data": "🐱" } },
+    { "id": "emoji-unicorn", "assetType": "sticker", "categoryId": "emoji-animals", "title": { "ar": "يونيكورن", "en": "Unicorn" }, "tags": ["unicorn", "يونيكورن"], "asset": { "type": "emoji", "data": "🦄" } },
+    { "id": "emoji-lion", "assetType": "sticker", "categoryId": "emoji-animals", "title": { "ar": "أسد", "en": "Lion" }, "tags": ["lion", "أسد"], "asset": { "type": "emoji", "data": "🦁" } },
+    { "id": "emoji-butterfly", "assetType": "sticker", "categoryId": "emoji-animals", "title": { "ar": "فراشة", "en": "Butterfly" }, "tags": ["butterfly", "فراشة"], "asset": { "type": "emoji", "data": "🦋" } },
+    { "id": "emoji-apple", "assetType": "sticker", "categoryId": "emoji-food", "title": { "ar": "تفاحة", "en": "Apple" }, "tags": ["apple", "تفاحة"], "asset": { "type": "emoji", "data": "🍎" } },
+    { "id": "emoji-icecream", "assetType": "sticker", "categoryId": "emoji-food", "title": { "ar": "آيس كريم", "en": "Ice cream" }, "tags": ["icecream", "ايس"], "asset": { "type": "emoji", "data": "🍦" } },
+    { "id": "emoji-cake", "assetType": "sticker", "categoryId": "emoji-food", "title": { "ar": "كعكة", "en": "Cake" }, "tags": ["cake", "كعكة"], "asset": { "type": "emoji", "data": "🎂" } },
+    { "id": "emoji-pizza", "assetType": "sticker", "categoryId": "emoji-food", "title": { "ar": "بيتزا", "en": "Pizza" }, "tags": ["pizza", "بيتزا"], "asset": { "type": "emoji", "data": "🍕" } },
+    { "id": "emoji-strawberry", "assetType": "sticker", "categoryId": "emoji-food", "title": { "ar": "فراولة", "en": "Strawberry" }, "tags": ["strawberry", "فراولة"], "asset": { "type": "emoji", "data": "🍓" } }
+  ]
+}

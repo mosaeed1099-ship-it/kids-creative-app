@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "title": { "ar": "مكتبة الملصقات", "en": "Sticker Library" },
+  "packs": [
+    { "id": "faces", "title": { "ar": "الوجوه", "en": "Faces" }, "url": "packs/faces.pack.json", "thumbnail": { "type": "emoji", "value": "😀" }, "order": 1, "premium": false },
+    { "id": "animals", "title": { "ar": "الحيوانات", "en": "Animals" }, "url": "packs/animals.pack.json", "thumbnail": { "type": "emoji", "value": "🐱" }, "order": 2, "premium": false },
+    { "id": "nature", "title": { "ar": "الطبيعة", "en": "Nature" }, "url": "packs/nature.pack.json", "thumbnail": { "type": "emoji", "value": "🌈" }, "order": 3, "premium": false },
+    { "id": "shapes", "title": { "ar": "الأشكال", "en": "Shapes" }, "url": "packs/shapes.pack.json", "thumbnail": { "type": "emoji", "value": "⭐" }, "order": 4, "premium": false },
+    { "id": "emoji", "title": { "ar": "إيموجي", "en": "Emoji" }, "url": "packs/emoji.pack.json", "thumbnail": { "type": "emoji", "value": "🎉" }, "order": 5, "premium": false }
+  ]
+}

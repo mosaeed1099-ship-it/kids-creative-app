@@ -1,0 +1,24 @@
+{
+  "id": "scenes",
+  "title": { "ar": "مناظر", "en": "Scenes" },
+  "version": 1,
+  "premium": false,
+  "categories": [ { "id": "scenes-all", "title": { "ar": "مناظر", "en": "Scenes" }, "icon": "🏞️" } ],
+  "items": [
+    {
+      "id": "scenes-hills", "assetType": "puzzle", "categoryId": "scenes-all",
+      "title": { "ar": "التلال", "en": "Hills" }, "tags": ["nature", "hills", "تلال", "منظر"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#bfe9ff'/><circle cx='332' cy='58' r='32' fill='#ffd93b'/><g fill='#ffffff'><ellipse cx='92' cy='60' rx='34' ry='19'/><ellipse cx='122' cy='52' rx='24' ry='16'/></g><path d='M0 300 V190 Q120 140 240 185 T400 175 V300Z' fill='#8ed67a'/><path d='M0 300 V236 Q140 196 280 236 T400 246 V300Z' fill='#4fae54'/><rect x='70' y='206' width='12' height='44' fill='#8a5a2b'/><circle cx='76' cy='196' r='26' fill='#3f9d4a'/></svg>" }
+    },
+    {
+      "id": "scenes-space", "assetType": "puzzle", "categoryId": "scenes-all",
+      "title": { "ar": "الفضاء", "en": "Space" }, "tags": ["space", "rocket", "فضاء", "صاروخ"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#1b1e46'/><g fill='#ffffff'><circle cx='40' cy='40' r='2'/><circle cx='120' cy='80' r='1.6'/><circle cx='210' cy='38' r='2.2'/><circle cx='330' cy='60' r='1.8'/><circle cx='360' cy='140' r='2'/><circle cx='60' cy='160' r='1.6'/><circle cx='150' cy='230' r='2'/><circle cx='300' cy='250' r='1.8'/></g><circle cx='322' cy='214' r='40' fill='#ff9e6b'/><circle cx='306' cy='202' r='9' fill='#e07a4a'/><g transform='translate(160 150)'><path d='M0 -62 C24 -40 24 22 0 42 C-24 22 -24 -40 0 -62Z' fill='#e6ecff'/><circle cx='0' cy='-16' r='11' fill='#4ab8ff'/><path d='M-16 30 l-18 26 h18z' fill='#ff5a5a'/><path d='M16 30 l18 26 h-18z' fill='#ff5a5a'/><path d='M0 42 l-9 24 h18z' fill='#ffb02e'/></g></svg>" }
+    },
+    {
+      "id": "scenes-sea", "assetType": "puzzle", "categoryId": "scenes-all",
+      "title": { "ar": "تحت الماء", "en": "Underwater" }, "tags": ["sea", "fish", "بحر", "سمكة"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'><rect width='400' height='300' fill='#22a7cc'/><rect y='250' width='400' height='50' fill='#f0d9a8'/><g fill='#2f8f3f'><path d='M46 250 q12 -70 0 -120 q22 44 22 120Z'/><path d='M360 250 q-12 -70 0 -120 q-22 44 -22 120Z'/></g><g transform='translate(190 150)'><ellipse cx='0' cy='0' rx='48' ry='30' fill='#ff8c42'/><path d='M42 0 l30 -20 v40Z' fill='#ff8c42'/><path d='M0 -30 q10 10 0 20' fill='#e0662f'/><circle cx='-20' cy='-6' r='7' fill='#fff'/><circle cx='-20' cy='-6' r='3.5' fill='#222'/><path d='M-34 6 q12 6 22 0' fill='none' stroke='#c2482f' stroke-width='2.5' stroke-linecap='round'/></g><g fill='#bfefff'><circle cx='120' cy='70' r='7'/><circle cx='140' cy='40' r='4'/><circle cx='300' cy='90' r='6'/></g></svg>" }
+    }
+  ]
+}

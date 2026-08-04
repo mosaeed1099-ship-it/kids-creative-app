@@ -28,7 +28,11 @@ const OUT = path.join(ROOT, 'release');
 const APP_ITEMS = ['index.html', 'manifest.webmanifest', 'README.md', 'VERSION',
   'package.json', 'CHANGELOG.md', 'css', 'js', 'assets', 'examples'];
 const DEV_EXTRA = ['tools'];
-const EXCLUDE = new Set(['release', 'node_modules', '.git', '.DS_Store']);
+// NOTE: match only these basenames when they are NOT part of the app source.
+// 'release' is intentionally NOT here — the top-level release/ output is never
+// a source APP_ITEM, and excluding the name would wrongly drop nested source
+// folders such as js/modules/admin-cms/release/.
+const EXCLUDE = new Set(['node_modules', '.git', '.DS_Store']);
 
 async function version() {
   try { return (await fs.readFile(path.join(ROOT, 'VERSION'), 'utf8')).trim(); } catch { return '1.0.0'; }

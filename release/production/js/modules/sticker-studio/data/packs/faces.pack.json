@@ -1,0 +1,41 @@
+{
+  "id": "faces",
+  "title": { "ar": "الوجوه", "en": "Faces" },
+  "version": 1,
+  "premium": false,
+  "categories": [
+    { "id": "faces-emotions", "title": { "ar": "المشاعر", "en": "Emotions" }, "icon": "😀" }
+  ],
+  "items": [
+    {
+      "id": "faces-happy", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "سعيد", "en": "Happy" }, "tags": ["face", "happy", "smile", "وجه", "سعيد"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><circle cx='36' cy='42' r='6' fill='#3a2e00'/><circle cx='64' cy='42' r='6' fill='#3a2e00'/><path d='M32 60 Q50 80 68 60' fill='none' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "faces-love", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "مُحب", "en": "Love" }, "tags": ["face", "love", "heart", "وجه", "حب"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><g fill='#ff3b5c'><path transform='translate(28 34)' d='M6 11C2 7 0 5 0 3A3 3 0 0 1 6 3A3 3 0 0 1 12 3C12 5 10 7 6 11Z'/><path transform='translate(56 34)' d='M6 11C2 7 0 5 0 3A3 3 0 0 1 6 3A3 3 0 0 1 12 3C12 5 10 7 6 11Z'/></g><path d='M34 62 Q50 78 66 62' fill='none' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "faces-cool", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "رائع", "en": "Cool" }, "tags": ["face", "cool", "sunglasses", "وجه", "نظارة"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><g fill='#232634'><rect x='22' y='38' width='24' height='16' rx='6'/><rect x='54' y='38' width='24' height='16' rx='6'/><rect x='44' y='42' width='12' height='5'/></g><path d='M36 64 Q50 74 64 64' fill='none' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "faces-surprised", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "متفاجئ", "en": "Surprised" }, "tags": ["face", "surprised", "wow", "وجه", "مندهش"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><circle cx='36' cy='40' r='7' fill='#3a2e00'/><circle cx='64' cy='40' r='7' fill='#3a2e00'/><ellipse cx='50' cy='66' rx='9' ry='12' fill='#8a2b2b'/></svg>" }
+    },
+    {
+      "id": "faces-sad", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "حزين", "en": "Sad" }, "tags": ["face", "sad", "cry", "وجه", "حزين"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><circle cx='36' cy='42' r='6' fill='#3a2e00'/><circle cx='64' cy='42' r='6' fill='#3a2e00'/><path d='M64 48 Q70 60 66 68 Q60 60 64 48Z' fill='#4aa3ff'/><path d='M34 72 Q50 58 66 72' fill='none' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/></svg>" }
+    },
+    {
+      "id": "faces-silly", "assetType": "sticker", "categoryId": "faces-emotions",
+      "title": { "ar": "مرح", "en": "Silly" }, "tags": ["face", "silly", "tongue", "وجه", "مرح"],
+      "asset": { "type": "svg", "data": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='#ffd93b' stroke='#e6a700' stroke-width='3'/><path d='M28 42 h16' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/><circle cx='64' cy='42' r='6' fill='#3a2e00'/><path d='M34 60 Q50 74 66 60' fill='none' stroke='#3a2e00' stroke-width='6' stroke-linecap='round'/><path d='M46 66 h12 a6 6 0 0 1-12 0Z' fill='#ff5a7a'/></svg>" }
+    }
+  ]
+}

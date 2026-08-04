@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Story Creator — Example</title>
+  <link rel="stylesheet" href="../../../css/tokens.css" />
+  <style>
+    :root {
+      --c-bg: #f6f4ff; --c-surface: #ffffff; --c-surface-2: #f2f4ff; --c-text: #2b2b3a;
+      --c-muted: #8a8aa3; --c-border: #e6e6ef; --c-primary: #5b6bff; --c-primary-ink: #fff;
+      --c-accent: #ff6b9d; --c-accent-2: #ffcf6b; --c-success: #57c98a; --c-danger: #ff5a5a;
+      --c-shadow: rgba(91,107,255,.14);
+    }
+    html, body { margin: 0; height: 100%; font-family: system-ui, "Segoe UI", Tahoma, sans-serif; }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg" />
+  <link rel="manifest" href="../../../manifest.webmanifest" />
+  <meta name="theme-color" content="#5b6bff" />
+  <link rel="stylesheet" href="../../../css/a11y.css" />
+  <script type="module">import("../../../js/app/boot.js").then(m=>m.installGlobalHandlers&&m.installGlobalHandlers()).catch(()=>{});</script>
+</head>
+<body>
+  <div id="host"></div>
+  <script type="module">
+    import StoryCreatorApp from './StoryCreatorApp.js';
+    const app = new StoryCreatorApp({ mount: document.getElementById('host') });
+    app.mount().catch((e) => { document.body.innerHTML = '<pre style="padding:16px">' + e.stack + '</pre>'; });
+  </script>
+</body>
+</html>

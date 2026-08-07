@@ -16,12 +16,14 @@
 /VERSION
   Cache-Control: no-cache
 
-# App code + styles: cached for a day (the Service Worker manages true freshness
-# per build version, so stale HTTP responses can't outlive a release).
+# App code + styles: short HTTP cache. The Service Worker is the real cache
+# (version-keyed, populated with `cache: reload`), so correctness after a deploy
+# does not depend on this; the short TTL just bounds staleness for the rare
+# no-Service-Worker client.
 /js/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=600
 /css/*
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=600
 
 # Brand/media assets rarely change.
 /assets/*

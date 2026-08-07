@@ -14,7 +14,7 @@
  * version. A new release changes this file → new worker → new cache → old
  * caches purged → users get the fresh build (no stale modules).
  */
-const VERSION = '1.4.1';
+const VERSION = '1.4.2';
 const CACHE = `kcs-${VERSION}`;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './VERSION'];
 const ASSET_RE = /\.(?:js|css|json|svg|png|jpe?g|webp|gif|woff2?|ico|mp3|wav)$/i;

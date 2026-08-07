@@ -122,6 +122,7 @@ export default class TraceStudio {
     if (this.progress.has(id)) await this._surface.loadPaint(this.progress.load(id));
 
     this.ui.setTitle(title);
+    this.ui.setReferenceImage(img);   // visible reference box + tap-to-eyedrop (17: "ارسم زيها")
     this.ui.refreshReference();
     this.engine.invalidate();
     return this;

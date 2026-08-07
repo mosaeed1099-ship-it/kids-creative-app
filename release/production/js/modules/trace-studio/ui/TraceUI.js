@@ -88,8 +88,18 @@ export default class TraceUI {
     this._recent = h('div', { class: 'ts-swatches ts-swatches--sm' });
     this._favs = h('div', { class: 'ts-swatches ts-swatches--sm' });
 
+    // visible reference box — tap the original image to grab its color (eyedropper)
+    this._refCanvas = h('canvas', { class: 'ts-refbox__canvas' });
+    this._refFrame = h('div', { class: 'ts-refbox__frame' }, [this._refCanvas]);
+    this._refBox = h('div', { class: 'ts-refbox' }, [
+      h('div', { class: 'ts-refbox__hint', text: '🎨 المس الصورة لتأخذ لونها' }),
+      this._refFrame,
+    ]);
+    this._wireEyedropper();
+
     const panel = h('aside', { class: 'ts-panel' }, [
       h('div', { class: 'ts-lbl', text: '🖼️ المصدر' }), this._sources, uploadLabel,
+      h('div', { class: 'ts-lbl', text: '🖼️ الصورة الأصلية' }), this._refBox,
       h('div', { class: 'ts-lbl', text: '👻 المرجع' }),
       h('div', { class: 'ts-opacityrow' }, [h('span', { text: 'الشفافية' }), this._opacity, this._showBtn, this._lockBtn]),
       refBtns,
@@ -142,4 +152,47 @@ export default class TraceUI {
   setHistory(u, r) { this._undo.disabled = !u; this._redo.disabled = !r; }
   setBrushSize(n) { this._brush.value = n; this._brushVal.textContent = String(n); }
   setTitle(t) { this._title.textContent = t || ''; }
+
+  // ----- reference box + eyedropper ("ارسم زيها") -----
+  /** Show the original image at full opacity in a visible, tappable box.
+   *  We sample colours straight from this display canvas (drawn at a fixed size),
+   *  which is robust for SVG sources that report a 0 natural size. */
+  setReferenceImage(img) {
+    if (!img) return;
+    const iw = img.naturalWidth || img.width || 0, ih = img.naturalHeight || img.height || 0;
+    const ratio = (iw && ih) ? ih / iw : 0.75;
+    const w = 260, hgt = Math.max(1, Math.round(w * ratio));
+    this._refCanvas.width = w; this._refCanvas.height = hgt;
+    this._refCtx = this._refCanvas.getContext('2d', { willReadFrequently: true });
+    try { this._refCtx.drawImage(img, 0, 0, w, hgt); this._refReady = true; }
+    catch { this._refReady = false; }
+    this._refBox.classList.toggle('is-ready', this._refReady);
+  }
+
+  _wireEyedropper() {
+    this._refCanvas.addEventListener('pointerdown', (ev) => {
+      if (!this._refReady || !this._refCtx) return;
+      ev.preventDefault();
+      const rect = this._refCanvas.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      const fx = Math.min(1, Math.max(0, (ev.clientX - rect.left) / rect.width));
+      const fy = Math.min(1, Math.max(0, (ev.clientY - rect.top) / rect.height));
+      const sx = Math.min(this._refCanvas.width - 1, Math.floor(fx * this._refCanvas.width));
+      const sy = Math.min(this._refCanvas.height - 1, Math.floor(fy * this._refCanvas.height));
+      if (!Number.isFinite(sx) || !Number.isFinite(sy)) return;
+      let d; try { d = this._refCtx.getImageData(sx, sy, 1, 1).data; } catch { return; }
+      if (d[3] === 0) return; // skip fully transparent pixels
+      const hex = '#' + [d[0], d[1], d[2]].map((n) => n.toString(16).padStart(2, '0')).join('');
+      this.app.setColor(hex);
+      this._flashPick(fx, fy);
+    });
+  }
+
+  _flashPick(fx, fy) {
+    const dot = h('span', { class: 'ts-refbox__dot' });
+    dot.style.left = `${(fx * 100).toFixed(1)}%`;
+    dot.style.top = `${(fy * 100).toFixed(1)}%`;
+    this._refFrame.appendChild(dot);
+    setTimeout(() => dot.remove(), 550);
+  }
 }

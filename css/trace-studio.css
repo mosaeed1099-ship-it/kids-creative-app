@@ -70,3 +70,12 @@
 [data-theme="dark"] .trace { background: #161726; color: #f2f3ff; }
 [data-theme="dark"] .ts-tool { background: #282a48; color: #f2f3ff; }
 [data-theme="dark"] .ts-stage { background: linear-gradient(160deg, #1c1d31, #21233c); }
+
+/* reference box + eyedropper ("ارسم زيها") */
+.ts-refbox { margin-bottom: 6px; }
+.ts-refbox__hint { font-size: 11px; font-weight: 700; color: var(--acc); margin-bottom: 6px; }
+.ts-refbox__frame { position: relative; border: 2px solid var(--acc); border-radius: 12px; overflow: hidden; background: #fff; line-height: 0; }
+.ts-refbox__canvas { display: block; width: 100%; height: auto; cursor: crosshair; touch-action: none; }
+.ts-refbox:not(.is-ready) { display: none; }
+.ts-refbox__dot { position: absolute; width: 16px; height: 16px; margin: -8px 0 0 -8px; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px #2b2b3a; pointer-events: none; animation: ts-pick .55s ease-out forwards; }
+@keyframes ts-pick { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }

@@ -1,0 +1,28 @@
+# Cloudflare Pages headers — Kids Creative Studio
+# Fixes the default `max-age=0, must-revalidate` that forced a network
+# round-trip per module on every navigation. Static code/assets are cached;
+# the entry document, worker and version stay always-fresh so deploys propagate.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Always revalidate the entry points so a new release is picked up immediately.
+/index.html
+  Cache-Control: no-cache
+/sw.js
+  Cache-Control: no-cache
+/VERSION
+  Cache-Control: no-cache
+
+# App code + styles: cached for a day (the Service Worker manages true freshness
+# per build version, so stale HTTP responses can't outlive a release).
+/js/*
+  Cache-Control: public, max-age=86400
+/css/*
+  Cache-Control: public, max-age=86400
+
+# Brand/media assets rarely change.
+/assets/*
+  Cache-Control: public, max-age=604800

@@ -44,5 +44,11 @@
   <script type="module" src="js/main.js"></script>
   <!-- UI foundation layer (Phase 2, additive — does not touch the core). -->
   <script type="module" src="js/ui/foundation.js"></script>
+  <!-- Offline cache + instant navigation (safe no-op if unsupported). -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
 </body>
 </html>

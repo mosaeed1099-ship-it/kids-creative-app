@@ -3,6 +3,19 @@
 All notable changes to this project are documented here.
 This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [1.3.0] — Activate Coloring + Trace
+
+Two features that were fully built but never wired are now live:
+
+- **Coloring** (`/coloring`) — the real Coloring Library (browse packs → pick a
+  page) + full ColoringApp (bucket/brush/pencil/eraser, palette, undo/redo,
+  autosave, print/export). Replaces the "coming soon" placeholder.
+- **Trace** (`/trace`) — the full Trace-a-reference Studio (faint reference +
+  drawing tools, opacity/move/flip, upload, templates). Replaces the placeholder.
+
+Fixes: `index.html` now loads the coloring-library / coloring.module /
+trace-studio stylesheets (previously the overlays rendered unstyled).
+
 ## [1.2.0] — Creative modules + Content Management System
 
 Adds the full creative studios and an offline Content Management System on top

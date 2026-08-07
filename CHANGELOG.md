@@ -3,6 +3,23 @@
 All notable changes to this project are documented here.
 This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [1.3.1] — Performance: caching + offline (Service Worker)
+
+Fixes slow page-to-page navigation. The app is unbundled ES modules, so each
+navigation fetched dozens of files; Cloudflare's default
+`max-age=0, must-revalidate` forced a ~250 ms network round-trip per file every
+time.
+
+- **Service Worker** (`sw.js`): caches everything on first use and serves it
+  instantly afterward (stale-while-revalidate); the app now works fully offline.
+  Cache is keyed to the build version so each release refreshes it.
+- **`_headers`**: static `/js`, `/css`, `/assets` are cached (entry document,
+  worker and VERSION stay always-fresh so deploys propagate); + security headers.
+- `_redirects`: SPA fallback. `tools/build.mjs` stamps the version into `sw.js`.
+
+Measured: `/admin` mount dropped from ~8.8 s (cold, network) to ~0.24 s once
+cached, with the module tree served from cache with zero network transfer.
+
 ## [1.3.0] — Activate Coloring + Trace
 
 Two features that were fully built but never wired are now live:

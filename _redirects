@@ -1,0 +1,2 @@
+# SPA fallback — the app is hash-routed; any non-file deep link serves the shell.
+/*    /index.html    200

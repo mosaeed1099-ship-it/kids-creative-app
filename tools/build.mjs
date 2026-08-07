@@ -26,7 +26,8 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = path.join(ROOT, 'release');
 
 const APP_ITEMS = ['index.html', 'manifest.webmanifest', 'README.md', 'VERSION',
-  'package.json', 'CHANGELOG.md', 'css', 'js', 'assets', 'examples'];
+  'package.json', 'CHANGELOG.md', 'css', 'js', 'assets', 'examples',
+  'sw.js', '_headers', '_redirects'];
 const DEV_EXTRA = ['tools'];
 // NOTE: match only these basenames when they are NOT part of the app source.
 // 'release' is intentionally NOT here — the top-level release/ output is never
@@ -93,6 +94,14 @@ async function main() {
     try { await fs.access(s); await copy(s, path.join(prod, item)); } catch { /* optional */ }
   }
   await hardenTree(prod, prod);
+
+  // Stamp the build version into the Service Worker so each release busts its
+  // cache (the source keeps the __BUILD_VERSION__ placeholder untouched).
+  try {
+    const swPath = path.join(prod, 'sw.js');
+    const sw = await fs.readFile(swPath, 'utf8');
+    await fs.writeFile(swPath, sw.replace('__BUILD_VERSION__', v));
+  } catch { /* sw.js optional */ }
 
   // ---- development (full source, untouched, + tools) ----
   const dev = path.join(OUT, 'development');

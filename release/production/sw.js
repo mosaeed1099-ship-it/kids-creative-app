@@ -12,7 +12,7 @@
  * tools/build.mjs). A new release changes this file → the browser installs a new
  * worker → old caches are purged → users get the fresh build.
  */
-const VERSION = '1.3.1';
+const VERSION = '1.4.0';
 const CACHE = `kcs-${VERSION}`;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './VERSION'];
 const ASSET_RE = /\.(?:js|css|json|svg|png|jpe?g|webp|gif|woff2?|ico|mp3|wav)$/i;

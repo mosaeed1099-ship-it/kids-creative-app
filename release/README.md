@@ -1,4 +1,4 @@
-# Kids Creative Studio — Release 1.3.1
+# Kids Creative Studio — Release 1.4.0
 
 This folder is a versioned, ready-to-ship build. Nothing here requires a
 bundler, a server-side runtime, or an Internet connection.
@@ -22,4 +22,4 @@ cd production && python3 -m http.server 8000   # open http://localhost:8000
 The production build is offline-first: the optional web font is removed and the
 app falls back to the system font stack, so it works with no network at all.
 
-Version 1.3.1 · Kids Creative Studio
+Version 1.4.0 · Kids Creative Studio

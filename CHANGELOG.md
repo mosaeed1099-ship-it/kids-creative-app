@@ -3,6 +3,18 @@
 All notable changes to this project are documented here.
 This project adheres to Semantic Versioning (MAJOR.MINOR.PATCH).
 
+## [1.4.0] — Activate 4 more built-but-unwired features
+
+All remaining completed modules are now reachable (wired to routes + their
+stylesheets loaded). No logic duplicated — thin Module wrappers over existing
+apps + Content Engine packs.
+
+- **أنشطة** (`/learning`) — Learning Activities (letters, numbers, shapes, mazes…).
+- **إبداع** (`/create`) — Creative Studio (build a character + stickers + expressions).
+- **الطباعة** (`/print`) — Print Center (print coloring pages / artwork).
+- **لوحة الأهل** (`/parents`, hidden like admin) — Parent Dashboard (per-child
+  profiles + progress; no demo seeding — starts from real state).
+
 ## [1.3.1] — Performance: caching + offline (Service Worker)
 
 Fixes slow page-to-page navigation. The app is unbundled ES modules, so each
